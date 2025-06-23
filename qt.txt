@@ -1,0 +1,62 @@
+---QtCoinToss---
+rep: 100
+k: 202
+<
+ while (i<1) do {H(q); Meas(x,q); i:=i+1},
+ [(x,0),(i,0)],
+ [(q,1)],
+ (1.0)|0><0|
+>
+---QtCoinToss---
+
+
+---EntagledStates---
+rep: 1
+k: 4
+<
+ H(q1);
+ CNOT(q1,q2);
+ Meas(x,q1),
+ [(x,0)],
+ [(q1,1),(q2,2)],
+ (1.0)|00><00|
+>
+---EntagledStates---
+
+---QtTeleport---
+rep: 100
+k: 300
+<
+ H(q2);
+ CNOT(q2,q3);
+ CNOT(q1,q2);
+ H(q1);
+ Meas(x2,q2);
+ Meas(x1,q1);
+ if (x2==0) then {skip} else {X(q3)};
+ if (x1==0) then {skip} else {Z(q3)},
+ [(x1,0),(x2,0)],
+ [(q1,1),(q2,2),(q3,3)],
+ (1.0)|000><000|
+>
+---QtTeleport---
+
+
+---QtTeleportAwait---
+rep: 1
+k: 0
+<
+ H(q2);
+ CNOT(q2,q3);
+ CNOT(q1,q2);
+ H(q1);
+ (x5:=1 || x6:=1);
+ (await (x5==1) do {Meas(x1,q1);
+                   if (x1==0) then {skip} else {Z(q3);X(q4)}} ||
+ await (x6==1) do {Meas(x4,q4); Meas(x2,q2);
+                   if (x2==0) then {skip} else {if (x4==0) then {X(q3)} else {X(q3);Z(q4)}}}),
+ [(x1,0),(x2,0),(x3,0),(x4,0),(x5,0),(x6,0)],
+ [(q1,1),(q2,2),(q3,3),(q4,4)],
+ (1.0)|1000><1000|
+>
+---QtTeleportAwait---

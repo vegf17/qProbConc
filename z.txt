@@ -1,0 +1,87 @@
+---v---
+x:=1
+---v---
+
+---v---
+x:=2;x:=1
+---v---
+
+---v---
+x:=2;(x:=1)
+---v---
+
+---v---
+x:=2;skip
+---v---
+
+---v---
+x:=1 ;
+Reset(q) ||
+Meas(x,q) (+)(0.4) X(q) or
+skip
+---v---
+
+---v---
+while true do {skip}
+---v---
+
+---v---
+if false then {skip} else {skip}
+---v---
+
+---v---
+if false then {x:=1 or x:=4} else {x:=1 || x:=2};
+while (true & false) do {x:=1}
+---v---
+
+---v---
+while x<=0 do {x:=0 (+)(0.5) x:=1} or
+skip
+---v---
+
+---v---
+(x:=1;x:=2) (+)(0.5) x:=3
+---v---
+
+---v---
+(x:=1 (+)(0.0) x:=2) or
+(x:=3 || x:=4)
+---v---
+
+---v---
+Reset(q1); x:=1
+---v---
+
+---v---
+Meas(x,q)
+---v---
+
+---v---
+H(q2); CNOT(q2,q3);
+CNOT(q1,q2); H(q1);
+Meas(x2,q2); Meas(x1,q1);
+if (x2<=0) then {skip} else {X(q3)};
+if (x1<=0) then {skip} else {Z(q3)}
+---v---
+
+---v---
+while x<=0 & true do {Meas(x,q) or x:=2} ;
+if -false & x<=y then {
+x:=1 ; Z(q) ||
+Reset(q) (+)(1) x:=24 or
+Meas(y,q2)
+}
+else {
+while true do {skip} ; Z(qw) ||
+Reset(q) or x:=24 (+)(0.5)
+if -false then {skip} else {skip}
+} or
+skip
+---v---
+
+
+---v---
+x:=1 (+)(1) x:=2 (+)(0.2)
+skip
+---v---
+

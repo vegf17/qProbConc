@@ -1,0 +1,21 @@
+---ProbCoinToss---
+rep: 100
+k: 155
+<
+ while (i<50) do {x:=0 (+)(0.5) x:=1;
+                   i:=i+1},
+ [(x,0),(i,0)],
+ [],
+>
+---ProbCoinToss---
+
+
+---ProbRandWalk---
+rep: 10000
+k: 32
+<
+ while (i<10) do {x:=x+1 (+)(0.5) x:=x+(-1); i:=i+1},
+ [(x,0),(i,0)],
+ [],
+>
+---ProbRandWalk---
