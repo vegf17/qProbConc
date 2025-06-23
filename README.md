@@ -13,16 +13,15 @@ This README aims to instruct how to use the tool developed for ICTAC25 submissio
 
 1. Inside the downloaded folder, create a txt file with one or more programs with the following format
 (to see some examples, have a look at the txt files we have developed)
-
-    	``---ProgramName---
-	  
-	  rep: int_value
-	  
-	  k: int_value
-	  
-	  < C, cs, l, qs >
-	  
-	  ---ProgramName---``
+   >``---ProgramName---``
+   >
+   >``rep: int_value``
+   >
+   >``k: int_value``
+   >
+   >``< C, cs, l, qs >``
+   >
+   >``---ProgramName---``
     - ProgramName: is the name of the program without spaces
     - rep: is the number of samples for building the histogram
     - k: is the number of computational steps the $k$-step semantics performs
@@ -43,4 +42,6 @@ This README aims to instruct how to use the tool developed for ICTAC25 submissio
      - FileName: is the name of the file to be parsed
      - -h : outputs a histogram
 
-
+For example, if we wish to evaluate the commands inside the **prob.txt** file we write 
+- ``prob -n -d``, to obtain a distribution of final states from each program inside **prob.txt**
+- ``prob -h``, to obtain a histogram from each program inside **prob.txt**
