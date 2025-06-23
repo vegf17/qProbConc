@@ -13,10 +13,15 @@ This README aims to instruct how to use the tool developed for ICTAC25 submissio
 
 1. Inside the downloaded folder, create a txt file with one or more programs with the following format
 (to see some examples, have a look at the txt files we have developed)
-   	  ``---ProgramName---
+
+    	``---ProgramName---
+	  
 	  rep: int_value
+	  
 	  k: int_value
+	  
 	  < C, cs, l, qs >
+	  
 	  ---ProgramName---``
     - ProgramName: is the name of the program without spaces
     - rep: is the number of samples for building the histogram
