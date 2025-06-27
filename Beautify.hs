@@ -7,11 +7,20 @@ import Data.Char
 import Syntax
 import Examples
 
+
+--variable that defines the precision for doubles in states and probabilities
+precision = 5
+
+
+
 --START: Functions to transform quantum states, in the form of density operators, into the BraKet notation--
 
 -- Convert a memory (sc,sq), which is composed by a classical state sc and a quantum state sq, to a string
 memToString :: Mem -> String
-memToString (sc,sq) = "[" ++ showSC sc ++ "], " ++ (rmvPlus $ denOpToKetBraComplex sq)
+memToString (sc,sq) =
+  case null (rmvPlus $ denOpToKetBraComplex sq) of
+    True -> "[" ++ showSC sc ++ "]"
+    False -> "[" ++ showSC sc ++ "], " ++ (rmvPlus $ denOpToKetBraComplex sq)
 
 --Convert a quantum state, which is a density operator, to a string with complex numbers
 --A quantum state is represented as a matrix, which can also be represented as \sum_i p_i |ψ_i><ψ_i| thus, 
@@ -186,12 +195,17 @@ limitPrecisionS n st = fromLists [ f l | l <- lst]
   where lst = toLists st
         f = map (\e -> limitPrecisionComplex n e)
 
+
+limPrecKStep :: Int -> [([(Mem, Double)],Double)] -> [([(Mem, Double)],Double)]
+limPrecKStep n l = [(limitPrecAux n dist, limitPrecDouble n q) | (dist, q) <- l]
+
+  
 -- (showProbMemList l) = String value corresponding to the (Mem,Double) values inside l, with a comma and a
 -- new line character separating them
 showProbMemList :: [(Mem,Double)] -> String 
 showProbMemList [] = ""
 showProbMemList [c] = showProbMem c
-showProbMemList (h:t) = (showProbMem h) ++ " +\n" ++ (showProbMemList t)
+showProbMemList (h:t) = (showProbMem h) ++ " +\n " ++ (showProbMemList t)
 
 -- showProbMem (mem,p) = String value corresponding to (mem,p)
 showProbMem :: (Mem,Double) -> String 
@@ -201,4 +215,28 @@ showProbMem ((sc,sq),p) = (show p) ++ "·([" ++ showSC sc ++ "], " ++ (rmvPlus $
 -- together with its results, md
 showRun :: (String, [(Mem,Double)]) -> String
 showRun (s,md) = s ++ ": \n" ++ showProbMemList md ++ "\n"
+
+
+-- showRunK (s, md) = String value corresponding to the name of the program being executed, s,
+-- together with its results, md
+showRunK :: (String, [([(Mem,Double)], Double)]) -> String
+showRunK (s,md) = "\n" ++ s ++ ": \n" ++ showProbProbMemList md ++ "\n"
+
+-- showProbProbMemList l = String value corresponding to the ([(Mem, Double)],Double) values inside
+-- l, with a new line character separating them
+showProbProbMemList :: [([(Mem, Double)],Double)] -> String
+showProbProbMemList [] = ""
+showProbProbMemList [h] = showProbProbMem h
+showProbProbMemList (h:t) = (showProbProbMem h) ++ "\n" ++ (showProbProbMemList t)
+
+-- showProbProbMem (dist,p) = String value corresponding to (dist,p)
+showProbProbMem :: ([(Mem, Double)],Double) -> String
+showProbProbMem (dist, q) = (show q) ++ " -> " ++  (showProbMemListK dist)
+
+
+-- (showProbMemListK l) is similar to (showProbMemList l)
+showProbMemListK :: [(Mem,Double)] -> String 
+showProbMemListK [] = ""
+showProbMemListK [c] = showProbMem c
+showProbMemListK (h:t) = (showProbMem h) ++ " +\n\t" ++ (showProbMemListK t)
 --END: Functions for showing results--

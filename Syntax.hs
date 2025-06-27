@@ -18,6 +18,12 @@ type SQ = Matrix (Complex Double) --quantum state, represented by a density oper
 type Mem = (SC,SQ)
 type LMem = (SC,L,SQ) -- has the linking function, useful for SQ
 
+--ProbPath: (X x V(S+X))* x X ==> ([(X, V(S + X))], X)
+-- X = (C,LMem)
+-- V(S+X) = [(Either S X, Double)]
+-- ([((C,LMem), [(Either LMem (C,LMem), Double)])], (C,LMem))
+type ProbPath = ([((C,LMem), [(Either LMem (C,LMem),Double)])], (C,LMem))
+
 --E expressions
 data E = Num Integer
        | Id String

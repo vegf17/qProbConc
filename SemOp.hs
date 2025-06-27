@@ -2,13 +2,15 @@ module SemOp where
 
 --Haskell imports--
 import Control.Monad.State
-import Control.Monad.Trans
+import Control.Monad.Trans 
 import Control.Monad.Trans.Except
+import Control.Monad.Trans.Maybe
 import Control.Monad
 import Control.Monad.Identity
 import System.Random
 import Data.Either
 import Data.List
+import Data.Ord
 import Data.Complex
 import Data.Ratio
 import Data.Char
@@ -17,7 +19,10 @@ import Data.Matrix
 --import Data.Random.Normal --cabal install normaldistribution
 --import Data.Random -- :set -package random-fu
 --import Data.Random.Distribution.Normal
-import Numeric (showFFloat)
+--import Numeric (showFFloat)
+--import Numeric.Probability.Distribution hiding (map, lift, filter)
+  --for the use we make of probabilities, what we have defined is sufficient
+  --later versions can make use of this package
 --Haskell imports--
 
 --import for graphics--
@@ -55,6 +60,7 @@ Important functions of this module:
  output:
   a histogram
 -}
+
 
 --precision for doubles
 precision = 5
@@ -122,12 +128,6 @@ showBigAwait c s = putStrLn $ showProbMemList $ f $ getProb $ bigAwait (c,s)
 --START: small-step semantics--
 -- StTQC C '=' S -> [[(Either S (C,S), Prob)]]
 type StTQC a = StateT LMem (ExceptT LMem (ProbT [])) a --small
-
---Path: (X x V(S+X))* x X --> ([(X, V(S + X))], X)
--- X = (C,LMem)
--- V(S+X) = [Either S X]
--- ([((C,LMem), [Either LMem (C,LMem)])], (C,LMem))
-type ProbPath = ([((C,LMem), [(Either LMem (C,LMem),Double)])], (C,LMem))
 
 --Codifies the behavior of the small-step operational semantics
 small :: C -> StTQC C
@@ -214,6 +214,241 @@ runSmall :: C -> LMem -> [[(Either Mem (C,Mem), Double)]]
 runSmall c s = rmvL $ runProbT $ runExceptT $ runStateT (small c) s
 --END: small-step semantics--
 
+--START: k-step--
+--ProbPath: (X x V(S+X))* x X ==> ([(X, V(S + X))], X)
+-- X = (C,LMem)
+-- V(S+X) = [(Either S X, Double)]
+-- ([((C,LMem), [(Either LMem (C,LMem), Double)])], (C,LMem))
+type ProbPath = ([((C,LMem), [(Either LMem (C,LMem),Double)])], (C,LMem))
+
+--Scheduler: ProbPath --> V(V(S + (C x S))) + {*}  ==> ProbPath --> Maybe V(V(S + (C x S)))
+type Sch = ProbPath -> Maybe [([(Either LMem (C, LMem), Double)], Double)]
+
+--Returns the result of the k-step operational semantics for a given scheduler Sch, command C, state
+--s, and empty history
+runKStepSch :: Sch -> C -> LMem -> Int -> [(Mem, Double)]
+runKStepSch sch c lmem k = cleanL $ getProb $ kStepSch (sch,([],(c,lmem)),k)
+  where cleanL = map (\((sc,l,sq),p) -> ((sc,sq),p))
+
+--improved display of the results of runNStepSch
+--for example quantum states are shown in bra-ket notation
+showKStepSch :: Sch -> C -> LMem -> Int -> IO()
+showKStepSch sch c s n = let s' = runKStepSch sch c s n -- [([(Mem, Double)],Double)]
+                         in putStrLn $ showProbMemList s'
+                         --in putStrLn $ showProbMemList $ (limitPrecAux 5 s')
+
+--codifies the k-step semantics
+kStepSch :: (Sch, ProbPath, Int) -> MyDist LMem
+kStepSch (_, path, 0) = MyDist [(snd $ snd path, 0)]
+kStepSch (sch, l@(path, (c, s)), k) = 
+  case (sch l) of
+    Nothing -> error "Scheduler undefined"
+    Just convDist -> do 
+      let ppL = [ [ (s, p*q) | (s, p) <- (projL dist)] | (dist, q) <- convDist] -- [([(S, Double)], Double)]
+          next_eval = [[((sch, (path ++ [((c, s), dist)], cs), k-1), p*q) | (cs, p) <- (projR dist)] | (dist, q) <- convDist]
+          transStep = (MyDist $ concat next_eval) >>= kStepSch
+      addMyDist transStep (MyDist $ concat ppL)
+--END: k-step--
+
+
+
+--START: definition of schedulers without IO--
+--undefined scheduler
+undScheduler :: Sch
+undScheduler _ = Nothing
+
+--scheduler that chooses always the first element in the list of the possible transitions
+initScheduler :: Sch
+initScheduler (path,(c,s)) =
+  let listDist = runProbT $ runExceptT $ runStateT (small c) s -- [[(Either LMem (C,LMem), Double)]]
+  in Just $ [(head listDist, 1)]
+
+--scheduler that chooses always the last element in the list of the possible transitions
+lastScheduler :: Sch
+lastScheduler (path,(c,s)) =
+  let listDist = runProbT $ runExceptT $ runStateT (small c) s -- [[(Either LMem (C,LMem), Double)]]
+  in Just $ [(last listDist, 1)]
+
+--scheduler that chooses always the middle element in the list of the possible transitions
+middleScheduler :: Sch
+middleScheduler (path,(c,s)) =
+  let listDist = runProbT $ runExceptT $ runStateT (small c) s -- [[(Either LMem (C,LMem), Double)]]
+      ind = fromIntegral $ floor ((fromIntegral $ length listDist)/2)
+  in Just $ [(listDist!!ind, 1)]  
+
+--probabilistic scheduler, which attributes the same probability to all the elements in the list of
+--the possible transitions
+probScheduler :: Sch
+probScheduler (path,(c,s)) =
+  let listDist = runProbT $ runExceptT $ runStateT (small c) s -- [[(Either LMem (C,LMem), Double)]]
+      len = fromIntegral $ length listDist
+  in Just $ [(dist, 1/len) | dist <- listDist]
+--END: definition of schedulers without IO--
+
+
+
+
+
+
+--START: k-step convex coefficients explicit with IO--
+--The scheduler here needs to be given as an input, contrarily to what happens in runNStepSch,
+--runNStepSchFullConv, and runNStepConf, in which we consider a pre-defined scheduler
+
+--SchedulerIO: ProbPath --> V(V(S + X)) + {*}  ==> ProbPath --> Maybe V(V(S+X))
+--Allows the creation of schedulers that use random
+--if to use, the definition needs to be changed
+type SchIO = ProbPath -> MaybeT IO [([(Either LMem (C, LMem), Double)], Double)]
+
+
+--Returns the result of the k-step operational semantics for a given scheduler Sch, command C, state
+--s, and empty history
+runKStepSchIO :: SchIO -> C -> LMem -> Int -> IO [([(Mem, Double)],Double)]
+runKStepSchIO sch c lmem k = rmvIOLII $ runProbT $ runProbT $ kStepSchIO (sch,([],(c,lmem)),k)
+
+--improved display of the results of runNStepSch
+--for example quantum states are shown in bra-ket notation
+showKStepSchIO :: SchIO -> C -> LMem -> Int -> IO()
+showKStepSchIO sch c s n = do
+  s' <- runKStepSchIO sch c s n -- [([(Mem, Double)],Double)]
+  putStrLn $ showProbProbMemList $ (limPrecKStep 5 s')
+
+--codifies the k-step semantics
+kStepSchIO :: (SchIO, ProbPath, Int) -> ProbT (ProbT IO) LMem
+kStepSchIO (_, path, 0) = ProbT $ ProbT $ return [([(snd $ snd path, 0)],0)]
+kStepSchIO (sch, l@(path, (c, s)), k) = do
+  appSch <- lift.lift $ runMaybeT $ sch l
+  case appSch of
+    Nothing -> error "Scheduler undefined"
+    Just convDist -> do 
+      let ppL = [(projL dist, q) | (dist, q) <- convDist] -- [([(S, Double)], Double)]
+          --next_eval = [([((sch, (path ++ [((c, s), dist)], cs), k-1), p) | (cs, p) <- (projR dist)] ,q) | (dist, q) <- convDist]
+          next_eval = [([((sch, ([], cs), k-1), p) | (cs, p) <- (projR dist)] ,q) | (dist, q) <- convDist]
+          transStep = (ProbT $ ProbT $ return next_eval) >>= kStepSchIO
+      --joinProbTProbTIO transStep (ProbT $ ProbT $ return ppL)
+      joinProbTProbTIO transStep (ProbT $ ProbT $ return ppL)
+
+
+-- joinProbTProbTIO :: (Eq x) => ProbT (ProbT IO) x  -> ProbT (ProbT IO) x -> ProbT (ProbT IO) x
+-- joinProbTProbTIO (ProbT probtiopsi) (ProbT probtiophi) = let dist = addProbTIOG probtiopsi probtiophi
+--                                                          in ProbT $ dist
+joinProbTProbTIO :: (Eq x) => ProbT (ProbT IO) x  -> ProbT (ProbT IO) x -> ProbT (ProbT IO) x
+joinProbTProbTIO (ProbT (ProbT iopsi)) (ProbT (ProbT iophi)) = do
+  psi <- lift.lift $ iopsi -- [([(x,Double)], Double)]
+  phi <- lift.lift $ iophi -- [([(x,Double)], Double)]
+  ProbT $ ProbT $ return $ (filtro psi) ++ (filtro phi)
+    where filtro = filter (\(dist,_) -> not (null dist))
+
+
+-- addProbTProbT :: (Eq x) => [([(x, Double)], Double)] -> [([(x, Double)], Double)] -> [([(x, Double)], Double)]
+-- addProbTProbT [] [] = []
+-- addProbTProbT [([],_)] l = filtro l
+--   where filtro = filter (\(dist,_) -> not (null dist))
+-- addProbTProbT l [([],_)] = filtro l
+--   where filtro = filter (\(dist,_) -> not (null dist))
+-- addProbTProbT l1 l2 = (filtro l1) ++ (filtro l2)
+--   where filtro = filter (\(dist,_) -> not (null dist))
+
+joinProbTProbTIOII :: (Eq x) => ProbT (ProbT IO) x  -> ProbT (ProbT IO) x -> ProbT (ProbT IO) x
+joinProbTProbTIOII (ProbT (ProbT iopsi)) (ProbT (ProbT iophi)) = do
+  psi <- lift.lift $ iopsi -- [([(x,Double)], Double)]
+  phi <- lift.lift $ iophi -- [([(x,Double)], Double)]
+  ProbT $ ProbT $ return (psi++phi)
+--END: k-step convex coefficients explicit with IO--
+
+--START: k-step with IO--
+--The scheduler here needs to be given as an input, contrarily to what happens in runNStepSch,
+--runNStepSchFullConv, and runNStepConf, in which we consider a pre-defined scheduler
+
+--Returns the result of the k-step operational semantics for a given scheduler Sch, command C, state
+--s, and empty history
+runKStepSchIIIO :: SchIO -> C -> LMem -> Int -> IO [(Mem, Double)]
+runKStepSchIIIO sch c lmem k = rmvIOL $ runProbT $ kStepSchIIIO (sch,([],(c,lmem)),k)
+
+--improved display of the results of runNStepSch
+--for example quantum states are shown in bra-ket notation
+showKStepSchIIIO :: SchIO -> C -> LMem -> Int -> IO()
+showKStepSchIIIO sch c s n = do
+  s' <- runKStepSchIIIO sch c s n -- [([(Mem, Double)],Double)]
+  --putStrLn $ showProbMemList $ (limitPrecAux 5 s')
+  putStrLn $ showProbMemList s'
+
+--codifies the k-step semantics
+kStepSchIIIO :: (SchIO, ProbPath, Int) -> ProbT IO LMem
+kStepSchIIIO (_, path, 0) = ProbT $ return [(snd $ snd path, 0)]
+kStepSchIIIO (sch, l@(path, (c, s)), k) = do
+  appSch <- lift $ runMaybeT $ sch l 
+  case appSch of
+    Nothing -> error "Scheduler undefined"
+    Just convDist -> do 
+      let ppL = [ [ (s, p*q) | (s, p) <- (projL dist)] | (dist, q) <- convDist] -- [([(S, Double)], Double)]
+          next_eval = [[((sch, (path ++ [((c, s), dist)], cs), k-1), p*q) | (cs, p) <- (projR dist)] | (dist, q) <- convDist]
+          --next_eval = [[((sch, ([], cs), k-1), p*q) | (cs, p) <- (projR dist)] | (dist, q) <- convDist]
+          transStep = (ProbT $ return $ concat next_eval) >>= kStepSchIIIO
+      addProbTIOG transStep (ProbT $ return $ concat ppL)
+--END: k-step with IO--
+
+
+--START: definition of schedulers with IO--
+detSch :: SchIO
+detSch path = do
+  dist <- lift $ pathSch path --[(Either LMem (C,LMem), Double)]
+  MaybeT $ return $ Just [(dist,1)]
+
+probSch :: SchIO
+probSch (path,(c,s)) = do
+  let list = runProbT $ runExceptT $ runStateT (small c) s -- [[(Either LMem (C,LMem), Double)]]
+  l <- lift $ convClosure list -- [([(Either LMem (C,LMem), Double)],Double)]
+  MaybeT $ return $ Just l
+--END: definition of schedulers with IO--
+
+--START: auxiliary functions for schedulers with IO--
+--IO [(Either S (C,S), Double)]
+--Given a path/history, returns the next distribution to be evaluated according to a uniform
+--distribution
+pathSch :: ProbPath -> IO [(Either LMem (C,LMem), Double)]
+pathSch (path,(c,s)) = do
+  let list = runProbT $ runExceptT $ runStateT (small c) s -- [[(Either S (C,S), Double)]]
+  next <- nextStep list -- [(Either LMem (C,LMem), Double)]
+  return next
+
+--Given a list of distributions selects the next distribution to be evaluated according to a
+--uniform distribution
+nextStep :: (Eq a) => [a] -> IO a
+nextStep [] = error "nextStep: list should be non-empty"
+nextStep l = do
+  prob <- randNumber $ fromIntegral (length l)
+  --let index = floor $ prob * fromIntegral (length l)
+  return $ l !! (floor prob)  --  $ (l !! max 0 (min (length l - 1) index))
+
+--uniform distribution
+--given a double d, generates a random number between 0 and d, based on a uniform distribution
+randNumber :: Double -> IO Double
+randNumber n = do
+  gen <- getStdGen
+  let (p,newgen) = randomR (0, n) gen
+  setStdGen newgen
+  return p
+
+--Does the convex closure of a list by normalizing the convex coefficients obtained from
+--listConvCoef
+convClosure :: [a] -> IO [(a, Double)]
+convClosure [] = return []
+convClosure l = do
+  coefs <- listConvCoef (length l) 1.0
+  let norm = sum coefs
+      coefsNorm = map (/norm) coefs 
+  return $ zip l coefsNorm
+
+--Creates a list of size n with convex coefficients
+listConvCoef :: Int -> Double -> IO [Double]
+listConvCoef 0 _ = return []
+listConvCoef n d = do
+  q <- randNumber d
+  l <- listConvCoef (n-1) 1.0
+  return $ q : l  
+--END: auxiliary functions for schedulers with IO--
+
+
 
 --START: nstep that chooses a distribution to be evaluated next--
 --The scheduler used here chooses the next distribution to be evaluated from a set of distributions;
@@ -243,24 +478,6 @@ nstepSch (l@(path,(c,s)),n) = do
       ppR = [ (((path ++ [((c, s), nextDist)], cs), n-1), p) | (cs,p) <- pR, p/=0] --removing elements with probability 0
       transStep = (ProbT $ return ppR) >>= nstepSch -- ProbT IO S
   addProbTIOG transStep (ProbT $ return pL)
-
---IO [(Either S (C,S), Double)]
---Given a path/history, returns the next distribution to be evaluated according to a uniform
---distribution
-pathSch :: ProbPath -> IO [(Either LMem (C,LMem), Double)]
-pathSch (path,(c,s)) = do
-  let list = runProbT $ runExceptT $ runStateT (small c) s -- [[(Either S (C,S), Double)]]
-  next <- nextStep list -- [(Either LMem (C,LMem), Double)]
-  return next
-
---Given a list of distributions selects the next distribution to be evaluated according to a
---uniform distribution
-nextStep :: (Eq a) => [a] -> IO a
-nextStep [] = error "nextStep: list should be non-empty"
-nextStep l = do
-  prob <- randNumber $ fromIntegral (length l)
-  --let index = floor $ prob * fromIntegral (length l)
-  return $ l !! (floor prob)  --  $ (l !! max 0 (min (length l - 1) index))
 --END: nstep that chooses a distribution to be evaluated next--
 
 
@@ -310,7 +527,7 @@ pathSchFullConv (path,(c,s)) = do
 --a memoryless scheduler, which selects a configuration according to a uniform distribution and then
 runNStepConf :: C -> LMem -> Int -> IO (Mem,Double)
 runNStepConf c s n = do
-  memList <- runProbT $ nstepConf ((c,s),n)--the probabilities associated to the configurations in the distribution
+  memList <- runProbT $ nstepConf ((c,s),n) --the probabilities associated to the configurations in the distribution
   return $ (\((a,b,c),p) -> ((a,c),p) ) $ head memList
 
 
@@ -356,42 +573,13 @@ eventNextStep l = do
 --END: nstep with a scheduler that chooses the next command to be executed--
 
 
---START: Auxiliary functions for the nstep--
---uniform distribution
---given a double d, generates a random number between 0 and d, based on a uniform distribution
-randNumber :: Double -> IO Double
-randNumber n = do
-  gen <- getStdGen
-  let (p,newgen) = randomR (0, n) gen
-  setStdGen newgen
-  return p
-
---Does the convex closure of a list by normalizing the convex coefficients obtained from
---listConvCoef
-convClosure :: [a] -> IO [(a, Double)]
-convClosure [] = return []
-convClosure l = do
-  coefs <- listConvCoef (length l) 1.0
-  let norm = sum coefs
-      coefsNorm = map (/norm) coefs 
-  return $ zip l coefsNorm
-
---Creates a list of size n with convex coefficients
-listConvCoef :: Int -> Double -> IO [Double]
-listConvCoef 0 _ = return []
-listConvCoef n d = do
-  q <- randNumber d
-  l <- listConvCoef (n-1) 1.0
-  return $ q : l
---END: Auxiliary functions for the nstep--
-
-
 --START: Histogram--
 --Building the histogram using the method that returns a configuration
 histogramNStepConf :: String -> Int -> C -> LMem -> Int -> IO ExitCode
 histogramNStepConf name k c s n = do
   input <- listNStepConf k c s n -- [Mem]
-  histogramInt (confIntoDouble input) name
+  let sortInput = sortBy (comparing fst) input
+  histogramInt (confIntoDouble sortInput) name
   
 --Executes runNStepConf k times and stores the results obtained in each iteration
 --If the probability of the result obtained is zero, the result is discarded; Furthermore, if after
@@ -459,6 +647,16 @@ rmvLAux (((Left (sc,l,sq)),p) :t) = ((Left (sc,sq)),p) : rmvLAux t
 rmvLAux (((Right(c, (sc,l,sq))),p) :t) = ((Right (c,(sc,sq))),p) : rmvLAux t
 
 --auxiliary function for runNStepSch
+--Remove the linking function
+-- rmvLII :: [([(LMem, Double)],Double)] -> [([(Mem, Double)],Double)]
+-- rmvLII ll = [([ ((sc,sq),p) | ((sc,l,sq),p) <- dist],q) | (dist,q) <- ll]
+
+rmvIOLII :: IO [([(LMem, Double)],Double)] -> IO [([(Mem, Double)],Double)]
+rmvIOLII ioll = do
+  ll <- ioll
+  let l = [([ ((sc,sq),p) | ((sc,l,sq),p) <- dist],q) | (dist,q) <- ll]
+  return l
+
 --Remove the linking function 
 rmvIOL :: IO [(LMem,Double)] -> IO [(Mem,Double)]
 rmvIOL iol = do
@@ -467,6 +665,9 @@ rmvIOL iol = do
   return l'
 
 --auxiliary functions to add elements of ProbT IO x
+addMyDist :: (Eq x) => MyDist x -> MyDist x -> MyDist x
+addMyDist (MyDist psi) (MyDist phi) = MyDist (addDistG psi phi)
+
 addProbTIOG :: (Eq x) => ProbT IO x -> ProbT IO x -> ProbT IO x
 addProbTIOG (ProbT iopsi) (ProbT iophi) = do
   psi <- lift $ iopsi -- [(x,Double)]
@@ -491,8 +692,8 @@ rmvG x ((y,p):t) = if x==y
                   else (y,p) : rmvG x t
 --END: auxiliary functions--
 
---Consider numbers very small to be zero
---Necessary because the transport of these numbers may lead to states arising from measurements that shouldn't exist
+--Consider numbers very small to be zero; necessary because the transport of these numbers may lead
+--to states arising from measurements that shouldn't exist
 zeroIfSmall :: Double -> Double
 zeroIfSmall x = if abs x < threshold
                 then 0

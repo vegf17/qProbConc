@@ -72,7 +72,7 @@ rho0 = tensorProduct [st0, dagger st0] --  |0><0|
 rho1 = tensorProduct [st1, dagger st1] --  |1><1|
 rhoH0 = tensorProduct [stH0, dagger stH0] --  H|0><0|H^+
 rhoH1 = tensorProduct [stH1, dagger stH1] --  H|1><1|H^+
-rho0000 = tensorProduct [st00, dagger st00] --  |00><00|
+rho00 = tensorProduct [st00, dagger st00] --  |00><00|
 rho0001 = tensorProduct [tensorProduct [st0, st0], dagger $ tensorProduct [st0, st1]] --  |00><01|
 rho0010 = tensorProduct [tensorProduct [st0, st0], dagger $ tensorProduct [st1, st0]] --  |00><10|
 rho0011 = tensorProduct [tensorProduct [st0, st0], dagger $ tensorProduct [st1, st1]] --  |00><11|
@@ -163,19 +163,40 @@ man = Paral (Paral hq1 (U Y ["q1"])) (xq1)
 
 --Quantum Teleport--
 stc = [("x1",0),("x2",0)]
-stq = \s -> tensorProduct[tensorProduct [s, dagger s],rhoPhiPlus]
+stq = \s -> tensorProduct[tensorProduct [s, dagger s], rho00]
 l3 = [("q1",1),("q2",2),("q3",3)] :: [(String,Int)]
 mem = \s -> (stc,l3,stq s)
 
 --sequential version
+charlie = Seq (U H ["q2"]) (U CNOT ["q2","q3"])
 aliP = Seq cnotq1q2 hq1
-aliM = Seq (Meas("x1","q1")) (Meas("x2","q2"))
-bob = Seq (IfC (Leq (Id "x2") (Num 0)) sk (U X ["q3"])) (IfC (Leq (Id "x1") (Num 0)) sk (U Z ["q3"]))
-qtele = Seq (Seq aliP aliM) bob
+aliM = Seq (Meas("x2","q2")) (Meas("x1","q1"))
+alice = Seq aliP aliM
+bob = Seq (IfC (Equ (Id "x2") (Num 0)) sk (U X ["q3"])) (IfC (Equ (Id "x1") (Num 0)) sk (U Z ["q3"]))
+qTele = Seq charlie (Seq alice bob)
+
+--await version
+charlieA = SeqA (UA H ["q2"]) (UA CNOT ["q2","q3"])
+aliPA = SeqA (UA CNOT ["q1","q2"]) (UA H ["q1"])
+aliMA = SeqA (MeasA("x1","q1")) (MeasA("x2","q2"))
+aliceA = SeqA aliPA aliMA
+bobA = SeqA (IfCA (Equ (Id "x2") (Num 0)) SkipA (UA X ["q3"])) (IfCA (Equ (Id "x1") (Num 0)) SkipA (UA Z ["q3"]))
+actCharlie = Asg "xC" (Num 1)
+awaitCharlie = Await (Equ (Id "xC") (Num 1)) (
+  SeqA charlieA (SeqA (AsgA "xC" (Num 0)) (AsgA "xA" (Num 1)))
+  )
+awaitAlice = Await (Equ (Id "xA") (Num 1)) (
+  SeqA aliceA (SeqA (AsgA "xA" (Num 0)) (AsgA "xB" (Num 1)))
+  )
+awaitBob = Await (Equ (Id "xB") (Num 1)) (SeqA bobA (AsgA "xB" (Num 0)))
+qtTeleAwait = Paral actCharlie (Paral awaitCharlie (Paral awaitAlice awaitBob))
+stcAwait = [("x1",0),("x2",0),("xC",0),("xB",0),("xA",0)]
+memAwait = \s -> (stcAwait,l3,stq s)
+
 
 --drunk Bob
 pBob = Paral (IfC (Leq (Id "x2") (Num 0)) sk (U X ["q3"])) (IfC (Leq (Id "x1") (Num 0)) sk (U Z ["q3"]))
-qTele = Seq (Seq aliP aliM) pBob
+qTeleP = Seq (Seq aliP aliM) pBob
 
 --Grover (2 qbits)
 --Sequential
@@ -193,7 +214,8 @@ grover10 = Seq gro_in (Seq gro_anc (Seq oracle10 gro_diff))
 grover11 = Seq gro_in (Seq gro_anc (Seq oracle11 gro_diff))
 grover = Seq (Seq gro_in gro_anc) (Seq (Or (Or oracle00 oracle01) (Or oracle10 oracle11)) gro_diff)
 grover_meas = Seq grover (Seq (Meas ("x1", "q1")) (Meas ("x2", "q2")))
-
+csGrover = [("x1",0), ("x2",0)]
+lmemGrover = (csGrover, l3, rho000)
 
 
 --debug nstepQCSch
@@ -215,18 +237,29 @@ probTossCoin = \num -> (Whl (Less (Id "i") (Num num))
 
 
 --Prob random walk
---iterations to obtain a probability: k=2+3*n for n>=0 where n is the stoppage number
-plusOne = Asg "a" (PlusE (Id "a") (Num (1)))
-minusOne = Asg "a" (PlusE (Id "a") (Num (-1)))
-probRandWalk = \num -> (Whl (Less (Id "i") (Num num))
-  (Seq (P 0.5 plusOne minusOne)
-       (Asg "i" (PlusE (Id "i") (Num (1)))))) 
+--iterations to obtain a probability (only one): k=2+3*n for n>=0 where n is the stoppage number
+scRandWalk = [("i1",0),("x1",0),("i2",0),("x2",0),("i3",0),("x3",0),("i4",0),("x4",0)]
+lmemRandWalk = (scRandWalk, [], fromLists [[]])
+plusOne = \var -> Asg var (PlusE (Id var) (Num (1)))
+minusOne = \var -> Asg var (PlusE (Id var) (Num (-1)))
+probRandWalk = \(it, num, var) -> (Whl (Less (Id it) (Num num))
+  (Seq (P 0.5 (plusOne var) (minusOne var))
+       (Asg it (PlusE (Id it) (Num (1))))))                                  
+probRandWalkConc = \num -> Paral (Paral (probRandWalk ("i1",num,"x1")) (probRandWalk ("i2",num,"x2")))
+                                 (Paral (probRandWalk ("i3",num,"x3")) (probRandWalk ("i4",num,"x4")))
+                       
 
 --Quantum coin toss
 --iterations to obtain a probability: 2+4*n for n>=0 where n is the stoppage number
+lQuantTossCoin = [("q1", 1)] :: [(String, Int)]
+lmemQuantTossCoin = ([("i", 0)], lQuantTossCoin, rho0) 
 quantTossCoin = \num -> (Whl (Less (Id "i") (Num num))
   (Seq (Seq hq1 measq1)
        (Asg "i" (PlusE (Id "i") (Num (1)))))) 
+
+--Quantum Entanglement
+lmemEnt = ([("x",0)], l4, rho00)
+qtEnt = Seq hq1 (Seq cnotq1q2 (Meas ("x","q1")))
 
 
 --Test commands from CAwait

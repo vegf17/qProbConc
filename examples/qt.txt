@@ -44,7 +44,7 @@ k: 300
 
 ---QtTeleportAwait---
 rep: 1
-k: 0
+k: 300
 <
  H(q2);
  CNOT(q2,q3);
