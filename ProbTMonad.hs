@@ -47,7 +47,7 @@ instance Applicative MyDist where
     (MyDist distf) <*> (MyDist dist) = MyDist $ [(f x, pf*px) | (x,px)<-dist, (f, pf) <- distf]
 
 instance Monad MyDist where
-    return x = pure x 
+    return = pure
     (MyDist x) >>= f = MyDist $ [(x'', px'*px) | (x',px)<-x, (x'', px')<- getProb $ f x']
 --END: Prob Monad--
 
@@ -73,7 +73,7 @@ instance (Monad m) => Applicative (ProbT m) where
     return [(f x, pf * px) | (f, pf) <- distf, (x, px) <- dist]
 
 instance (Monad m) => Monad (ProbT m) where
-  return x = ProbT $ return [(x, 1)]
+  return = pure
   (ProbT mdist) >>= f = ProbT $ do
     dist <- mdist
     appf <- joinProb f dist
