@@ -12,7 +12,7 @@ This README aims to instruct how to use the tool developed for ICTAC25 submissio
 ## How to use the tool
 
 1. Inside the downloaded folder, create a txt file with one or more programs with the following format
-(to see some examples, have a look at the txt files we have developed)
+(to see some examples, have a look at the txt files we have developed inside the folder "examples")
    >``---ProgramName---``
    >
    >``rep: int_value``
@@ -31,17 +31,15 @@ This README aims to instruct how to use the tool developed for ICTAC25 submissio
     - qs: is the quantum state
 2. Open the terminal inside the downloaded folder and run ``cabal repl``
 3. Load the module Run.hs by executing ``:l Run``
-4. Write ``run``, press enter, and then choose one of the following:
-   - ``FileName -n (-v|-d|fd)``
-     - FileName: is the name of the file to be parsed
-     - -k : outputs the results produced by the $k$-step operational semantics
-     - -v : produces the results using the runNStepConf	 
-     - -d : produces the results using the runNStepSch
-     - cd : produces the results using the runNStepSchFullConv     
-   - ``FileName -h``
-     - FileName: is the name of the file to be parsed
-     - -h : outputs a histogram
+4. To obtain a histogram run ``runHist "filename"``
+  - ``filename`` is the name of the file with the programs to be evaluated
+  - this will show a histogram for each program inside ``filename``
+5. To obtain results given by the k-step semantics run ``runSem "filename" sch``
+  - ``filename`` is the name of the file with the programs to be evaluated
+  - ``sch`` is a scheduler that needs to be defined inside the file ``KStep.hs``
+  - this shows the results obtainede for each program inside ``filename``
 
 For example, if we wish to evaluate the commands inside the **prob.txt** file we write 
-- ``prob -n -d``, to obtain a distribution of final states from each program inside **prob.txt**
-- ``prob -h``, to obtain a histogram from each program inside **prob.txt**
+- ``runHist "prob"``, to obtain a histogram from each program inside **prob.txt**
+- ``runSem "prob" sch``, to obtain the evaluation of the k-step semantics from each program inside **prob.txt**
+
