@@ -12,8 +12,8 @@ import System.Exit
 --Receives a filename and a scheduler, defined by the user, and executes runKStepSch for each
 --program inside the filename
 runSem :: String -> Sch -> IO()
-runSem filename sch = do
-  fileContent <- readFile ("./examples/" ++ filename ++ ".txt")
+runSem path sch = do
+  fileContent <- readFile path
   case parseRun fileContent of
     Left err -> print err  -- Print error if parsing fails
     Right configs -> runSemAux configs sch
@@ -28,8 +28,8 @@ runSemAux (((name, rep, k),(c,sc,l,sq)):t) sch = do
 
 --Receives a filename and shows a Histogram for each program inside the filename
 runHist :: String -> IO()
-runHist filename = do
-  fileContent <- readFile ("./examples/" ++ filename ++ ".txt")
+runHist path = do
+  fileContent <- readFile path
   case parseRun fileContent of
     Left err -> print err  -- Print error if parsing fails
     Right configs -> (runHistAux configs) >> return ()

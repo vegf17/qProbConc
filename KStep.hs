@@ -96,28 +96,27 @@ probSch (path,(c,s)) =
 --fair scheduler that checks the history path to see if the current command and the classical state
 --already occurred; if yes, then the scheduler tries another option
 
---TODO: NEEDS TO CHECK ONLY THE CLASSICAL STATES AND THE COMMAND
+--TODO: TEST THIS 
 fairSch :: Sch
 fairSch hist@(path,(c,s)) = 
   let listDist = runProbT $ runExceptT $ runStateT (small c) s -- [[(Either LMem (C,LMem), Double)]]
       nextDist = notRepeated hist (head listDist, tail listDist)
   in Just $ [(nextDist, 1)]
 
+--Receives a probabilistic path, a tuple composed of the scheduled next step and all the unscheduled
+--next steps, and returns a next step that has not occur yet; in the case where all the possible
+--next steps, scheduled or unscheduled, already appeared in the probabilistic path, the next step
+--chosen is the last one unscheduled
 notRepeated :: ProbPath -> ([(Either LMem (C,LMem), Double)],[[(Either LMem (C,LMem), Double)]]) -> [(Either LMem (C,LMem), Double)]
 notRepeated _ (next,[]) = next
-notRepeated (path,(c,s)) (next,(h:t)) = if (allLeft || null intersection ) --  || allIn listComProbPath nextR
-                                        then next
-                                        else notRepeated (path,(c,s)) (h,t)
-  where allLeft = and $ map (\x -> isLeft x) (map fst next)
-        nextL = lefts (map fst next)
-        nextR = rights (map fst next)
-        listComProbPath = map fst path
-        intersection = intersect listComProbPath nextR
-
--- notInProbPath :: Path C -> Next commands -> Bool
-notInProbPath :: [(C,LMem)] -> [(C,LMem)] -> Bool
-notInProbPath _ [] = True
-notInProbPath pathC (cs:t) = if (elem cs pathC)
-                                then False
-                                else notInProbPath pathC t
+notRepeated (path,(c,s)) (next,(h:t)) = if (allLeft || null intersection ) -- if next is composed only by final states or it did not appear in the history --  || allIn listComProbPath nextR
+                                        then next -- then return next
+                                        else notRepeated (path,(c,s)) (h,t) -- else repeat the procedure by giving as next step the head of the list of the unscheduled next steps
+  where allLeft = and $ map (\x -> isLeft x) (map fst next) --verifies if all the elements of next are final states
+        nextL = lefts (map fst next) --collects the final states from next
+        nextR = rights (map fst next) --collects the computations that did not finish
+        nextRClassic = map (\(c,(sc,l,sq)) -> (c,sc)) nextR --collects the computations that did not finish only considering the command and the classical state
+        listComProbPath = map fst path --list with all the commands and states that occurred during the computation
+        listComProbPathClassic = map (\(c,(sc,l,sq)) -> (c,sc)) listComProbPath --list with all the commands and states that occurred during the computation only considering the command and the classical state
+        intersection = intersect listComProbPathClassic nextRClassic --checks if the unfinished computations in nextR are present in the history
 --END: definition of schedulers without IO--
