@@ -12,7 +12,7 @@ This README aims to instruct how to use the tool developed for ICTAC25 submissio
 ## How to use the tool
 
 1. Inside the downloaded folder, create a txt file with one or more programs with the following format
-(to see some examples, have a look at the txt files we have developed inside the folder "examples")
+(to see some examples, take a look at the txt files we have developed inside the folder "examples")
    >``---ProgramName---``
    >
    >``rep: int_value``
@@ -31,15 +31,15 @@ This README aims to instruct how to use the tool developed for ICTAC25 submissio
     - qs: is the quantum state
 2. Open the terminal inside the downloaded folder and run ``cabal repl``
 3. Load the module Run.hs by executing ``:l Run``
-4. To obtain a histogram run ``runHist "filename"``
-  - ``filename`` is the name of the file with the programs to be evaluated
-  - this will show a histogram for each program inside ``filename``
+4. To obtain a histogram run ``runHist "path"``
+  - ``path`` is the path to the file with the programs to be evaluated
+  - this will show a histogram for each program inside the file 
 5. To obtain results given by the k-step semantics run ``runSem "filename" sch``
-  - ``filename`` is the name of the file with the programs to be evaluated
+  - ``path`` is the path to the file with the programs to be evaluated
   - ``sch`` is a scheduler that needs to be defined inside the file ``KStep.hs``
-  - this shows the results obtainede for each program inside ``filename``
+  - this shows the results obtained for each program inside the file
 
 For example, if we wish to evaluate the commands inside the **prob.txt** file we write 
-- ``runHist "prob"``, to obtain a histogram from each program inside **prob.txt**
-- ``runSem "prob" sch``, to obtain the evaluation of the k-step semantics from each program inside **prob.txt**
+- ``runHist "./examples/prob.txt"``, to obtain a histogram from each program inside **prob.txt**
+- ``runSem "./examples/prob.txt" sch``, to obtain the evaluation of the k-step semantics from each program inside **prob.txt**
 
