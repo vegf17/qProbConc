@@ -209,7 +209,10 @@ showProbMemList (h:t) = (showProbMem h) ++ " +\n " ++ (showProbMemList t)
 
 -- showProbMem (mem,p) = String value corresponding to (mem,p)
 showProbMem :: (Mem,Double) -> String 
-showProbMem ((sc,sq),p) = (show p) ++ "·([" ++ showSC sc ++ "], " ++ (rmvPlus $ denOpToKetBraComplex sq) ++ ")"
+showProbMem ((sc,sq),p) = let opDen = rmvPlus $ denOpToKetBraComplex sq
+                          in case null opDen of
+                               True -> (show p) ++ "·([" ++ showSC sc ++ "])"
+                               False -> (show p) ++ "·([" ++ showSC sc ++ "], " ++ (rmvPlus $ denOpToKetBraComplex sq) ++ ")"
 
 -- showRun (s, md) = String value corresponding to the name of the program being executed, s,
 -- together with its results, md

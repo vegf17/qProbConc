@@ -95,8 +95,6 @@ probSch (path,(c,s)) =
 
 --fair scheduler that checks the history path to see if the current command and the classical state
 --already occurred; if yes, then the scheduler tries another option
-
---TODO: TEST THIS 
 fairSch :: Sch
 fairSch hist@(path,(c,s)) = 
   let listDist = runProbT $ runExceptT $ runStateT (small c) s -- [[(Either LMem (C,LMem), Double)]]
