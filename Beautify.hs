@@ -8,7 +8,8 @@ import Syntax
 import Examples
 
 
---variable that defines the precision for doubles in states and probabilities
+--variable that defines the precision for doubles in states and probabilities, when showing the
+--results
 precision = 5
 
 
@@ -219,7 +220,10 @@ showProbMem ((sc,sq),p) = let opDen = rmvPlus $ denOpToKetBraComplex sq
 showRun :: (String, [(Mem,Double)]) -> String
 showRun (s,md) = s ++ ": \n" ++ showProbMemList md ++ "\n"
 
+--END: Functions for showing results--
 
+
+--START: Functions for showing results when IO and convex coefficients are explicit--
 -- showRunK (s, md) = String value corresponding to the name of the program being executed, s,
 -- together with its results, md
 showRunK :: (String, [([(Mem,Double)], Double)]) -> String
@@ -236,10 +240,9 @@ showProbProbMemList (h:t) = (showProbProbMem h) ++ "\n" ++ (showProbProbMemList 
 showProbProbMem :: ([(Mem, Double)],Double) -> String
 showProbProbMem (dist, q) = (show q) ++ " -> " ++  (showProbMemListK dist)
 
-
 -- (showProbMemListK l) is similar to (showProbMemList l)
 showProbMemListK :: [(Mem,Double)] -> String 
 showProbMemListK [] = ""
 showProbMemListK [c] = showProbMem c
 showProbMemListK (h:t) = (showProbMem h) ++ " +\n\t" ++ (showProbMemListK t)
---END: Functions for showing results--
+--END: Functions for showing results when IO and convex coefficients are explicit--
