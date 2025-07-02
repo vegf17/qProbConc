@@ -206,7 +206,7 @@ limPrecKStep n l = [(limitPrecAux n dist, limitPrecDouble n q) | (dist, q) <- l]
 showProbMemList :: [(Mem,Double)] -> String 
 showProbMemList [] = ""
 showProbMemList [c] = showProbMem c
-showProbMemList (h:t) = (showProbMem h) ++ " +\n " ++ (showProbMemList t)
+showProbMemList (h:t) = (showProbMem h) ++ " +\n" ++ (showProbMemList t)
 
 -- showProbMem (mem,p) = String value corresponding to (mem,p)
 showProbMem :: (Mem,Double) -> String 

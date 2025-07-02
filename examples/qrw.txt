@@ -1,0 +1,14 @@
+---QuantumRandomWalk---
+rep: 100
+k: 554
+<
+ while (i<50) do {H(q1);
+ TOF(q2,q1,q0); CNOT(q2,q1);
+ X(q2); X(q1); TOF(q2,q1,q0); X(q1); CNOT(q2,q1); X(q2);
+ i:=i+1};
+ Meas(x0,q0); Meas(x1,q1),
+ [(x0,0),(x1,1),(i,0)],
+ [(q0,1),(q1,2),(q2,3)],
+ (1.0)|000><000|
+>
+---QuantumRandomWalk---

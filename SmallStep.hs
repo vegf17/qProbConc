@@ -52,10 +52,11 @@ small Skip = StateT $ \s -> throwE s
 small (Asg var e) = StateT $ \(sc,l,sq) -> throwE $ (changeSt var (bigStepExp e sc) sc, l, sq)
 small (Reset q) = StateT $ \(sc,l,sq) -> throwE $ (sc, l, resetOpDen (qNumsAux q l) sq) 
 small (U g qvar) = StateT $ \(sc,l,sq) -> throwE $ (sc, l, appGateOpDen g (qNums qvar l) sq) 
-small (P p c1 c2) = do
+small (P prob c1 c2) = do
   s <- get
-  let cc1 = runProbT $ runExceptT $ runStateT (small c1) s  -- :: [[(Either S (Com, S), Rational)]]
-      cc2 = runProbT $ runExceptT $ runStateT (small c2) s  -- :: [[(Either S (Com, S), Rational)]]
+  let p = fromRational prob
+      cc1 = runProbT $ runExceptT $ runStateT (small c1) s  -- :: [[(Either S (Com, S), Prob)]]
+      cc2 = runProbT $ runExceptT $ runStateT (small c2) s  -- :: [[(Either S (Com, S), Prob)]]
       pc1 = [[(c,p*p')| (c,p') <- lcc1] | lcc1 <- cc1]
       pc2 = [[(c,(1-p)*p')| (c,p') <- lcc2] | lcc2 <- cc2]
       pc1c2 = concat [[ec1++ec2 | ec2 <- pc2] | ec1 <- pc1]
@@ -76,18 +77,18 @@ small (Meas (x,q)) = do
     else StateT $ \_ -> ExceptT $ ProbT $ [[(Left (sc0,l,sq0),p0), (Left (sc1,l,sq1),p1)]]
 small (Seq c1 c2) = do 
     s <- get 
-    let cp = runProbT $ runExceptT $ runStateT (small c1) s  -- :: [[(Either LMem (Com, LMem), Rational)]]
+    let cp = runProbT $ runExceptT $ runStateT (small c1) s  -- :: [[(Either LMem (Com, LMem), Prob)]]
         seqC = [compSeq dist c2| dist <- cp]
     StateT $ \_ -> ExceptT $ ProbT $ seqC
 small (Or c1 c2) = do 
     s <- get 
-    let cp1 = runProbT $ runExceptT $ runStateT (small c1) s -- :: [[(Either LMem (Com, LMem), Rational)]]
-        cp2 = runProbT $ runExceptT $ runStateT (small c2) s -- :: [[(Either LMem (Com, LMem), Rational)]]
+    let cp1 = runProbT $ runExceptT $ runStateT (small c1) s -- :: [[(Either LMem (Com, LMem), Prob)]]
+        cp2 = runProbT $ runExceptT $ runStateT (small c2) s -- :: [[(Either LMem (Com, LMem), Prob)]]
     StateT $ \_ -> ExceptT $ ProbT $ (cp1++cp2) 
 small (Paral c1 c2) = do 
     s <- get 
-    let cp1 = runProbT $ runExceptT $ runStateT (small c1) s -- :: [[(Either LMem (Com, LMem), Rational)]]
-        cp2 = runProbT $ runExceptT $ runStateT (small c2) s -- :: [[(Either LMem (Com, LMem), Rational)]]
+    let cp1 = runProbT $ runExceptT $ runStateT (small c1) s -- :: [[(Either LMem (Com, LMem), Prob)]]
+        cp2 = runProbT $ runExceptT $ runStateT (small c2) s -- :: [[(Either LMem (Com, LMem), Prob)]]
         par1 = [compParR dist c2| dist <- cp1]
         par2 = [compParL dist c1| dist <- cp2]
     StateT $ \_ -> ExceptT $ ProbT $ par1++par2

@@ -2,6 +2,7 @@ module Syntax where
 
 import Data.Matrix
 import Data.Complex
+import Data.Ratio
 
 --classical memory
 type SC = [(String, Integer)]
@@ -55,7 +56,7 @@ data C = Skip
        | Seq C C 
        | Or C C 
        | Paral C C 
-       | P Prob C C 
+       | P Rational C C 
        | IfC B C C 
        | Whl B C
        | Await B CAwait

@@ -17,7 +17,7 @@ x:=2;skip
 ---v---
 x:=1 ;
 Reset(q) ||
-Meas(x,q) (+)(0.4) X(q) or
+Meas(x,q) (+)(4%10) X(q) or
 skip
 ---v---
 
@@ -35,16 +35,16 @@ while (true & false) do {x:=1}
 ---v---
 
 ---v---
-while x<=0 do {x:=0 (+)(0.5) x:=1} or
+while x<=0 do {x:=0 (+)(1%2) x:=1} or
 skip
 ---v---
 
 ---v---
-(x:=1;x:=2) (+)(0.5) x:=3
+(x:=1;x:=2) (+)(1%2) x:=3
 ---v---
 
 ---v---
-(x:=1 (+)(0.0) x:=2) or
+(x:=1 (+)(0) x:=2) or
 (x:=3 || x:=4)
 ---v---
 
@@ -73,7 +73,7 @@ Meas(y,q2)
 }
 else {
 while true do {skip} ; Z(qw) ||
-Reset(q) or x:=24 (+)(0.5)
+Reset(q) or x:=24 (+)(1%2)
 if -false then {skip} else {skip}
 } or
 skip
@@ -81,7 +81,7 @@ skip
 
 
 ---v---
-x:=1 (+)(1) x:=2 (+)(0.2)
+x:=1 (+)(1) x:=2 (+)(2%10)
 skip
 ---v---
 

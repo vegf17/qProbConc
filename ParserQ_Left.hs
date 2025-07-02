@@ -402,6 +402,33 @@ parseQVars = do
 
 --Parsers for the probabilistic command
 --parser for the probabilities that will be associated to the probabilistic command
+parseProbRat :: GenParser Char st Rational
+parseProbRat = try(parseRat) <|> try(parse1Rat) <|> parse0Rat
+
+-- parses 0 into a rational 0%1
+parse0Rat :: GenParser Char st Rational
+parse0Rat = do
+  x <- string "0"
+  return (read (x ++ "%1") :: Rational)
+
+-- parses 1 into a rational 1%1
+parse1Rat :: GenParser Char st Rational
+parse1Rat = do
+  x <- string "1"
+  return (read (x ++ "%1") :: Rational)
+
+-- parses rational numbers
+-- separator is %
+-- example: 1%2
+parseRat :: GenParser Char st Rational
+parseRat = do
+  num <- many1 digit
+  _ <- char '%'
+  den <- many1 digit
+  return (read (num ++ "%" ++ den) :: Rational)
+
+{-
+--parser for the probabilities that will be associated to the probabilistic command
 parseProbDouble :: GenParser Char st Double
 parseProbDouble = try(parse1Double) <|> try(parse0DotDouble) <|> parse0Double
 
@@ -426,6 +453,7 @@ parse0DotDouble = do
   _ <- char '.'
   z <- many1 digit
   return (read ("0" ++ "." ++ z) :: Double)
+-}
 
 -- parses a term in a probabilistic command: any other command except parallel, sequential, and
 -- non-deterministic commands
@@ -448,7 +476,8 @@ parseProb = do
   x <- comProb   -- a;b (+)(p) c||d --> a;(b (+)(p) c)||d OR (a;b) (+)(p) (c||d)
   spacesOnly
   string "(+)("
-  prob <- parseProbDouble
+  --prob <- parseProbDouble
+  prob <- parseProbRat
   char ')'
   --separateOrJoined
   spacesOnly -- 0 or more spaces
@@ -460,7 +489,8 @@ parseProb = do
       f x = do
         spacesOnly
         string "(+)("
-        prob <- parseProbDouble
+        --prob <- parseProbDouble
+        prob <- parseProbRat
         char ')'
         --separateOrJoined
         spacesOnly -- 0 or more spaces
