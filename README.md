@@ -41,5 +41,5 @@ This README aims to instruct how to use the tool developed for ICTAC25 submissio
 
 For example, if we wish to evaluate the commands inside the **prob.txt** file we write 
 - ``runHist "./examples/prob.txt"``, to obtain a histogram from each program inside **prob.txt**
-- ``runSem "./examples/prob.txt" sch``, to obtain the evaluation of the k-step semantics from each program inside **prob.txt**
+- ``runSem "./examples/prob.txt" initSch``, to obtain the evaluation of the k-step semantics from each program inside **prob.txt**
 
