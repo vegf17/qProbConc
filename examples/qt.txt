@@ -1,5 +1,12 @@
 ---QtCoinToss---
 rep: 100
+k: 2
+< H(q); Meas(x,q), [(x,0)], [(q,1)], (1.0)|0><0| >
+---QtCoinToss---
+
+
+---QtCoinTossIt---
+rep: 100
 k: 202
 <
  while (i<1) do {H(q); Meas(x,q); i:=i+1},
@@ -7,7 +14,7 @@ k: 202
  [(q,1)],
  (1.0)|0><0|
 >
----QtCoinToss---
+---QtCoinTossIt---
 
 
 ---EntagledStates---

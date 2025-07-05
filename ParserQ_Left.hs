@@ -1056,14 +1056,40 @@ pConf = do
   char ','
   spacesAndEnters
   sc <- pClassicStates
-  char ','
+  (l,sq) <- option ([],fromLists [[]]) (do
+                                           char ','
+                                           spacesAndEnters
+                                           pLSQ
+                                       )
   spacesAndEnters
+  char '>'
+  return (com,sc,l,sq)
+
+pLSQ :: GenParser Char st (L,SQ)
+pLSQ = do
   l <- parserL
   char ','
   spacesAndEnters
   sq <- pOpDen
-  spacesAndEnters
-  char '>'
-  return (com,sc,l,sq)
+  return (l,sq)
 --END: Parser for configurations--
 
+
+-- pConf :: GenParser Char st (C,SC,L,SQ)
+-- pConf = do
+--   char '<'
+--   spacesAndEnters
+--   com <- parseCSelect
+--   char ','
+--   spacesAndEnters
+--   sc <- pClassicStates
+--   char ','
+--   spacesAndEnters
+--   l <- parserL
+--   char ','
+--   spacesAndEnters
+--   sq <- pOpDen
+--   spacesAndEnters
+--   char '>'
+--   return (com,sc,l,sq)
+  

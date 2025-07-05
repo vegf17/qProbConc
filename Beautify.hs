@@ -219,6 +219,7 @@ showProbMem ((sc,sq),p) = let opDen = rmvPlus $ denOpToKetBraComplex sq
 -- together with its results, md
 showRun :: (String, [(Mem,Double)]) -> String
 showRun (s,md) = s ++ ": \n" ++ showProbMemList md ++ "\n"
+--showRun (s,md) = s ++ ": \n" ++ showProbMemList (limitPrecAux 5 md) ++ "\n"
 
 --END: Functions for showing results--
 

@@ -1,14 +1,52 @@
 ---QuantumRandomWalk---
 rep: 100
-k: 554
+k: 104504
 <
- while (i<50) do {H(q1);
+ while (i<9500) do {H(q2);
  TOF(q2,q1,q0); CNOT(q2,q1);
  X(q2); X(q1); TOF(q2,q1,q0); X(q1); CNOT(q2,q1); X(q2);
  i:=i+1};
  Meas(x0,q0); Meas(x1,q1),
- [(x0,0),(x1,1),(i,0)],
+ [(x0,0),(x1,0),(i,0)],
  [(q0,1),(q1,2),(q2,3)],
  (1.0)|000><000|
 >
 ---QuantumRandomWalk---
+
+---QuantumRandomWalkConc---
+rep: 100
+k: 0
+<
+ while (i<1) do {H(q2);
+ TOF(q2,q1,q0); CNOT(q2,q1);
+ X(q2); X(q1); TOF(q2,q1,q0); X(q1); CNOT(q2,q1); X(q2);
+ i:=i+1};
+ Meas(x0,q0); Meas(x1,q1) ||
+ while (j<1) do {H(q5);
+ TOF(q5,q4,q3); CNOT(q5,q4);
+ X(q5); X(q4); TOF(q5,q4,q3); X(q4); CNOT(q5,q4); X(q5);
+ j:=j+1};
+ Meas(y0,q3); Meas(y1,q4) ||
+ while (l<1) do {H(q8);
+ TOF(q8,q7,q6); CNOT(q8,q7);
+ X(q8); X(q7); TOF(q8,q7,q6); X(q7); CNOT(q8,q7); X(q8);
+ l:=l+1};
+ Meas(z0,q6); Meas(z1,q7),
+ [(x0,0),(x1,0),(i,0),(y0,0),(y1,0),(j,0),(z0,0),(z1,0),(l,0)],
+ [(q0,1),(q1,2),(q2,3),(q3,4),(q4,5),(q5,6),(q6,7),(q7,8),(q8,9)],
+ (1.0)|000000000><000000000|
+>
+---QuantumRandomWalkConc---
+
+
+---Teste---
+rep: 1
+k: 0
+<
+ H(q1); H(q2); H(q3); H(q4);
+ Meas(x1,q1); Meas(x2,q2); Meas(x3,q3); Meas(x4,q4),
+ [(x1,0),(x2,0),(x3,0),(x4,0)],
+ [(q1,1),(q2,2),(q3,3),(q4,4)],
+ (1.0)|0000><0000|
+>
+---Teste---
