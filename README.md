@@ -6,12 +6,14 @@ This README aims to instruct how to use the tool developed for ICTAC25 submissio
 
 The tool in question corresponds to a Haskell library. To load this library's modules into GHCi and use them, refer to the following instructions. A prerequisite for these instructions is the installation of [GHC](https://www.haskell.org/ghc/) and [cabal-install](https://cabal.readthedocs.io/en/stable/).
 
-1. Download the qProbConc Cabal package (==TODO: add link to qProbConc cabal package, which will be in a separate git repo==).
+1. Download the qProbConc Cabal package.
 2. Open a terminal within the downloaded package.
 3. Run ``cabal build`` and then ``cabal repl qProbConc``.
 
 
 ## How to use the tool
+
+After executing the steps detailed in "How to load the library into GHCi", look at the following instructions, which aim to aid the user using the tool.
 
 1. Inside the downloaded folder, create a txt file with one or more programs with the following format
 (to see some examples, take a look at the txt files we have developed inside the folder "examples")
@@ -31,15 +33,21 @@ The tool in question corresponds to a Haskell library. To load this library's mo
     - cs: is the classical state
     - l: is the linking function
     - qs: is the quantum state
-2. Open the terminal inside the downloaded folder and run ``cabal repl``
-3. Load the module Run.hs by executing ``:l Run``
-4. To obtain a histogram run ``runHist "path"``
+2. Load the module Run.hs by executing ``:l Run``
+3. To obtain a histogram run ``runHist "path"``
   - ``path`` is the path to the file with the programs to be evaluated
   - this will show a histogram for each program inside the file 
-5. To obtain results given by the k-step semantics run ``runSem "filename" sch``
+4. To obtain results given by the k-step semantics run ``runSem "path" sch``
   - ``path`` is the path to the file with the programs to be evaluated
   - ``sch`` is a scheduler that needs to be defined inside the file ``KStep.hs``
   - this shows the results obtained for each program inside the file
+  - the schedulers that are currently available are:
+    - undSch: undefined scheduler
+    - initSch: scheduler that chooses always the first element in the list of the possible transitions
+    - lasSch: scheduler that chooses always the last element in the list of the possible transitions
+    - middleSch: scheduler that chooses always the middle element in the list of the possible transitions
+    - probSch: scheduler, which assigns the same probability to all the elements in the list of the possible transitions
+    - fairSch: scheduler that checks the history of the computation to sse if the current command and the classical state already occurred; if yes, then the scheduler tries another option
 
 For example, if we wish to evaluate the commands inside the **prob.txt** file we write 
 - ``runHist "./examples/prob.txt"``, to obtain a histogram from each program inside **prob.txt**
