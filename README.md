@@ -17,7 +17,7 @@ The tool in question corresponds to a Haskell library. To load this library's mo
 (to see some examples, take a look at the txt files we have developed inside the folder "examples")
    >``---ProgramName---``
    >
-   >``rep: int_value``
+   >``hist: (int_value, vars_to_plot)``
    >
    >``k: int_value``
    >
@@ -25,7 +25,11 @@ The tool in question corresponds to a Haskell library. To load this library's mo
    >
    >``---ProgramName---``
     - ProgramName: is the name of the program without spaces
-    - rep: is the number of samples for building the histogram
+    - hist: holds the information to build the histogram
+      - int_value: is the number of samples for building the histogram
+      - vars_to_plot: is a list or list of lists of variables to be plotted
+        - e.g: [x1,...,xn] builds one histogram with the information of the variables x1,...,xn
+        - e.g: [[x1,...,xn],[y1,...,ym]] builds two histograms: one for [x1,...,xn] and the other for [y1,...,ym]
     - k: is the number of computational steps the $k$-step semantics performs
     - C: is the command to be evaluated
     - cs: is the classical state
