@@ -83,17 +83,17 @@ showSample c s n = do
 -- where "ind" creates a histogram for each variable in ListVar and "join" creates a histogram for
 -- the variables in ListVar
 showHist :: String -> (Int, [[String]]) -> C -> LMem -> Int -> IO ExitCode
-showHist name (k, lvars) c s n = case lvars of
-  [] -> exitSuccess
-  [lvar] -> do
-    showHistAux name k lvar c s n
-  (lvar:t) -> do
-    showHistAux name k lvar c s n
-    showHist name (k, t) c s n
-
-showHistAux :: String -> Int -> [String] -> C -> LMem -> Int -> IO ExitCode
-showHistAux name k lvar c s n = do
+showHist name (k, lvars) c s n = do
   listMem <- sampleCollect k c s n
+  processData name lvars listMem
+
+processData :: String -> [[String]] -> [Mem] -> IO ExitCode
+processData _ [] _ = exitSuccess
+processData name [lvar] listMem = processDataAux name lvar listMem
+processData name (lvar:t) listMem = (processDataAux name lvar listMem) >> (processData name t listMem)
+
+processDataAux :: String -> [String] -> [Mem] -> IO ExitCode
+processDataAux name lvar listMem = do
   let listSC = map fst listMem
       nameHist = name ++ " " ++ unwords lvar
       lvarSC = [concat [filter (\(var',val) -> if var'==var then True else False) sc | var <- lvar] | sc <- listSC] -- [SC]
@@ -101,6 +101,27 @@ showHistAux name k lvar c s n = do
       sortValVarSC = sort valVarSC
       strSorted = [concat $ (map show) l | l <- sortValVarSC]
   buildHist (confIntoDouble strSorted) nameHist
+
+
+-- showHist :: String -> (Int, [[String]]) -> C -> LMem -> Int -> IO ExitCode
+-- showHist name (k, lvars) c s n = case lvars of
+--   [] -> exitSuccess
+--   [lvar] -> do
+--     showHistAux name k lvar c s n
+--   (lvar:t) -> do
+--     showHistAux name k lvar c s n
+--     showHist name (k, t) c s n
+
+-- showHistAux :: String -> Int -> [String] -> C -> LMem -> Int -> IO ExitCode
+-- showHistAux name k lvar c s n = do
+--   listMem <- sampleCollect k c s n
+--   let listSC = map fst listMem
+--       nameHist = name ++ " " ++ unwords lvar
+--       lvarSC = [concat [filter (\(var',val) -> if var'==var then True else False) sc | var <- lvar] | sc <- listSC] -- [SC]
+--       valVarSC = [ (map snd varSC) | varSC <- lvarSC] -- [[Int]]
+--       sortValVarSC = sort valVarSC
+--       strSorted = [concat $ (map show) l | l <- sortValVarSC]
+--   buildHist (confIntoDouble strSorted) nameHist
 
 
 -- showHist :: String -> (Int, [[String]]) -> C -> LMem -> Int -> IO ExitCode
@@ -135,7 +156,7 @@ showHistAux name k lvar c s n = do
 --   let sortInput = sortBy (comparing fst) input
 --   buildHist (confIntoDouble sortInput) name
   
---Executes runNStepConf k times and stores the results obtained in each iteration
+--Executes runSample k times and stores the results obtained in each iteration
 --If the probability of the result obtained is zero, the result is discarded; Furthermore, if after
 --executing listNStepConf we obtain an empty list, then the plotting of the histogram will give an
 --error
