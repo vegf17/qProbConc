@@ -52,15 +52,6 @@ small Skip = StateT $ \s -> throwE s
 small (Asg var e) = StateT $ \(sc,l,sq) -> throwE $ (changeSt var (bigStepExp e sc) sc, l, sq)
 small (Reset q) = StateT $ \(sc,l,sq) -> throwE $ (sc, l, resetOpDen (qNumsAux q l) sq) 
 small (U g qvar) = StateT $ \(sc,l,sq) -> throwE $ (sc, l, appGateOpDen g (qNums qvar l) sq) 
-small (P prob c1 c2) = do
-  s <- get
-  let p = fromRational prob
-      cc1 = runProbT $ runExceptT $ runStateT (small c1) s  -- :: [[(Either S (Com, S), Prob)]]
-      cc2 = runProbT $ runExceptT $ runStateT (small c2) s  -- :: [[(Either S (Com, S), Prob)]]
-      pc1 = [[(c,p*p')| (c,p') <- lcc1] | lcc1 <- cc1]
-      pc2 = [[(c,(1-p)*p')| (c,p') <- lcc2] | lcc2 <- cc2]
-      pc1c2 = concat [[ec1++ec2 | ec2 <- pc2] | ec1 <- pc1]
-  StateT $ \_ -> ExceptT $ ProbT $ pc1c2
 small (Meas (x,q)) = do
   (sc,l,sqt) <- get
   let sq = zeroIfSmallS sqt
@@ -75,6 +66,15 @@ small (Meas (x,q)) = do
     else if (p1==0.0)
     then StateT $ \_ -> ExceptT $ ProbT $ [[(Left (sc0,l,sq0),p0)]]
     else StateT $ \_ -> ExceptT $ ProbT $ [[(Left (sc0,l,sq0),p0), (Left (sc1,l,sq1),p1)]]
+small (P prob c1 c2) = do
+  s <- get
+  let p = fromRational prob
+      cc1 = runProbT $ runExceptT $ runStateT (small c1) s  -- :: [[(Either S (Com, S), Prob)]]
+      cc2 = runProbT $ runExceptT $ runStateT (small c2) s  -- :: [[(Either S (Com, S), Prob)]]
+      pc1 = [[(c,p*p')| (c,p') <- lcc1] | lcc1 <- cc1]
+      pc2 = [[(c,(1-p)*p')| (c,p') <- lcc2] | lcc2 <- cc2]
+      pc1c2 = concat [[ec1++ec2 | ec2 <- pc2] | ec1 <- pc1]
+  StateT $ \_ -> ExceptT $ ProbT $ pc1c2    
 small (Seq c1 c2) = do 
     s <- get 
     let cp = runProbT $ runExceptT $ runStateT (small c1) s  -- :: [[(Either LMem (Com, LMem), Prob)]]
@@ -108,8 +108,13 @@ small (Await bExp c) = do
   (sc,l,sq) <- get
   let b = bigStepBExp bExp sc
   if b == False
-    then StateT $ \_ -> ExceptT $ ProbT $ [[(Right (Await bExp c,(sc,l,sq)),1)]]
-    else StateT $ \_ -> ExceptT $ ProbT $ [[(Left (sci, li, sqi), pi) | ((sci,li,sqi),pi) <- getProb $ bigAwait (c,(sc,l,sq))]]
+    then StateT $ \_ -> ExceptT $ ProbT $ [[(Right (Await bExp c, (sc,l,sq)),1)]]
+    else StateT $ \_ -> ExceptT $ ProbT $ [[(Right (Atom c, (sc,l,sq)), 1)]]
+small (Atom c) = do
+  s <- get
+  let cp = runProbT $ runExceptT $ runStateT (small c) s
+      atom = [inAtom dist | dist <- cp]
+  StateT $ \_ -> ExceptT $ ProbT $ atom
 
 
 --Evaluates the results of the small-step operational semantics for a given command C and state s
@@ -119,60 +124,61 @@ runSmall c s = rmvL $ runProbT $ runExceptT $ runStateT (small c) s
 
 
 
---START: semantics for the await command--
 
---Type definition for the semantics of the await command
---StTP C '=' S -> [(Either S (C,S), Prob)]
-type StTP a = StateT LMem (ExceptT LMem MyDist) a
+-- --START: semantics for the await command--
 
---Codifies the behavior of the small-step operational semantics for commands inside await
-smallAwait :: CAwait -> StTP CAwait
-smallAwait SkipA = StateT $ \s -> throwE s
-smallAwait (AsgA var e) = StateT $ \(sc,l,sq) -> throwE $ (changeSt var (bigStepExp e sc) sc, l, sq)
-smallAwait (ResetA q) = StateT $ \(sc,l,sq) -> throwE $ (sc, l, resetOpDen (qNumsAux q l) sq) 
-smallAwait (UA g qvar) = StateT $ \(sc,l,sq) -> throwE $ (sc, l, appGateOpDen g (qNums qvar l) sq)
-smallAwait (MeasA (x,q)) = do
-  (sc,l,sqt) <- get
-  let sq = zeroIfSmallS sqt
-      p0 = probOpDen 0 ((qNumsAux q l)) sq -- probability of measuring qubit q to be in state |0>
-      p1 = probOpDen 1 ((qNumsAux q l)) sq -- probability of measuring qubit q to be in state |1>
-      sq0 = stateMeasOpDen 0 ((qNumsAux q l)) sq -- state of the system of qubits after measuring qubit q in state |0>
-      sq1 = stateMeasOpDen 1 ((qNumsAux q l)) sq -- state of the system of qubits after measuring qubit q in state |1>
-      sc0 = changeSt x 0 sc -- assigning the value 0 to the variable x
-      sc1 = changeSt x 1 sc -- assigning the value 1 to the variable x
-  if (p0==0.0)
-    then StateT $ \_ -> ExceptT $ MyDist $ [(Left (sc1,l,sq1),p1)]
-    else if (p1==0.0)
-    then StateT $ \_ -> ExceptT $ MyDist $ [(Left (sc0,l,sq0),p0)]
-    else StateT $ \_ -> ExceptT $ MyDist $ [(Left (sc0,l,sq0),p0), (Left (sc1,l,sq1),p1)]
-smallAwait (SeqA c1 c2) = do 
-    s <- get 
-    let cp = getProb $ runExceptT $ runStateT (smallAwait c1) s  -- :: [(Either LMem (Com, LMem), Rational)]
-        seqC = compSeqA cp c2
-    StateT $ \_ -> ExceptT $ MyDist $ seqC
-smallAwait (IfCA bExp c1 c2) = do
-  (sc,l,sq) <- get
-  let b = bigStepBExp bExp sc
-  if b == True
-    then StateT $ \_ -> ExceptT $ MyDist $ [(Right (c1,(sc,l,sq)),1.0)]
-    else StateT $ \_ -> ExceptT $ MyDist $ [(Right (c2,(sc,l,sq)),1.0)]
+-- --Type definition for the semantics of the await command
+-- --StTP C '=' S -> [(Either S (C,S), Prob)]
+-- type StTP a = StateT LMem (ExceptT LMem MyDist) a
 
---Codifies the behavior of the big-step semantics for await commands
-bigAwait :: (CAwait,LMem) -> MyDist LMem
-bigAwait (c,s) = do
-  let small = getProb $ runExceptT $ runStateT (smallAwait c) s --[(Either LMem (CAwait, LMem), Double)]
-      sts = projL small -- [(LMem, Double)]
-      confs = projR small -- [((CAwait, LMem), Double)]
-      result = (MyDist $ confs) >>= bigAwait
-  MyDist $ addDistG sts (getProb result)
+-- --Codifies the behavior of the small-step operational semantics for commands inside await
+-- smallAwait :: CAwait -> StTP CAwait
+-- smallAwait SkipA = StateT $ \s -> throwE s
+-- smallAwait (AsgA var e) = StateT $ \(sc,l,sq) -> throwE $ (changeSt var (bigStepExp e sc) sc, l, sq)
+-- smallAwait (ResetA q) = StateT $ \(sc,l,sq) -> throwE $ (sc, l, resetOpDen (qNumsAux q l) sq) 
+-- smallAwait (UA g qvar) = StateT $ \(sc,l,sq) -> throwE $ (sc, l, appGateOpDen g (qNums qvar l) sq)
+-- smallAwait (MeasA (x,q)) = do
+--   (sc,l,sqt) <- get
+--   let sq = zeroIfSmallS sqt
+--       p0 = probOpDen 0 ((qNumsAux q l)) sq -- probability of measuring qubit q to be in state |0>
+--       p1 = probOpDen 1 ((qNumsAux q l)) sq -- probability of measuring qubit q to be in state |1>
+--       sq0 = stateMeasOpDen 0 ((qNumsAux q l)) sq -- state of the system of qubits after measuring qubit q in state |0>
+--       sq1 = stateMeasOpDen 1 ((qNumsAux q l)) sq -- state of the system of qubits after measuring qubit q in state |1>
+--       sc0 = changeSt x 0 sc -- assigning the value 0 to the variable x
+--       sc1 = changeSt x 1 sc -- assigning the value 1 to the variable x
+--   if (p0==0.0)
+--     then StateT $ \_ -> ExceptT $ MyDist $ [(Left (sc1,l,sq1),p1)]
+--     else if (p1==0.0)
+--     then StateT $ \_ -> ExceptT $ MyDist $ [(Left (sc0,l,sq0),p0)]
+--     else StateT $ \_ -> ExceptT $ MyDist $ [(Left (sc0,l,sq0),p0), (Left (sc1,l,sq1),p1)]
+-- smallAwait (SeqA c1 c2) = do 
+--     s <- get 
+--     let cp = getProb $ runExceptT $ runStateT (smallAwait c1) s  -- :: [(Either LMem (Com, LMem), Rational)]
+--         seqC = compSeqA cp c2
+--     StateT $ \_ -> ExceptT $ MyDist $ seqC
+-- smallAwait (IfCA bExp c1 c2) = do
+--   (sc,l,sq) <- get
+--   let b = bigStepBExp bExp sc
+--   if b == True
+--     then StateT $ \_ -> ExceptT $ MyDist $ [(Right (c1,(sc,l,sq)),1.0)]
+--     else StateT $ \_ -> ExceptT $ MyDist $ [(Right (c2,(sc,l,sq)),1.0)]
 
---improved display of the results of bigAwait
---for example quantum states are shown in bra-ket notation
-showBigAwait :: CAwait -> LMem -> IO()
-showBigAwait c s = putStrLn $ showProbMemList $ f $ getProb $ bigAwait (c,s)
-  where f :: [((LMem, Double))] -> [(Mem, Double)]
-        f l = [((sc,sq),p) | ((sc,l,sq),p) <- l]
---END: semantics for the await command--
+-- --Codifies the behavior of the big-step semantics for await commands
+-- bigAwait :: (CAwait,LMem) -> MyDist LMem
+-- bigAwait (c,s) = do
+--   let small = getProb $ runExceptT $ runStateT (smallAwait c) s --[(Either LMem (CAwait, LMem), Double)]
+--       sts = projL small -- [(LMem, Double)]
+--       confs = projR small -- [((CAwait, LMem), Double)]
+--       result = (MyDist $ confs) >>= bigAwait
+--   MyDist $ addDistG sts (getProb result)
+
+-- --improved display of the results of bigAwait
+-- --for example quantum states are shown in bra-ket notation
+-- showBigAwait :: CAwait -> LMem -> IO()
+-- showBigAwait c s = putStrLn $ showProbMemList $ f $ getProb $ bigAwait (c,s)
+--   where f :: [((LMem, Double))] -> [(Mem, Double)]
+--         f l = [((sc,sq),p) | ((sc,l,sq),p) <- l]
+-- --END: semantics for the await command--
 
 
 --START: auxiliary functions--
@@ -192,6 +198,10 @@ compParL [] _ = []
 compParL ((Left s, p) : t) c = (Right (c,s), p) : compParL t  c
 compParL ((Right (cc, s),p) : t) c = (Right (Paral c cc, s), p) : compParL t c
 
+inAtom :: [(Either LMem (C,LMem), Double)] -> [(Either LMem (C,LMem), Double)]
+inAtom [] = []
+inAtom ((Left s, p) : t) = (Left s, p) : inAtom t
+inAtom ((Right (c, s),p) : t) = (Right (Atom c, s), p) : inAtom t
 --auxiliary functions for small
 projL :: [((Either a b), Double)] -> [(a, Double)]
 projL [] = []
@@ -274,10 +284,10 @@ zeroIfSmallS st = fromLists [ f l | l <- lst]
         f = map (\e -> zeroIfSmallC e)
 
 --auxiliary functions for sequential composition inside await
-compSeqA :: [(Either LMem (CAwait,LMem), Double)] -> CAwait -> [(Either LMem (CAwait,LMem), Double)]
-compSeqA [] _ = []
-compSeqA ((Left s, p) : t) c = (Right (c,s), p) : compSeqA t c
-compSeqA ((Right (cc, s),p) : t) c = (Right (SeqA cc c, s), p) : compSeqA t c    
+-- compSeqA :: [(Either LMem (CAwait,LMem), Double)] -> CAwait -> [(Either LMem (CAwait,LMem), Double)]
+-- compSeqA [] _ = []
+-- compSeqA ((Left s, p) : t) c = (Right (c,s), p) : compSeqA t c
+-- compSeqA ((Right (cc, s),p) : t) c = (Right (SeqA cc c, s), p) : compSeqA t c    
 --END: auxiliary functions--
 
 

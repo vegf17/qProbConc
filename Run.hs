@@ -18,7 +18,7 @@ runSem path sch = do
     Left err -> print err  -- Print error if parsing fails
     Right configs -> runSemAux configs sch
 
-runSemAux :: [((String, Int, Int), (C,SC,L,SQ))] -> Sch -> IO()
+runSemAux :: [((String, (Int, [[String]]), Int), (C,SC,L,SQ))] -> Sch -> IO()
 runSemAux [] _ = return ()
 runSemAux (((name, rep, k),(c,sc,l,sq)):t) sch = do
   let result = runKStepSch sch c (sc, l, sq) k
@@ -34,7 +34,7 @@ runHist path = do
     Left err -> print err  -- Print error if parsing fails
     Right configs -> (runHistAux configs) >> return ()
 
-runHistAux :: [((String, Int, Int), (C,SC,L,SQ))] -> IO ExitCode
+runHistAux :: [((String, (Int, [[String]]), Int), (C,SC,L,SQ))] -> IO ExitCode
 runHistAux [] = return (ExitFailure 1)
 runHistAux (((name, rep, k),(c,sc,l,sq)):t) = do
   showHist name rep c (sc,l,sq) k

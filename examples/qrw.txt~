@@ -1,0 +1,19 @@
+---QuantumRandomWalkConc---
+hist: (50, [[x0,x1],[y0,y1]])
+k: 74
+<
+ while (i<2) do {H(q3);
+ TOF(q3,q2,q1); CNOT(q3,q2);
+ X(q3); X(q2); TOF(q3,q2,q1); X(q2); CNOT(q3,q2); X(q3);
+ i:=i+1};
+ Meas(x0,q1); Meas(x1,q2) ||
+ while (j<4) do {H(q6);
+ TOF(q6,q5,q4); CNOT(q6,q5);
+ X(q6); X(q5); TOF(q6,q5,q4); X(q5); CNOT(q6,q5); X(q6);
+ j:=j+1};
+ Meas(y0,q4); Meas(y1,q5),
+ [(x0,0),(x1,0),(i,0),(y0,0),(y1,0),(j,0)],
+ [(q1,1),(q2,2),(q3,3),(q4,4),(q5,5),(q6,6)],
+ (1.0)|000000><000000|
+>
+---QuantumRandomWalkConc---

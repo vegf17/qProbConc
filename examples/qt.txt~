@@ -1,12 +1,12 @@
 ---QtCoinToss---
-hist: (100, [x])
+hist: (100, [x], join)
 k: 2
 < H(q); Meas(x,q), [(x,0)], [(q,1)], (1.0)|0><0| >
 ---QtCoinToss---
 
 
 ---QtCoinTossIt---
-hist: (100, [x])
+hist: (100, [x], join)
 k: 202
 <
  while (i<1) do {H(q); Meas(x,q); i:=i+1},
@@ -18,7 +18,7 @@ k: 202
 
 
 ---EntagledStates---
-hist: (50, [x1,x2])
+hist: (1, [x1,x2], join)
 k: 4
 <
  H(q1);
@@ -32,7 +32,7 @@ k: 4
 ---EntagledStates---
 
 ---QtTeleport---
-hist: (100, [x3])
+hist: (100, [x3], join)
 k: 300
 <
  H(q2);
@@ -52,7 +52,7 @@ k: 300
 
 
 ---QtTeleportAwait---
-hist: (1, [x3])
+hist: (1, [x3], join)
 k: 300
 <
  H(q2);

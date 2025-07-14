@@ -176,20 +176,37 @@ bob = Seq (IfC (Equ (Id "x2") (Num 0)) sk (U X ["q3"])) (IfC (Equ (Id "x1") (Num
 qTele = Seq charlie (Seq alice bob)
 
 --await version
-charlieA = SeqA (UA H ["q2"]) (UA CNOT ["q2","q3"])
-aliPA = SeqA (UA CNOT ["q1","q2"]) (UA H ["q1"])
-aliMA = SeqA (MeasA("x1","q1")) (MeasA("x2","q2"))
-aliceA = SeqA aliPA aliMA
-bobA = SeqA (IfCA (Equ (Id "x2") (Num 0)) SkipA (UA X ["q3"])) (IfCA (Equ (Id "x1") (Num 0)) SkipA (UA Z ["q3"]))
+-- charlieA = SeqA (UA H ["q2"]) (UA CNOT ["q2","q3"])
+-- aliPA = SeqA (UA CNOT ["q1","q2"]) (UA H ["q1"])
+-- aliMA = SeqA (MeasA("x1","q1")) (MeasA("x2","q2"))
+-- aliceA = SeqA aliPA aliMA
+-- bobA = SeqA (IfCA (Equ (Id "x2") (Num 0)) SkipA (UA X ["q3"])) (IfCA (Equ (Id "x1") (Num 0)) SkipA (UA Z ["q3"]))
+-- actCharlie = Asg "xC" (Num 1)
+-- awaitCharlie = Await (Equ (Id "xC") (Num 1)) (
+--   SeqA charlieA (SeqA (AsgA "xC" (Num 0)) (AsgA "xA" (Num 1)))
+--   )
+-- awaitAlice = Await (Equ (Id "xA") (Num 1)) (
+--   SeqA aliceA (SeqA (AsgA "xA" (Num 0)) (AsgA "xB" (Num 1)))
+--   )
+-- awaitBob = Await (Equ (Id "xB") (Num 1)) (SeqA bobA (AsgA "xB" (Num 0)))
+-- qtTeleAwait = Paral actCharlie (Paral awaitCharlie (Paral awaitAlice awaitBob))
+-- stcAwait = [("x1",0),("x2",0),("xC",0),("xB",0),("xA",0)]
+-- memAwait = \s -> (stcAwait,l3,stq s)
+
+charlieA = Seq (U H ["q2"]) (U CNOT ["q2","q3"])
+aliPA = Seq (U CNOT ["q1","q2"]) (U H ["q1"])
+aliMA = Seq (Meas("x1","q1")) (Meas("x2","q2"))
+aliceA = Seq aliPA aliMA
+bobA = Seq (IfC (Equ (Id "x2") (Num 0)) Skip (U X ["q3"])) (IfC (Equ (Id "x1") (Num 0)) Skip (U Z ["q3"]))
 actCharlie = Asg "xC" (Num 1)
 awaitCharlie = Await (Equ (Id "xC") (Num 1)) (
-  SeqA charlieA (SeqA (AsgA "xC" (Num 0)) (AsgA "xA" (Num 1)))
+  Seq charlieA (Seq (Asg "xC" (Num 0)) (Asg "xA" (Num 1)))
   )
 awaitAlice = Await (Equ (Id "xA") (Num 1)) (
-  SeqA aliceA (SeqA (AsgA "xA" (Num 0)) (AsgA "xB" (Num 1)))
+  Seq aliceA (Seq (Asg "xA" (Num 0)) (Asg "xB" (Num 1)))
   )
-awaitBob = Await (Equ (Id "xB") (Num 1)) (SeqA bobA (AsgA "xB" (Num 0)))
-qtTeleAwait = Paral actCharlie (Paral awaitCharlie (Paral awaitAlice awaitBob))
+awaitBob = Await (Equ (Id "xB") (Num 1)) (Seq bobA (Asg "xB" (Num 0)))
+qtTeleAwait = Paral awaitCharlie (Paral actCharlie (Paral awaitAlice awaitBob))
 stcAwait = [("x1",0),("x2",0),("xC",0),("xB",0),("xA",0)]
 memAwait = \s -> (stcAwait,l3,stq s)
 
@@ -263,7 +280,20 @@ qtEnt = Seq hq1 (Seq cnotq1q2 (Meas ("x","q1")))
 
 
 --Test commands from CAwait
-ifA = IfCA (Leq (Id "a") (Num 0)) (UA X ["q1"]) (SkipA)
-seq1A = SeqA (UA H ["q1"]) (SeqA (MeasA("a","q1")) ifA)
-awaitA = Await (BTrue) seq1A
+-- ifA = IfCA (Leq (Id "a") (Num 0)) (UA X ["q1"]) (SkipA)
+-- seq1A = SeqA (UA H ["q1"]) (SeqA (MeasA("a","q1")) ifA)
+-- awaitA = Await (BTrue) seq1A
 
+
+--Test Atom from Await (lmem2)
+await1 = Await BTrue Skip
+await2 = Await BFalse Skip
+await3 = Await (Equ (Id "a") (Num (0))) hq1
+atom1 = Atom prob3 --Atom(a:=1;b:=1 +_{0.4} c:=2)    --lmem3
+atom2 = Atom qwhile2 --Atom(while (a<=0) -> H(q1) || M(a <- q1))
+atom3 = Seq (Atom (Seq (Asg "a" (Num 1)) (Asg "a" (Num 2)))) (Skip) -- Atom(a:=1;a:=2);skip
+atom4 = Or sk atom3 -- sk or Atom(a:=1;a:=2);skip
+atom5 = Paral asga atom3 --  (a:=1) || (Atom(a:=1;a:=2);skip)
+atom6 = Paral (Paral atom1 atom2) atom3 -- (Atom(a:=1;b:=1 +_{0.4} c:=2)) || (Atom(while (a<=0) -> H(q1) || M(a <- q1))) || (Atom(a:=1;a:=2);skip)
+atom7 = Paral (Paral (Atom(Seq (Asg "a" (Num 1)) (Asg "a" (Num 2)))) (Atom(Seq (Asg "a" (Num 3)) (Asg "a" (Num 4))))) (Asg "a" (Num 5)) -- (Atom(a:=1;a:=2)) || (Atom(a:=3 or a:=4)) || a:=5
+atom8 =  P (1%2) (Paral (Atom (Seq asga (Asg "a" (Num 2)))) ((Asg "a" (Num 3)))) (Asg "a" (Num 5)) -- (Atom(a:=1; a:=2) || a:=3) +_{0.5} a:=5

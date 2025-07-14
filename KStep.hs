@@ -47,7 +47,7 @@ showKStepSch sch c s n = let s' = runKStepSch sch c s n -- [([(Mem, Double)],Dou
 --codifies the k-step semantics
 kStepSch :: (Sch, ProbPath, Int) -> MyDist LMem
 kStepSch (_, path, 0) = MyDist [(snd $ snd path, 0)]
-kStepSch (sch, l@(path, (c, s)), k) = 
+kStepSch (sch, l@(path, (c, s)), k) =
   case (sch l) of
     Nothing -> error "Scheduler undefined"
     Just convDist -> do 
@@ -58,6 +58,80 @@ kStepSch (sch, l@(path, (c, s)), k) =
 --END: k-step--
 
 
+--START: priority for Atom--
+--prioritize the evaluation of Atom commands
+evalAtom :: C -> LMem -> [[(Either LMem (C, LMem), Double)]]
+evalAtom (Atom c) s = runProbT $ runExceptT $ runStateT (small (Atom c)) s
+evalAtom (P prob c1 c2) s = let p = fromRational prob
+                                listDist1 = evalAtom c1 s
+                                listDist2 = evalAtom c2 s
+                                pc1 = [[(c,p*p')| (c,p') <- lcc1] | lcc1 <- listDist1]
+                                pc2 = [[(c,(1-p)*p')| (c,p') <- lcc2] | lcc2 <- listDist2]
+                            in  concat [[ec1++ec2 | ec2 <- pc2] | ec1 <- pc1]
+evalAtom (Seq c1 c2) s =
+  case (nextAtom c1) of
+    True -> let listDist = evalAtom c1 s
+            in [compSeq dist c2 | dist <- listDist]
+    False -> runProbT $ runExceptT $ runStateT (small (Seq c1 c2)) s
+evalAtom (Or c1 c2) s =
+  case (nextAtom c1, nextAtom c2) of
+    (True, False) -> evalAtom c1 s
+    (False, True) -> evalAtom c2 s
+    otherwise -> runProbT $ runExceptT $ runStateT (small (Or c1 c2)) s
+evalAtom (Paral c1 c2) s =
+  case (nextAtom c1, nextAtom c2) of
+    (True, False) ->  let listDist = evalAtom c1 s
+                      in [compParR dist c2 | dist <- listDist]
+    (False, True) -> let listDist = evalAtom c2 s
+                     in [compParL dist c1 | dist <- listDist]
+    otherwise -> runProbT $ runExceptT $ runStateT (small (Paral c1 c2)) s
+evalAtom c s = runProbT $ runExceptT $ runStateT (small c) s
+
+{-
+evalAtom :: C -> LMem -> [[(Either LMem (C, LMem), Double)]]
+evalAtom (Atom c) s = runProbT $ runExceptT $ runStateT (small (Atom c)) s
+evalAtom (P prob c1 c2) s = let p = fromRational prob
+                                listDist1 = evalAtom c1 s
+                                listDist2 = evalAtom c2 s
+                                pc1 = [[(c,p*p')| (c,p') <- lcc1] | lcc1 <- listDist1]
+                                pc2 = [[(c,(1-p)*p')| (c,p') <- lcc2] | lcc2 <- listDist2]
+                            in  concat [[ec1++ec2 | ec2 <- pc2] | ec1 <- pc1]
+evalAtom (Seq c1 c2) s = let listDist = evalAtom c1 s
+                         in [compSeq dist c2 | dist <- listDist]
+evalAtom (Or c1 c2) s =
+  case (nextAtom c1) of
+    False -> evalAtom c2 s
+    True -> if (nextAtom c2 == False)
+            then evalAtom c1 s
+            else (evalAtom c1 s) ++ (evalAtom c2 s)
+evalAtom (Paral c1 c2) s =
+  case (nextAtom c1) of
+    False -> let listDist = evalAtom c2 s
+             in [compParL dist c1 | dist <- listDist]
+    True -> if (nextAtom c2 == False)
+            then let listDist = evalAtom c1 s
+                 in [compParR dist c2 | dist <- listDist]
+            else runProbT $ runExceptT $ runStateT (small (Paral c1 c2)) s
+evalAtom c s = runProbT $ runExceptT $ runStateT (small c) s                 
+
+-}
+
+--see if the next command to be evaluated is an atom
+nextAtom :: C -> Bool
+nextAtom Skip = False
+nextAtom (Asg var e) = False
+nextAtom (Reset q) = False
+nextAtom (U g qvar) = False
+nextAtom (Meas (x,q)) = False
+nextAtom (P prob c1 c2) = nextAtom c1 || nextAtom c2
+nextAtom (Seq c1 c2) = nextAtom c1
+nextAtom (Or c1 c2) = nextAtom c1 || nextAtom c2
+nextAtom (Paral c1 c2) = nextAtom c1 || nextAtom c2
+nextAtom (IfC bExp c1 c2) = False
+nextAtom (Whl bExp c) = False
+nextAtom (Await bExp c) = False
+nextAtom (Atom c) = True
+--END: priority for Atom--
 
 --START: definition of schedulers without IO--
 --undefined scheduler
@@ -67,19 +141,22 @@ undSch _ = Nothing
 --scheduler that chooses always the first element in the list of the possible transitions
 initSch :: Sch
 initSch (path,(c,s)) =
-  let listDist = runProbT $ runExceptT $ runStateT (small c) s -- [[(Either LMem (C,LMem), Double)]]
+  --let listDist = runProbT $ runExceptT $ runStateT (small c) s -- [[(Either LMem (C,LMem), Double)]]
+  let listDist = evalAtom c s -- [[(Either LMem (C,LMem), Double)]]
   in Just $ [(head listDist, 1)]
 
 --scheduler that chooses always the last element in the list of the possible transitions
 lastSch :: Sch
 lastSch (path,(c,s)) =
-  let listDist = runProbT $ runExceptT $ runStateT (small c) s -- [[(Either LMem (C,LMem), Double)]]
+  --let listDist = runProbT $ runExceptT $ runStateT (small c) s -- [[(Either LMem (C,LMem), Double)]]
+  let listDist = evalAtom c s
   in Just $ [(last listDist, 1)]
 
 --scheduler that chooses always the middle element in the list of the possible transitions
 middleSch :: Sch
 middleSch (path,(c,s)) =
-  let listDist = runProbT $ runExceptT $ runStateT (small c) s -- [[(Either LMem (C,LMem), Double)]]
+  --let listDist = runProbT $ runExceptT $ runStateT (small c) s -- [[(Either LMem (C,LMem), Double)]]
+  let listDist = evalAtom c s
       ind = fromIntegral $ floor ((fromIntegral $ length listDist)/2)
   in Just $ [(listDist!!ind, 1)]  
 
@@ -87,7 +164,8 @@ middleSch (path,(c,s)) =
 --the possible transitions
 probSch :: Sch
 probSch (path,(c,s)) =
-  let listDist = runProbT $ runExceptT $ runStateT (small c) s -- [[(Either LMem (C,LMem), Double)]]
+  --let listDist = runProbT $ runExceptT $ runStateT (small c) s -- [[(Either LMem (C,LMem), Double)]]
+  let listDist = evalAtom c s
       len = fromIntegral $ length listDist
   in Just $ [(dist, 1/len) | dist <- listDist]
 
@@ -97,7 +175,8 @@ probSch (path,(c,s)) =
 --already occurred; if yes, then the scheduler tries another option
 fairSch :: Sch
 fairSch hist@(path,(c,s)) = 
-  let listDist = runProbT $ runExceptT $ runStateT (small c) s -- [[(Either LMem (C,LMem), Double)]]
+  --let listDist = runProbT $ runExceptT $ runStateT (small c) s -- [[(Either LMem (C,LMem), Double)]]
+  let listDist = evalAtom c s
       nextDist = notRepeated hist (head listDist, tail listDist)
   in Just $ [(nextDist, 1)]
 

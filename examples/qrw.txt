@@ -1,34 +1,19 @@
----QuantumRandomWalk---
-rep: 100
-k: 104504
-<
- while (i<1) do {H(q2);
- TOF(q2,q1,q0); CNOT(q2,q1);
- X(q2); X(q1); TOF(q2,q1,q0); X(q1); CNOT(q2,q1); X(q2);
- i:=i+1};
- Meas(x0,q0); Meas(x1,q1),
- [(x0,0),(x1,0),(i,0)],
- [(q0,1),(q1,2),(q2,3)],
- (1.0)|000><000|
->
----QuantumRandomWalk---
-
 ---QuantumRandomWalkConc---
-rep: 10
-k: 1000
+hist: (500, [[x0,x1],[y0,y1]])
+k: 74
 <
- while (i<2) do {H(q2);
- TOF(q2,q1,q0); CNOT(q2,q1);
- X(q2); X(q1); TOF(q2,q1,q0); X(q1); CNOT(q2,q1); X(q2);
+ while (i<2) do {H(q3);
+ TOF(q3,q2,q1); CNOT(q3,q2);
+ X(q3); X(q2); TOF(q3,q2,q1); X(q2); CNOT(q3,q2); X(q3);
  i:=i+1};
- Meas(x0,q0); Meas(x1,q1) ||
- while (j<2) do {H(q5);
- TOF(q5,q4,q3); CNOT(q5,q4);
- X(q5); X(q4); TOF(q5,q4,q3); X(q4); CNOT(q5,q4); X(q5);
+ Meas(x0,q1); Meas(x1,q2) ||
+ while (j<4) do {H(q6);
+ TOF(q6,q5,q4); CNOT(q6,q5);
+ X(q6); X(q5); TOF(q6,q5,q4); X(q5); CNOT(q6,q5); X(q6);
  j:=j+1};
- Meas(y0,q3); Meas(y1,q4),
+ Meas(y0,q4); Meas(y1,q5),
  [(x0,0),(x1,0),(i,0),(y0,0),(y1,0),(j,0)],
- [(q0,1),(q1,2),(q2,3),(q3,4),(q4,5),(q5,6)],
+ [(q1,1),(q2,2),(q3,3),(q4,4),(q5,5),(q6,6)],
  (1.0)|000000><000000|
 >
 ---QuantumRandomWalkConc---

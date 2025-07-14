@@ -29,6 +29,9 @@ type ProbPath = ([((C,LMem), [(Either LMem (C,LMem),Double)])], (C,LMem))
 data E = Num Integer
        | Id String
        | PlusE E E
+       | MinusE E E
+       | MultE E E
+       | DivE E E
        deriving (Show, Eq)
 
 --B expressions
@@ -59,15 +62,16 @@ data C = Skip
        | P Rational C C 
        | IfC B C C 
        | Whl B C
-       | Await B CAwait
+       | Await B C
+       | Atom C
        deriving (Show, Eq)
 
---CAwait expressions
-data CAwait = SkipA
-            | AsgA String E
-            | ResetA QVar
-            | UA G QVarList
-            | MeasA (String, QVar) 
-            | SeqA CAwait CAwait
-            | IfCA B CAwait CAwait
-            deriving (Show, Eq)
+-- --CAwait expressions
+-- data CAwait = SkipA
+--             | AsgA String E
+--             | ResetA QVar
+--             | UA G QVarList
+--             | MeasA (String, QVar) 
+--             | SeqA CAwait CAwait
+--             | IfCA B CAwait CAwait
+--             deriving (Show, Eq)

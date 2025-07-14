@@ -22,6 +22,7 @@ import SmallStep
 import Beautify
 import ProbTMonad
 import KStepIO
+import Examples
 
 --START: sampling from the k-step with a built-in memoryless scheduler--
 --The scheduler used here chooses a configuration by first selecting a distribution from a set of
@@ -78,11 +79,61 @@ showSample c s n = do
 
 --START: setting up data for building the Histogram--
 --Building the histogram using the method that returns a configuration
-showHist :: String -> Int -> C -> LMem -> Int -> IO ExitCode
-showHist name k c s n = do
-  input <- sampleCollect k c s n -- [Mem]
-  let sortInput = sortBy (comparing fst) input
-  buildHist (confIntoDouble sortInput) name
+-- showHist :: FileName -> (Nº Samples, ListVar, "ind" or "join") -> Command -> Memory -> k-step -> IO ExitCode
+-- where "ind" creates a histogram for each variable in ListVar and "join" creates a histogram for
+-- the variables in ListVar
+showHist :: String -> (Int, [[String]]) -> C -> LMem -> Int -> IO ExitCode
+showHist name (k, lvars) c s n = case lvars of
+  [] -> exitSuccess
+  [lvar] -> do
+    showHistAux name k lvar c s n
+  (lvar:t) -> do
+    showHistAux name k lvar c s n
+    showHist name (k, t) c s n
+
+showHistAux :: String -> Int -> [String] -> C -> LMem -> Int -> IO ExitCode
+showHistAux name k lvar c s n = do
+  listMem <- sampleCollect k c s n
+  let listSC = map fst listMem
+      nameHist = name ++ " " ++ unwords lvar
+      lvarSC = [concat [filter (\(var',val) -> if var'==var then True else False) sc | var <- lvar] | sc <- listSC] -- [SC]
+      valVarSC = [ (map snd varSC) | varSC <- lvarSC] -- [[Int]]
+      sortValVarSC = sort valVarSC
+      strSorted = [concat $ (map show) l | l <- sortValVarSC]
+  buildHist (confIntoDouble strSorted) nameHist
+
+
+-- showHist :: String -> (Int, [[String]]) -> C -> LMem -> Int -> IO ExitCode
+-- showHist name (k, []) c s n = exitSuccess
+-- showHist name (k, [lvar]) c s n = do
+--   listMem <- sampleCollect k c s n -- [Mem]
+--   let listSC = map fst listMem -- [SC]
+--       nameHist = name ++ " " ++ (concat $ (map (\x -> x ++ " ")) lvar)
+--       lvarSC = [concat [filter (\(var',val) -> if var'==var then True else False) sc | var <- lvar] | sc <- listSC] -- [SC]
+--       valVarSC = [ (map snd varSC) | varSC <- lvarSC] -- [[Int]]
+--       sortValVarSC = sort valVarSC
+--       strSorted = [concat $ (map show) l | l <- sortValVarSC]
+--   buildHist (confIntoDouble strSorted) nameHist
+-- showHist name (k, (lvar:t)) c s n = do
+--   listMem <- sampleCollect k c s n -- [Mem]
+--   let listSC = map fst listMem -- [SC]
+--       nameHist = name ++ " " ++ (concat $ (map (\x -> x ++ " ")) lvar)
+--       lvarSC = [ concat [filter (\(var',val) -> if var'==var then True else False) sc | var <- lvar] | sc <- listSC] -- [SC]
+--       valVarSC = [ (map snd varSC) | varSC <- lvarSC] -- [[Int]]
+--       sortValVarSC = sort valVarSC
+--       strSorted = [concat $ (map show) l | l <- sortValVarSC]
+--   buildHist (confIntoDouble strSorted) nameHist
+--   showHist name (k, t) c s n
+
+
+      
+
+
+-- showHist :: String -> Int -> C -> LMem -> Int -> IO ExitCode
+-- showHist name k c s n = do
+--   input <- sampleCollect k c s n -- [Mem]
+--   let sortInput = sortBy (comparing fst) input
+--   buildHist (confIntoDouble sortInput) name
   
 --Executes runNStepConf k times and stores the results obtained in each iteration
 --If the probability of the result obtained is zero, the result is discarded; Furthermore, if after
@@ -100,29 +151,29 @@ sampleCollect k c s n = do
     
 
 --functions for the indexes of the x-axis of the histogram 
-confIntoInt :: [(Mem,Double)] -> [(Int,Double)]
+confIntoInt :: [(String,Double)] -> [(Int,Double)]
 confIntoInt l = zip [i | i <- [1 .. length l]] [p | (mem,p) <- l]
 
 -- confIntoDouble [c_1,...,c_n] = [d_1,...,d_n], where d_m = integer corresponding to configuration
 -- c_m (there is an integer corresponding to each different configuration in [c_1,...,c_n])
 -- e.g. confIntoDouble [c1,c2,c3,c1,c3] = [(1.0,c1),(2.0,c2),(3.0,c3),(1.0,c1),(3.0,c3)]
-confIntoDouble :: [Mem] -> [(Double,Mem)]
+confIntoDouble :: [String] -> [(Double, String)]
 confIntoDouble l = zip (indexes l ldiff) l
   where ldiff = nub l
 
 -- (indexes [x_1,...,x_n] l) = [i_1,...,i_n], where i_m = index of the first occurence of x_m in
 -- list l, if all elements of [x1,...,xn] belong to l
-indexes :: [Mem] -> [Mem] -> [Double]
+indexes :: [String] -> [String] -> [Double]
 indexes [] l = []
 indexes (h1:t1) l2 = (listIndex h1 l2) : (indexes t1 l2)
 
 -- listIndex x l = index of the first occurence of x in list l, if x is part of l. If l is not empty
 -- and x is not part of it, an error occurs. The index of the first element of l is considered to be
 -- 1.
-listIndex :: Mem -> [Mem] -> Double
+listIndex :: String -> [String] -> Double
 listIndex x [] = 0
 listIndex x (h:t)
-    | not (elem x (h:t)) = error ((show x) ++ " does not belong to " ++ (show (h:t)))
+    | not (elem x (h:t)) = error (x ++ " does not belong to " ++ (show (h:t)))
     | (x==h) = 1
     | otherwise = 1 + (listIndex x t)
 --END: setting up data for building the Histogram--
@@ -143,7 +194,7 @@ listIndex x (h:t)
 ---- for each x, there is an associated mem_i which is then used as the caption
 
 -- The elements of dataSet are all expected to be integers.
-buildHist :: [(Double,Mem)] -> String -> IO ExitCode
+buildHist :: [(Double, String)] -> String -> IO ExitCode
 buildHist [] title = error "Empty input."
 buildHist dataSet title = plotAdv "" options hist -- the filename (1st argument of plotAdv) is empty, so the histogram will appear on a new window
     where newDataSet = [(d-1,st) | (d,st) <- dataSet] -- moving the x coordinates of the labels to the left by one
@@ -153,9 +204,24 @@ buildHist dataSet title = plotAdv "" options hist -- the filename (1st argument 
           options = Opt.title title $ Opt.xRange2d (-1,max+1) $ Opt.xTicks2d (xTicksData newDataSet) (defOpts hist) -- options for the histogram (title, range of the x-axis and labels of the x-axis)
 
 -- xTicksData [(0.0, mem_1),(1.0, mem_2), ..., (n-1, mem_n)] = [("mem_1",0), ("mem_2",1), ... ("mem_n", n-1)]
-xTicksData :: [(Double, Mem)] -> [(String, Int)]
+xTicksData :: [(Double, String)] -> [(String, Int)]
 xTicksData [] = []
-xTicksData ((d,mem):t) = (memToString mem, round d :: Int) : xTicksData t
+xTicksData ((d,str):t) = (str, round d :: Int) : xTicksData t
+
+-- -- The elements of dataSet are all expected to be integers.
+-- buildHist :: [(Double,Mem)] -> String -> IO ExitCode
+-- buildHist [] title = error "Empty input."
+-- buildHist dataSet title = plotAdv "" options hist -- the filename (1st argument of plotAdv) is empty, so the histogram will appear on a new window
+--     where newDataSet = [(d-1,st) | (d,st) <- dataSet] -- moving the x coordinates of the labels to the left by one
+--           doubles =  [d | (d,st) <- newDataSet]
+--           max = round (maximum doubles) :: Int -- (maximum doubles) is of type Double, but max is of type Int; max is n
+--           hist = histogramBinSize 1 doubles -- (histogramBinSize 1 doubles) creates a histogram with bin size 1 and with doubles as its input
+--           options = Opt.title title $ Opt.xRange2d (-1,max+1) $ Opt.xTicks2d (xTicksData newDataSet) (defOpts hist) -- options for the histogram (title, range of the x-axis and labels of the x-axis)
+
+-- -- xTicksData [(0.0, mem_1),(1.0, mem_2), ..., (n-1, mem_n)] = [("mem_1",0), ("mem_2",1), ... ("mem_n", n-1)]
+-- xTicksData :: [(Double, Mem)] -> [(String, Int)]
+-- xTicksData [] = []
+-- xTicksData ((d,mem):t) = (memToString mem, round d :: Int) : xTicksData t
 --END: Building the histogram--
 
 

@@ -1,6 +1,13 @@
 module SemBE_Brookes where
 
 import Syntax
+import ParserAEBE
+
+evalE :: String -> Integer
+evalE exp =
+  case testParseE exp of
+    Right e -> bigStepExp e []
+    otherwise -> undefined
 
 -- changeSt i n s is the state [s|i=n] (here, we are not allowing attributions to non-declared
 -- identifiers - see section 11.2 from the article) 
@@ -21,6 +28,9 @@ bigStepExp :: E -> SC -> Integer
 bigStepExp (Num n) s = n -- 1st rule
 bigStepExp (Id i) s = getValue s i -- 3rd rule
 bigStepExp (PlusE e1 e2) s = (bigStepExp e1 s) + (bigStepExp e2 s) -- final rules
+bigStepExp (MinusE e1 e2) s = (bigStepExp e1 s) - (bigStepExp e2 s) -- final rules
+bigStepExp (MultE e1 e2) s = (bigStepExp e1 s) * (bigStepExp e2 s) -- final rules
+bigStepExp (DivE e1 e2) s = (bigStepExp e1 s) `div` (bigStepExp e2 s) -- final rules
 
 -- getValue s i = the value that state s attributes to identifier i
 getValue :: SC -> String -> Integer 

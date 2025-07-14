@@ -27,7 +27,8 @@ parseE = do
 -- parser of E expressions which "forwards" the input to another parser, which it selects according
 -- to the input
 parseESelect :: GenParser Char st E
-parseESelect = try(parsePlus)
+parseESelect = try(parseMultDiv)
+               <|> try(parsePlusMinus)
                <|> try(parseNum)
                <|> try(parseId)
                <|> parsePar
@@ -46,7 +47,7 @@ parseIdeStr = do
     i <- (try(startUnderscore) <|> startLetter) -- the identifier can either start with an underscore or with an alphabetic Unicode character  
     return i
 
--- parses a natural number (a sequence of digits)
+-- parses an integer number (a sequence of digits)
 parseNum :: GenParser Char st E 
 parseNum = do
   minus <- option "" (string "-")  
@@ -65,29 +66,66 @@ parsePar = do
         x <- between (char '(') (char ')') parseESelect
         return x
 
--- parses a term in a Plus expression: either a natural number, or a variable, or a term inside
+-- parses a term in a Plus or Minus expression: either an integer number, or a variable, or a term inside
 -- parentheses
-termPlus :: GenParser Char st E
-termPlus =  try(parseNum)  <|> try(parseId) <|> parsePar 
+termPlusMinus :: GenParser Char st E
+termPlusMinus = try(parseNum)
+                <|> try(parseId)
+                <|> parsePar 
 
--- parser for Plus expressions
-parsePlus :: GenParser Char st E
-parsePlus = do
-  x <- termPlus
+-- parser for Plus or Minus expressions
+parsePlusMinus :: GenParser Char st E
+parsePlusMinus = do
+  x <- termPlusMinus
   spaces
-  char '+'
+  op <- try(char '+') <|> (char '-')
   spaces
-  y <- termPlus
-  loop (PlusE x y)
+  y <- termPlusMinus
+  case op of
+    '+' -> loop (PlusE x y)
+    '-' -> loop (MinusE x y)
     where
       f x = do
         spaces
-        char '+'
+        op <- try(char '+') <|> (char '-')
         spaces
-        y <- termPlus
+        y <- termPlusMinus
         spaces
-        loop (PlusE x y)
+        case op of
+          '+' -> loop (PlusE x y)
+          '-' -> loop (MinusE x y)
       loop t = try(f t) <|> return t
+
+-- parses a term in a Mult or Div expression: either an integer number, or a variable, or a term inside
+-- parentheses
+termMultDiv :: GenParser Char st E
+termMultDiv =  try(parsePlusMinus)
+               <|> try(parseNum)
+               <|> try(parseId)
+               <|> parsePar 
+
+-- parser for Plus or Minus expressions
+parseMultDiv :: GenParser Char st E
+parseMultDiv = do
+  x <- termMultDiv
+  spaces
+  op <- try(char '*') <|> (char '/')
+  spaces
+  y <- termMultDiv
+  case op of
+    '*' -> loop (MultE x y)
+    '/' -> loop (DivE x y) -- <----- atencao à possivel divisao por zero
+    where
+      f x = do
+        spaces
+        op <- try(char '*') <|> (char '/')
+        spaces
+        y <- termMultDiv
+        spaces
+        case op of
+          '*' -> loop (MultE x y)
+          '/' -> loop (DivE x y)
+      loop t = try(f t) <|> return t      
 --END: Parser for E--
 
 

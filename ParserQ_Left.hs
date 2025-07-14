@@ -11,7 +11,8 @@ C = Skip
     | C +(p) C 
     | if b then {C} else {C} 
     | while b do {C}
-    | await b do {C} 
+    | await b do {C}
+    | Atom(C)
 and using left associativity and no auxiliary data types.
 
 -}
@@ -76,7 +77,7 @@ parseConf ::  String -> Either ParseError (C,SC,L,SQ)
 parseConf input = parse pConf "(unknown)" input
 
 -- function to test the parser splitRun
-parseRun :: String -> Either ParseError [((String, Int, Int), (C,SC,L,SQ))]
+parseRun :: String -> Either ParseError [((String, (Int, [[String]]), Int), (C,SC,L,SQ))]
 parseRun input = parse splitRun "(unknown)" input
 --END: Test parsers--
 
@@ -121,14 +122,14 @@ splitProgs = do
   return (c:listC)
 
 -- separates different programs and returns a list of ((rep hist, k, name),(prog, sc, l, sq))
-splitRun :: GenParser Char st [((String, Int, Int), (C,SC,L,SQ))]
+splitRun :: GenParser Char st [((String, (Int, [[String]]), Int), (C,SC,L,SQ))]
 splitRun = do
   string "---"
   name <- many1 alphaNum
   string "---"
   char '\n'
-  string "rep: "
-  rep <- many1 digit
+  string "hist: "
+  (rep, llvar) <- parseHist
   char '\n'
   string "k: "
   k <- many1 digit
@@ -140,7 +141,7 @@ splitRun = do
   string "---"
   separateOrJoined
   listRun <- option [] splitRun -- type [(C,SC,L,SQ)]
-  return (((name, read rep :: Int, read k :: Int),(c,sc,l,sq)):listRun)
+  return (((name, (rep, llvar), read k :: Int),(c,sc,l,sq)):listRun)
 --END: Read from a file--
 
 --START: Main parsers-- 
@@ -169,6 +170,7 @@ parseCSelect = try(parseParal)
                <|> try(parseIf)
                <|> try(parseWhile)
                <|> try(parseAwait)
+               <|> try(parseAtom)
                <|> parseParen
 --END: Main parsers-- 
 
@@ -377,6 +379,7 @@ reservedWordQ = do
            <|> try (string "Meas")
            <|> try (string "while")
            <|> try (string "await")
+           <|> try (string "Atom")
            <|> (string "Reset") )
     notFollowedBy (try(alphaNum) <|> parseUnderscore)
     return x
@@ -467,6 +470,7 @@ comProb = do
          <|> try(parseIf)
          <|> try(parseWhile)
          <|> try(parseAwait)
+         <|> try(parseAtom)
          <|> parseParen
   return com
 
@@ -515,6 +519,7 @@ comOr = do
          <|> try(parseIf)
          <|> try(parseWhile)
          <|> try(parseAwait)
+         <|> try(parseAtom)
          <|> parseParen  
   return com
 
@@ -558,6 +563,7 @@ comSeq = do
          <|> try(parseIf)
          <|> try(parseWhile)
          <|> try(parseAwait)
+         <|> try(parseAtom)
          <|> parseParen  
   return com
 
@@ -600,6 +606,7 @@ comParal = do
          <|> try(parseIf)
          <|> try(parseWhile)
          <|> try(parseAwait)
+         <|> try(parseAtom)
          <|> parseParen    
   return com
 
@@ -639,192 +646,22 @@ parseAwait = do
   separateOrJoined -- there can be no separation between "do" and "{"
   char '{' -- command begins
   separateOrJoined
-  ca <- parseCASelect
+  c <- parseCSelect
   separateOrJoined
   char '}' -- command ends
-  return (Await b ca)
+  return (Await b c)
 
--- parser which "forwards" the input (which is a command) to another parser, which it selects
--- according to the input
-parseCASelect :: GenParser Char st CAwait
-parseCASelect = try(parseSeqA)
-               <|> try(parseSkipA)
-               <|> try(parseGateA)
-               <|> try(parseAsgA)
-               <|> try(parseMeasA)
-               <|> try(parseResetA)
-               <|> try(parseIfA)
-               <|> parseParenA
-
-
--- parses commands with value "skip", i.e "Skip" commands
-parseSkipA :: GenParser Char st CAwait
-parseSkipA = do
-    string "skip"
-    return SkipA
-
--- parses commands with value "I:=E", i.e "Asg I E" commands
-parseAsgA :: GenParser Char st CAwait
-parseAsgA = do
-    i <- parseIdeStr
-    spacesOnly
-    string ":="
-    spacesOnly
-    e <- parseESelect 
-    return (AsgA i e) 
-
--- parses the reset command
-parseResetA :: GenParser Char st CAwait
-parseResetA = do
-  string "Reset"
+-- parses the atom command
+parseAtom :: GenParser Char st C
+parseAtom = do
+  string "Atom"
   separateOrJoined
   char '('
   separateOrJoined
-  q <- parseQVar
+  c <- parseCSelect
   separateOrJoined
   char ')'
-  return (ResetA q)
-
--- parses Meas commands
-parseMeasA :: GenParser Char st CAwait
-parseMeasA = do
-    string "Meas"
-    separateOrJoined
-    char '('
-    separateOrJoined
-    c <- parseIdeStr
-    spacesOnly
-    char ','
-    separateOrJoined
-    q <- parseQVar
-    separateOrJoined
-    char ')'
-    return (MeasA (c,q))
-
--- parses the if command
-parseIfA :: GenParser Char st CAwait
-parseIfA = do
-    string "if"
-    separateElems -- 1 or + spaces followed by 0 or + '\n' / 1 or + '\n'
-    b <- parseBSelect
-    separateElems 
-    string "then"
-    separateOrJoined -- there can be no separation between "then" and "{"
-    char '{' -- 1st command begins
-    separateOrJoined
-    c1 <- parseCASelect
-    separateOrJoined
-    char '}' -- 1st command ends
-    separateOrJoined
-    string "else"
-    separateOrJoined
-    char '{' -- 2nd command begins
-    separateOrJoined
-    c2 <- parseCASelect
-    separateOrJoined
-    char '}' -- 2nd command ends
-    return (IfCA b c1 c2)
-
--- parses commands with value "(C)"  
-parseParenA :: GenParser Char st CAwait
-parseParenA = do
-    char '('
-    spacesOnly
-    cInsideParen <- parseCASelect
-    spacesOnly
-    char ')'
-    return cInsideParen
-
--- parses U commands
-parseGateA :: GenParser Char st CAwait 
-parseGateA = try(pGate1QA) <|> try(pGate2QA) <|> pGate3QA
-
--- parses U commands with 1-qubit gates
-pGate1QA :: GenParser Char st CAwait 
-pGate1QA = do
-    g <- gate1Q
-    separateOrJoined
-    char '('
-    separateOrJoined -- there can be no separation between "(" and the name of the quantum variable
-    q <- parseQVar -- q is a quantum variable
-    qs <- (try(parseQVars) <|> return []) -- qs is either a list of quantum variables or an empty list
-    separateOrJoined
-    char ')'
-    return (UA g (q:qs))
-
--- parses U commands with 2-qubit gates
-pGate2QA :: GenParser Char st CAwait
-pGate2QA = do
-    g <- gate2Q
-    separateOrJoined
-    char '('
-    separateOrJoined -- there can be no separation between "(" and the name of the quantum variable
-    q1 <- parseQVar -- q1 is a quantum variable
-    spacesOnly
-    char ','
-    separateOrJoined
-    q2 <- parseQVar -- q2 is another quantum variable
-    separateOrJoined
-    char ')'
-    return (UA g [q1,q2])
-
--- parses U commands with 3-qubit gates
-pGate3QA :: GenParser Char st CAwait
-pGate3QA = do
-    g <- gate3Q
-    separateOrJoined
-    char '('
-    separateOrJoined -- there can be no separation between "(" and the name of the quantum variable
-    q1 <- parseQVar -- q1 is a quantum variable
-    spacesOnly
-    char ','
-    separateOrJoined
-    q2 <- parseQVar -- q2 is another quantum variable
-    spacesOnly
-    char ','
-    separateOrJoined
-    q3 <- parseQVar -- q1 is a quantum variable
-    separateOrJoined
-    char ')'
-    return (UA g [q1,q2,q3])
-
--- Parsers for the sequential command inside await command
--- parses a term in a sequential command: any other command except parallel commands
-comSeqA :: GenParser Char st CAwait
-comSeqA = do
-  com <- try(parseSkipA)
-         <|> try(parseGateA)
-         <|> try(parseAsgA)
-         <|> try(parseMeasA)
-         <|> try(parseResetA)
-         <|> try(parseIfA)
-         <|> parseParenA
-  return com
-
-
--- parses a sequential command
-parseSeqA :: GenParser Char st CAwait
-parseSeqA = do
-  x <- comSeqA 
-  spacesOnly
-  string ";"
-  --separateOrJoined
-  spacesOnly -- 0 or more spaces
-  entersOnly -- 0 or more '\n'
-  spacesOnly -- 0 or more spaces
-  y <- comSeqA
-  loop (SeqA x y)
-    where
-      f x = do
-        spacesOnly
-        string ";"
-        --separateOrJoined
-        spacesOnly -- 0 or more spaces
-        entersOnly -- 0 or more '\n'
-        spacesOnly -- 0 or more spaces
-        y <- comSeqA
-        loop (SeqA x y)
-      loop t = try(f t) <|> return t    
+  return (Atom c)
 --END: Parsers for Commands--
 
 ---START: Parsers for States----
@@ -1045,6 +882,24 @@ pComplex = do
 -}
 
 ---END: Parsers for States----
+
+--START: Parser Histogram data--
+parseHist :: GenParser Char st (Int, [[String]])
+parseHist = do
+  char '('
+  rep <- many1 digit
+  string ", "
+  lvar <- parseListListVarHist
+  char ')'
+  return (read rep :: Int, lvar)
+
+parseListListVarHist :: GenParser Char st [[String]]
+parseListListVarHist = try (between (char '[') (char ']') (sepBy parseListVarHist (char ',')))
+                       <|> fmap (:[]) parseListVarHist
+
+parseListVarHist :: GenParser Char st [String]
+parseListVarHist = between (char '[') (char ']') (sepBy (many1 alphaNum) (char ','))  
+--END: Parser Histogram data--
 
 
 --START: Parser for configurations--

@@ -1,5 +1,5 @@
 ---Program1---
-hist: (50, [x])
+rep: 50
 k: 1
 <
  x:=1 (+)(1%2) x:=2,
@@ -10,7 +10,7 @@ k: 1
 ---Program1---
 
 ---Program2---
-hist: (50, [x1,x2])
+rep: 50
 k: 6
 < H(q1); CNOT(q1,q2); Meas(x1,q1); Meas(x2,q2),
 [(x1,0),(x2,0)],
@@ -19,7 +19,7 @@ k: 6
 ---Program2---
 
 ---ResetCheck---
-hist: (1, [x1,x2])
+rep: 1
 k: 2
 < H(q1);Reset(q1),
 [(x1,0),(x2,0)],
@@ -28,7 +28,7 @@ k: 2
 ---ResetCheck---
 
 ---EmptyQS---
-hist: (1, [])
+rep: 1
 k: 1
 <
  skip,
