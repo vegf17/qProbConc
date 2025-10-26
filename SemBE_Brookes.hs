@@ -31,6 +31,7 @@ bigStepExp (PlusE e1 e2) s = (bigStepExp e1 s) + (bigStepExp e2 s) -- final rule
 bigStepExp (MinusE e1 e2) s = (bigStepExp e1 s) - (bigStepExp e2 s) -- final rules
 bigStepExp (MultE e1 e2) s = (bigStepExp e1 s) * (bigStepExp e2 s) -- final rules
 bigStepExp (DivE e1 e2) s = (bigStepExp e1 s) `div` (bigStepExp e2 s) -- final rules
+bigStepExp (ModE n exp) s = (bigStepExp exp s) `mod` n
 
 -- getValue s i = the value that state s attributes to identifier i
 getValue :: SC -> String -> Integer 
@@ -45,6 +46,7 @@ bigStepBExp (BTrue) s = True
 bigStepBExp (BFalse) s = False
 bigStepBExp (Not b) s = not (bigStepBExp b s)
 bigStepBExp (And b1 b2) s = (bigStepBExp b1 s) && (bigStepBExp b2 s)
+bigStepBExp (OrB b1 b2) s = (bigStepBExp b1 s) || (bigStepBExp b2 s)
 bigStepBExp (Equ e1 e2) s = (bigStepExp e1 s) == (bigStepExp e2 s)
 bigStepBExp (Leq e1 e2) s = (bigStepExp e1 s) <= (bigStepExp e2 s)
 bigStepBExp (Geq e1 e2) s = (bigStepExp e1 s) >= (bigStepExp e2 s)
@@ -65,6 +67,7 @@ freeB BTrue = []
 freeB BFalse = []
 freeB (Not b) = freeB b
 freeB (And b1 b2) = (freeB b1) ++ (freeB b2)
+freeB (OrB b1 b2) = (freeB b1) ++ (freeB b2)
 freeB (Equ e1 e2) = (freeE e1) ++ (freeE e2)
 freeB (Leq e1 e2) = (freeE e1) ++ (freeE e2)
 freeB (Geq e1 e2) = (freeE e1) ++ (freeE e2)
@@ -81,3 +84,16 @@ declared :: String -> SC -> Bool
 declared i [] = False
 declared i ((i',n'):t) = if (i' == i) then True else (declared i t)
 --END: calculate free variables--
+
+
+--START: evaluate Arg expressions--
+evalArg :: Arg -> Double
+evalArg (NumP n) = n
+evalArg PiP = pi
+evalArg (SqrtP exp) = let n = evalArg exp
+                     in sqrt(n)
+evalArg (PlusP exp1 exp2) = (evalArg exp1) + (evalArg exp2)
+evalArg (MinusP exp1 exp2) = (evalArg exp1) - (evalArg exp2)
+evalArg (MultP exp1 exp2) = (evalArg exp1) * (evalArg exp2)
+evalArg (DivP exp1 exp2) = (evalArg exp1) / (evalArg exp2)
+--START: evaluate Arg expressions--
