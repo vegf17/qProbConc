@@ -35,7 +35,7 @@ import Data.Matrix
 import Syntax
 import SemBE_Brookes
 import Examples
-import ProbTMonad
+import DistTMonad
 import QuantumCalc
 import Beautify
 --my imports--
@@ -44,7 +44,7 @@ import Beautify
 --START: small-step semantics--
 
 -- StTQC C '=' S -> [[(Either S (C,S), Prob)]]
-type StTQC a = StateT LMem (ExceptT LMem (ProbT [])) a --small
+type StTQC a = StateT LMem (ExceptT LMem (DistT [])) a --small
 
 --Codifies the behavior of the small-step operational semantics
 small :: C -> StTQC C
@@ -62,64 +62,64 @@ small (Meas (x,q)) = do
       sc0 = changeSt x 0 sc -- assigning the value 0 to the variable x
       sc1 = changeSt x 1 sc -- assigning the value 1 to the variable x
   if (p0==0.0)
-    then StateT $ \_ -> ExceptT $ ProbT $ [[(Left (sc1,l,sq1),p1)]]
+    then StateT $ \_ -> ExceptT $ DistT $ [[(Left (sc1,l,sq1),p1)]]
     else if (p1==0.0)
-    then StateT $ \_ -> ExceptT $ ProbT $ [[(Left (sc0,l,sq0),p0)]]
-    else StateT $ \_ -> ExceptT $ ProbT $ [[(Left (sc0,l,sq0),p0), (Left (sc1,l,sq1),p1)]]
+    then StateT $ \_ -> ExceptT $ DistT $ [[(Left (sc0,l,sq0),p0)]]
+    else StateT $ \_ -> ExceptT $ DistT $ [[(Left (sc0,l,sq0),p0), (Left (sc1,l,sq1),p1)]]
 small (P prob c1 c2) = do
   s <- get
   let p = fromRational prob
-      cc1 = runProbT $ runExceptT $ runStateT (small c1) s  -- :: [[(Either S (Com, S), Prob)]]
-      cc2 = runProbT $ runExceptT $ runStateT (small c2) s  -- :: [[(Either S (Com, S), Prob)]]
+      cc1 = runDistT $ runExceptT $ runStateT (small c1) s  -- :: [[(Either S (Com, S), Prob)]]
+      cc2 = runDistT $ runExceptT $ runStateT (small c2) s  -- :: [[(Either S (Com, S), Prob)]]
       pc1 = [[(c,p*p')| (c,p') <- lcc1] | lcc1 <- cc1]
       pc2 = [[(c,(1-p)*p')| (c,p') <- lcc2] | lcc2 <- cc2]
       pc1c2 = concat [[ec1++ec2 | ec2 <- pc2] | ec1 <- pc1]
-  StateT $ \_ -> ExceptT $ ProbT $ pc1c2    
+  StateT $ \_ -> ExceptT $ DistT $ pc1c2    
 small (Seq c1 c2) = do 
     s <- get 
-    let cp = runProbT $ runExceptT $ runStateT (small c1) s  -- :: [[(Either LMem (Com, LMem), Prob)]]
+    let cp = runDistT $ runExceptT $ runStateT (small c1) s  -- :: [[(Either LMem (Com, LMem), Prob)]]
         seqC = [compSeq dist c2| dist <- cp]
-    StateT $ \_ -> ExceptT $ ProbT $ seqC
+    StateT $ \_ -> ExceptT $ DistT $ seqC
 small (Or c1 c2) = do 
     s <- get 
-    let cp1 = runProbT $ runExceptT $ runStateT (small c1) s -- :: [[(Either LMem (Com, LMem), Prob)]]
-        cp2 = runProbT $ runExceptT $ runStateT (small c2) s -- :: [[(Either LMem (Com, LMem), Prob)]]
-    StateT $ \_ -> ExceptT $ ProbT $ (cp1++cp2) 
+    let cp1 = runDistT $ runExceptT $ runStateT (small c1) s -- :: [[(Either LMem (Com, LMem), Prob)]]
+        cp2 = runDistT $ runExceptT $ runStateT (small c2) s -- :: [[(Either LMem (Com, LMem), Prob)]]
+    StateT $ \_ -> ExceptT $ DistT $ (cp1++cp2) 
 small (Paral c1 c2) = do 
     s <- get 
-    let cp1 = runProbT $ runExceptT $ runStateT (small c1) s -- :: [[(Either LMem (Com, LMem), Prob)]]
-        cp2 = runProbT $ runExceptT $ runStateT (small c2) s -- :: [[(Either LMem (Com, LMem), Prob)]]
+    let cp1 = runDistT $ runExceptT $ runStateT (small c1) s -- :: [[(Either LMem (Com, LMem), Prob)]]
+        cp2 = runDistT $ runExceptT $ runStateT (small c2) s -- :: [[(Either LMem (Com, LMem), Prob)]]
         par1 = [compParR dist c2| dist <- cp1]
         par2 = [compParL dist c1| dist <- cp2]
-    StateT $ \_ -> ExceptT $ ProbT $ par1++par2
+    StateT $ \_ -> ExceptT $ DistT $ par1++par2
 small (IfC bExp c1 c2) = do
   (sc,l,sq) <- get
   let b = bigStepBExp bExp sc
   if b == True
-    then StateT $ \_ -> ExceptT $ ProbT $ [[(Right (c1,(sc,l,sq)),1.0)]]
-    else StateT $ \_ -> ExceptT $ ProbT $ [[(Right (c2,(sc,l,sq)),1.0)]]
+    then StateT $ \_ -> ExceptT $ DistT $ [[(Right (c1,(sc,l,sq)),1.0)]]
+    else StateT $ \_ -> ExceptT $ DistT $ [[(Right (c2,(sc,l,sq)),1.0)]]
 small (Whl bExp c) = do
   (sc,l,sq) <- get
   let b = bigStepBExp bExp sc
   if b == True
-    then StateT $ \_ -> ExceptT $ ProbT $ [[(Right (Seq c (Whl bExp c),(sc,l,sq)),1)]]
-    else StateT $ \_ -> ExceptT $ ProbT $ [[(Right (Skip,(sc,l,sq)),1)]]
+    then StateT $ \_ -> ExceptT $ DistT $ [[(Right (Seq c (Whl bExp c),(sc,l,sq)),1)]]
+    else StateT $ \_ -> ExceptT $ DistT $ [[(Left (sc,l,sq),1)]]
 small (Await bExp c) = do
   (sc,l,sq) <- get
   let b = bigStepBExp bExp sc
   if b == False
-    then StateT $ \_ -> ExceptT $ ProbT $ [[(Right (Await bExp c, (sc,l,sq)),1)]]
-    else StateT $ \_ -> ExceptT $ ProbT $ [[(Right (Atom c, (sc,l,sq)), 1)]]
+    then StateT $ \_ -> ExceptT $ DistT $ [[(Right (Await bExp c, (sc,l,sq)),1)]]
+    else StateT $ \_ -> ExceptT $ DistT $ [[(Right (Atom c, (sc,l,sq)), 1)]]
 small (Atom c) = do
   s <- get
-  let cp = runProbT $ runExceptT $ runStateT (small c) s
+  let cp = runDistT $ runExceptT $ runStateT (small c) s
       atom = [inAtom dist | dist <- cp]
-  StateT $ \_ -> ExceptT $ ProbT $ atom
+  StateT $ \_ -> ExceptT $ DistT $ atom
 
 
 --Evaluates the results of the small-step operational semantics for a given command C and state s
 runSmall :: C -> LMem -> [[(Either Mem (C,Mem), Double)]]
-runSmall c s = rmvL $ runProbT $ runExceptT $ runStateT (small c) s
+runSmall c s = rmvL $ runDistT $ runExceptT $ runStateT (small c) s
 --END: small-step semantics--
 
 
@@ -129,7 +129,7 @@ runSmall c s = rmvL $ runProbT $ runExceptT $ runStateT (small c) s
 
 -- --Type definition for the semantics of the await command
 -- --StTP C '=' S -> [(Either S (C,S), Prob)]
--- type StTP a = StateT LMem (ExceptT LMem MyDist) a
+-- type StTP a = StateT LMem (ExceptT LMem Prob) a
 
 -- --Codifies the behavior of the small-step operational semantics for commands inside await
 -- smallAwait :: CAwait -> StTP CAwait
@@ -147,35 +147,35 @@ runSmall c s = rmvL $ runProbT $ runExceptT $ runStateT (small c) s
 --       sc0 = changeSt x 0 sc -- assigning the value 0 to the variable x
 --       sc1 = changeSt x 1 sc -- assigning the value 1 to the variable x
 --   if (p0==0.0)
---     then StateT $ \_ -> ExceptT $ MyDist $ [(Left (sc1,l,sq1),p1)]
+--     then StateT $ \_ -> ExceptT $ Dist $ [(Left (sc1,l,sq1),p1)]
 --     else if (p1==0.0)
---     then StateT $ \_ -> ExceptT $ MyDist $ [(Left (sc0,l,sq0),p0)]
---     else StateT $ \_ -> ExceptT $ MyDist $ [(Left (sc0,l,sq0),p0), (Left (sc1,l,sq1),p1)]
+--     then StateT $ \_ -> ExceptT $ Dist $ [(Left (sc0,l,sq0),p0)]
+--     else StateT $ \_ -> ExceptT $ Dist $ [(Left (sc0,l,sq0),p0), (Left (sc1,l,sq1),p1)]
 -- smallAwait (SeqA c1 c2) = do 
 --     s <- get 
---     let cp = getProb $ runExceptT $ runStateT (smallAwait c1) s  -- :: [(Either LMem (Com, LMem), Rational)]
+--     let cp = getDist $ runExceptT $ runStateT (smallAwait c1) s  -- :: [(Either LMem (Com, LMem), Rational)]
 --         seqC = compSeqA cp c2
---     StateT $ \_ -> ExceptT $ MyDist $ seqC
+--     StateT $ \_ -> ExceptT $ Dist $ seqC
 -- smallAwait (IfCA bExp c1 c2) = do
 --   (sc,l,sq) <- get
 --   let b = bigStepBExp bExp sc
 --   if b == True
---     then StateT $ \_ -> ExceptT $ MyDist $ [(Right (c1,(sc,l,sq)),1.0)]
---     else StateT $ \_ -> ExceptT $ MyDist $ [(Right (c2,(sc,l,sq)),1.0)]
+--     then StateT $ \_ -> ExceptT $ Dist $ [(Right (c1,(sc,l,sq)),1.0)]
+--     else StateT $ \_ -> ExceptT $ Dist $ [(Right (c2,(sc,l,sq)),1.0)]
 
 -- --Codifies the behavior of the big-step semantics for await commands
--- bigAwait :: (CAwait,LMem) -> MyDist LMem
+-- bigAwait :: (CAwait,LMem) -> Dist LMem
 -- bigAwait (c,s) = do
---   let small = getProb $ runExceptT $ runStateT (smallAwait c) s --[(Either LMem (CAwait, LMem), Double)]
+--   let small = getDist $ runExceptT $ runStateT (smallAwait c) s --[(Either LMem (CAwait, LMem), Double)]
 --       sts = projL small -- [(LMem, Double)]
 --       confs = projR small -- [((CAwait, LMem), Double)]
---       result = (MyDist $ confs) >>= bigAwait
---   MyDist $ addDistG sts (getProb result)
+--       result = (Dist $ confs) >>= bigAwait
+--   Dist $ addDistG sts (getDist result)
 
 -- --improved display of the results of bigAwait
 -- --for example quantum states are shown in bra-ket notation
 -- showBigAwait :: CAwait -> LMem -> IO()
--- showBigAwait c s = putStrLn $ showProbMemList $ f $ getProb $ bigAwait (c,s)
+-- showBigAwait c s = putStrLn $ showProbMemList $ f $ getDist $ bigAwait (c,s)
 --   where f :: [((LMem, Double))] -> [(Mem, Double)]
 --         f l = [((sc,sq),p) | ((sc,l,sq),p) <- l]
 -- --END: semantics for the await command--
@@ -240,15 +240,15 @@ rmvIOL iol = do
   let l' = map (\((a,b,c),p) -> ((a,c),p) ) l
   return l'
 
---auxiliary functions to add elements of ProbT IO x
-addMyDist :: (Eq x) => MyDist x -> MyDist x -> MyDist x
-addMyDist (MyDist psi) (MyDist phi) = MyDist (addDistG psi phi)
+--auxiliary functions to add elements of DistT IO x
+addDist :: (Eq x) => Dist x -> Dist x -> Dist x
+addDist (Dist psi) (Dist phi) = Dist (addDistG psi phi)
 
-addProbTIOG :: (Eq x) => ProbT IO x -> ProbT IO x -> ProbT IO x
-addProbTIOG (ProbT iopsi) (ProbT iophi) = do
+addDistTIOG :: (Eq x) => DistT IO x -> DistT IO x -> DistT IO x
+addDistTIOG (DistT iopsi) (DistT iophi) = do
   psi <- lift $ iopsi -- [(x,Double)]
   phi <- lift $ iophi -- [(x,Double)]
-  ProbT $ return (addDistG psi phi)
+  DistT $ return (addDistG psi phi)
 
 addDistG :: (Eq x) => [(x,Double)] -> [(x,Double)] -> [(x,Double)]
 addDistG psi [] = psi
@@ -266,22 +266,6 @@ rmvG x [] = []
 rmvG x ((y,p):t) = if x==y
                   then t
                   else (y,p) : rmvG x t
-
---Consider numbers very small to be zero; necessary because the transport of these numbers may lead
---to states arising from measurements that shouldn't exist
-zeroIfSmall :: Double -> Double
-zeroIfSmall x = if abs x < threshold
-                then 0
-                else x
-  where threshold = 1e-15
-
-zeroIfSmallC :: Complex Double -> Complex Double
-zeroIfSmallC (r :+ i) = zeroIfSmall r :+ zeroIfSmall i
-
-zeroIfSmallS :: SQ -> SQ
-zeroIfSmallS st = fromLists [ f l | l <- lst]
-  where lst = toLists st
-        f = map (\e -> zeroIfSmallC e)
 
 --auxiliary functions for sequential composition inside await
 -- compSeqA :: [(Either LMem (CAwait,LMem), Double)] -> CAwait -> [(Either LMem (CAwait,LMem), Double)]

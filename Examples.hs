@@ -29,9 +29,9 @@ l4 = [("q1",1),("q2",2)] :: [(String,Int)]
 lmem1 = (s1,l1,stH0) -- <-- estados
 lmem2 = (s2,l2,rho0) -- <-- operador densidade
 lmem3 = (s1,l2,fromLists [[]]) -- <-- operador densidade
-lmem4 = (s2,[],fromLists [[]])
+lmem4 = (s2, l4, rho00)
 lmem5 = (s3,[],fromLists [[]])
-lmem6 = (s3, l1, rho000)
+lmem6 = (s3, l1, rho000) 
 --linking function--
 
 
@@ -127,6 +127,7 @@ par5 = Paral or2 (P 0.4 (Or (Seq sk asga) asga) (Or sk sk)) -- (sk or a:=1) || (
 par6 = Paral asga (P 0.4 (Seq sk asga) asgb) -- (a:=1) || ((sk;a:=1) +_{0.4} b:=1)  PASSOU TESTE
 par7 = Paral asga (Or (Seq sk asga) (P 0.5 asgb sk)) -- (a:=1) || ((sk;a:=1) +_{0.4} (b:=1 or sk))  
 while1 = Whl BTrue or9 -- while true -> a:=2 or a:=1
+while2 = Whl BFalse or9 -- while false -> a:=2 or a:=1
 
 idq1 = U I ["q1"] -- I(q1)
 hq1 = U H ["q1"] -- H(q1)
@@ -147,6 +148,7 @@ measq2 = Meas ("b","q2") -- M(b <- q2)
 qseq1 = Seq hq1 measq1 -- H(q1); M(a <- q1)
 qseq2 = Seq qseq1 qif1 -- H(q1); M(a <- q1); if -> (a<=0, a:=1,X(q1))
 qseq3 = Seq hq1 xq1 -- H(q1);X(q1)
+qseq3a = Seq hq2 xq2 -- H(q2);X(q2)
 qseq4 = Seq qseq3 qseq3 -- H(q1);X(q1);H(q1);X(q1)
 qseq5 = Seq hq1 cnotq1q2 -- H(q1);CNOT(q1,q2)
 qor1 = Or measq1 hq1 -- M(a <- q1) or H(q1)
@@ -157,6 +159,11 @@ qif1 = IfC (Leq (Id "a") (Num 0)) asga xq1 -- if -> (a<=0, a:=1,X(q1))
 qwhile1 = Whl (Leq (Id "a") (Num 0)) qseq1 -- while (a<=0) -> H(q1); M(a <- q1)
 qwhile2 = Whl (Leq (Id "a") (Num 0)) qpar1 -- while (a<=0) -> H(q1) || M(a <- q1)
 tof123 = U TOF ["q1","q2","q3"] -- TOF(q1,q2,q3)
+--error1 = Seq qseq3 (Seq qseq3 cnotq1q2)
+error1 = Seq hq1 cnotq1q2
+--error2 = Seq qseq3a (Seq qseq3a hq2)
+error2 = Seq qseq3a hq2
+errore = Seq error1 (Seq error2 (Seq measq1 measq2))
 
 man = Paral (Paral hq1 (U Y ["q1"])) (xq1)
 
@@ -297,3 +304,4 @@ atom5 = Paral asga atom3 --  (a:=1) || (Atom(a:=1;a:=2);skip)
 atom6 = Paral (Paral atom1 atom2) atom3 -- (Atom(a:=1;b:=1 +_{0.4} c:=2)) || (Atom(while (a<=0) -> H(q1) || M(a <- q1))) || (Atom(a:=1;a:=2);skip)
 atom7 = Paral (Paral (Atom(Seq (Asg "a" (Num 1)) (Asg "a" (Num 2)))) (Atom(Seq (Asg "a" (Num 3)) (Asg "a" (Num 4))))) (Asg "a" (Num 5)) -- (Atom(a:=1;a:=2)) || (Atom(a:=3 or a:=4)) || a:=5
 atom8 =  P (1%2) (Paral (Atom (Seq asga (Asg "a" (Num 2)))) ((Asg "a" (Num 3)))) (Asg "a" (Num 5)) -- (Atom(a:=1; a:=2) || a:=3) +_{0.5} a:=5
+atom9 = Paral (Atom asga) (Atom asgb)

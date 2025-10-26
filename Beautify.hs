@@ -218,8 +218,18 @@ showProbMem ((sc,sq),p) = let opDen = rmvPlus $ denOpToKetBraComplex sq
 -- showRun (s, md) = String value corresponding to the name of the program being executed, s,
 -- together with its results, md
 showRun :: (String, [(Mem,Double)]) -> String
-showRun (s,md) = s ++ ": \n" ++ showProbMemList md ++ "\n"
+--showRun (s,md) = s ++ ": \n" ++ (showProbMemList $ addDistBeaut md) ++ "\n"
+showRun (s,md) = s ++ ": \n" ++ (showProbMemList $ limitPrecAux 5 (addDistBeaut md)) ++ "\n"
 --showRun (s,md) = s ++ ": \n" ++ showProbMemList (limitPrecAux 5 md) ++ "\n"
+
+addDistBeaut :: [(Mem, Double)] -> [(Mem, Double)]
+addDistBeaut [] = []
+addDistBeaut dist@((mem,prob):t) = (mem, sum [p | (m,p) <- dist,  m==mem]) : addDistBeaut [(m,p) | (m,p) <- t, m/=mem]
+
+-- addDistBeaut :: (Ord a) => [(a, Double)] -> [(a, Double)]
+-- addDistBeaut [] = []
+-- addDistBeaut dist@((mem,prob):t) = (mem, sum [p | (m,p) <- dist,  m==mem]) : addDistBeaut [(m,p) | (m,p) <- t, m/=mem]
+
 
 --END: Functions for showing results--
 

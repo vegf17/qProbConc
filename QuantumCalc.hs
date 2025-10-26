@@ -10,6 +10,7 @@ import Data.Maybe
 import Numeric (showFFloat)
 
 import Syntax
+import SemBE_Brookes
 
 --START: Calculations for quantum states as vectors--
 -- Some useful constants:
@@ -18,7 +19,15 @@ hC = h :+ 0 -- h as a Complex Double value
 c1 = 1.0 :+ 0 -- 1 as a Complex Double value
 c0 = 0.0 :+ 0 -- 0 as a Complex Double value
 i = 0.0 :+ 1 -- i as a Complex Double value
+ang = \p -> 0.0 :+ p --angle for parameterized gates 
 oneHalf = realToComp (1/2) -- 1/2 as a Complex Double value
+
+--useful constants for vmag3
+expk = \k -> exp(ang (pi/k))
+constk = 1/(sqrt(rk + 1)) :+ 0.0
+rk = realPart (expk 3)
+ik = imagPart (expk 3)
+value = (0:+(sqrt(2)*(realPart (expk 6))))
 
 -- some unitary gates in matrix form:
 had = fromLists [[hC,hC],[hC,-hC]] -- Hadamard gate
@@ -27,6 +36,7 @@ x = fromLists [[c0,c1],[c1,c0]] -- Pauli X gate
 y = fromLists [[c0,-i],[i,c0]] -- Pauli Y gate
 z = fromLists [[c1,c0],[c0,-c1]] -- Pauli Z gate
 sgt = fromLists[[c1, c0],[c0,i]] -- S gate
+ph = \p -> fromLists[[c1, c0],[c0, exp(ang p)]] -- RZ parameterized gate
 tof = fromLists [[1,0,0,0,0,0,0,0],
                  [0,1,0,0,0,0,0,0],
                  [0,0,1,0,0,0,0,0],
@@ -35,25 +45,51 @@ tof = fromLists [[1,0,0,0,0,0,0,0],
                  [0,0,0,0,0,1,0,0],
                  [0,0,0,0,0,0,0,1],
                  [0,0,0,0,0,0,1,0]] -- Toffoli
+umag2 = fromLists[[hC, -(0.0:+h)],[-(0.0:+h), hC]]
+vmag3 = fromLists[[constk*hC, 0 :+ 0, constk*(sqrt(rk) :+ 0), constk*(expk(3) / sqrt(2))],
+                  [constk*hC, 0 :+ 0, constk*(-(sqrt(rk) :+ 0.0)*expk(-3)), constk*(expk(-3) / sqrt(2))],
+                  [constk*(sqrt(rk) :+ 0), 0, constk*((expk(-6)*(ik:+0))/(0:+(sqrt(2)*(realPart (expk 6))))), constk*((-sqrt(rk)) :+ 0)],
+                  [0, constk*(sqrt(rk+1) :+ 0), 0, 0]]
 
-
+vmag300 = fromLists[[constk*hC, 0 :+ 0],[constk*hC, 0 :+ 0]]
+vmag301 = fromLists[[constk*(sqrt(rk) :+ 0), constk*(expk(3) / sqrt(2))],[constk*(-(sqrt(rk) :+ 0.0)*expk(-3)), constk*(expk(-3) / sqrt(2))]]
+vmag310 = fromLists[[constk*(sqrt(rk) :+ 0), 0],[0, constk*(sqrt(rk+1) :+ 0)]]
+vmag311 = fromLists[[constk*((expk(-6)*(ik:+0))/(0:+(sqrt(2)*(realPart (expk 6))))), constk*((-sqrt(rk)) :+ 0)],[0, 0]]
+  
 m0 = fromLists [[1,0],[0,0]] -- measurement operator M0 = |0><0| 
 m1 = fromLists [[0,0],[0,1]] -- measurement operator M1 = |1><1|
+m01 = fromLists [[0,1],[0,0]]
+m10 = fromLists [[0,0],[1,0]]
 m2 = fromLists [[0,0],[0,2]] -- 2|1><1|
+
+-- st00 = fromLists [[c1],[c0],[c0],[c0]] --  |00>
+-- st01 = fromLists [[c0],[c1],[c0],[c0]] --  |01>
+-- st10 = fromLists [[c0],[c0],[c1],[c0]] --  |10>
+-- st11 = fromLists [[c0],[c0],[c0],[c1]] --  |11>
+
+ide = fromLists[[1 :+ 0,0,0,0],
+                [0,1 :+ 0,0,0],
+                [0,0,1 :+ 0,0],
+                [0,0,0,1 :+ 0]]
 
 -- applyGate g nums s = output state that results from applying gate g to qubits whose number is in
 -- nums, when the input state is s When g is a 2-qubit gate, the 1st number in nums corresponds to
 -- the control qubit, and the 2nd one to the target one.
 applyGate :: G -> [Int] -> SQ -> SQ
+applyGate (Ph arg) nums s = applyPh arg nums s
+applyGate (CPh arg) nums s = applyCPh arg nums s
 applyGate g nums s
     | g == H = applyH nums s 
     | g == I = s
     | g == X = applyX nums s
     | g == Y = applyY nums s
     | g == Z = applyZ nums s
+    | g == SWAP = applySWAP nums s
     | g == CNOT = applyCNOT nums s
     | g == TOF = applyTOF nums s
     | g == Sgt = applySgt nums s
+    | g == Umag2 = applyUmag2 nums s
+    | g == Vmag3 = applyVmag3 nums s
     | otherwise = applyCZ nums s
 
 -- qNums vars l = list of integers corresponding to vars, according to linking function l
@@ -158,6 +194,14 @@ applyCNOT l s
               matrix1 = tensorProduct $ replaceByGate x [target] (replaceByGate m1 [control] listId)
               matrix = sumMatrices matrix0 matrix1 -- equation (6.17) - Quantum Information (Barnett)
 
+-- (applySWAP nums s) applies the SWAP gate to qubits in nums in state s
+applySWAP :: [Int] -> SQ -> SQ
+applySWAP l s
+  | (length l /= 2) = error "First argument of function applySWAP must be a list with two elements."
+  | otherwise = let s1 = applyCNOT l s
+                    s2 = applyCNOT [l!!1,l!!0] s1
+                in applyCNOT l s2
+
 -- (applyTOF nums s) is the output state that results from applying a TOF gate to the three qubits
 -- whose number is in list nums (the 1st and 2nd one are the control one and the 3rd one is the
 -- target one), when the input state is s. If list nums does not contain only three elements, there
@@ -185,6 +229,56 @@ applySgt :: [Int] -> SQ -> SQ
 applySgt nums s = mult matrix s
     where matrix = applyToSomeQ sgt nums (numQubits s)
 
+
+-- (applyUmag2 nums s) is the output state that results from applying a Umag2 gate to the qubits whose
+-- number is in nums, when the input state is s
+applyUmag2 :: [Int] -> SQ -> SQ
+applyUmag2 nums s = mult matrix s
+    where matrix = applyToSomeQ umag2 nums (numQubits s)
+
+-- (applyVmag3 nums s) is the output state that results from applying a Vmag3 gate to the qubits whose
+-- number is in nums, when the input state is s
+applyVmag3 :: [Int] -> SQ -> SQ
+applyVmag3 l s
+  | (length l /= 2) = error "First argument of function applyVmag3 must be a list with two elements."
+  | otherwise = if (q1 == q2)
+                then error "The qubits in applyVmag3 should be different"
+                else mult matrix s
+                     where q1 = head l
+                           q2 = last l
+                           nqubits = numQubits s
+                           listId = gateList ident nqubits
+                           matrix00 = tensorProduct $ replaceByGate m0 [q1] (replaceByGate vmag300 [q2] listId)
+                           matrix01 = tensorProduct $ replaceByGate m01 [q1] (replaceByGate vmag301 [q2] listId)
+                           matrix10 = tensorProduct $ replaceByGate m10 [q1] (replaceByGate vmag310 [q2] listId)
+                           matrix11 = tensorProduct $ replaceByGate m1 [q1] (replaceByGate vmag311 [q2] listId)
+                           matrix = sumMatrices (sumMatrices matrix00 matrix01) (sumMatrices matrix10 matrix11)
+
+
+-- (applyPh arg nums s) is the output state that results from applying a parameterized Ph gate with
+-- angle arg, to the qubits whose number is in nums, when the input state is s
+applyPh :: Arg -> [Int] -> SQ -> SQ
+applyPh arg nums s = let evArg = evalArg arg
+                         cleanPh = zeroIfSmallS (ph evArg)
+                         matrix = applyToSomeQ cleanPh nums (numQubits s)
+                     in mult matrix s
+
+-- (applyCPh arg nums s) is the output state that results from applying a CPh parameterized gate with
+-- angle arg to the two qubits whose number is in list nums (the 1st one is the control one and the
+-- 2nd one is the target one), when the input state is s. If list nums does not contain only two
+-- elements, there is an error.
+applyCPh :: Arg -> [Int] -> SQ -> SQ
+applyCPh arg l s
+    | (length l /= 2) = error "First argument of function applyCPh must be a list with two elements."
+    | otherwise = if (control /= target) then mult matrix s else error "The control and target qubits given as argument to function applyCNOT cannot be the same."
+        where control = head l
+              target = last l
+              nqubits = numQubits s
+              listId = gateList ident nqubits
+              matrix0 = applyToSomeQ m0 [control] nqubits
+              cleanPh = zeroIfSmallS (ph $ evalArg arg)
+              matrix1 = tensorProduct $ replaceByGate cleanPh [target] (replaceByGate m1 [control] listId)
+              matrix = sumMatrices matrix0 matrix1 --  |0><0| (x) Id + |1><1| (x) Ph 
 
 -- (applyCZ nums s) is the output state that results from applying a CZ gate to the two qubits whose
 -- number is in list nums (the 1st one is the control one and the 2nd one is the target one), when
@@ -301,15 +395,20 @@ multElem n m = fromLists [[e*(realToComp n) | e <- l] | l <- m']
 -- prob i n s = probability of measuring qubit number n in state |i>, with i=0,1, if the initial
 -- state of the system is s.
 appGateOpDen :: G -> [Int] -> SQ -> SQ
+appGateOpDen (Ph arg) nums s = applyOpDenPh arg nums s
+appGateOpDen (CPh arg) nums s = applyOpDenCPh arg nums s
 appGateOpDen g nums s
     | g == H = applyOpDenH nums s
     | g == I = s
     | g == X = applyOpDenX nums s
     | g == Y = applyOpDenY nums s
     | g == Z = applyOpDenZ nums s
+    | g == SWAP = applyOpDenSWAP nums s
     | g == CNOT = applyOpDenCNOT nums s
     | g == TOF = applyOpDenTOF nums s
     | g == Sgt = applyOpDenSgt nums s
+    | g == Umag2 = applyOpDenUmag2 nums s
+    | g == Vmag3 = applyOpDenVmag3 nums s
     | otherwise = applyOpDenCZ nums s
 
 applyOpDenH :: [Int] -> SQ -> SQ
@@ -350,6 +449,14 @@ applyOpDenCNOT l s
         matrix1 = tensorProduct $ replaceByGate x [target] (replaceByGate m1 [control] listId)
         matrix = sumMatrices matrix0 matrix1 -- equation (6.17) - Quantum Information (Barnett)
 
+-- (applySWAP nums s) applies the SWAP gate to qubits in nums in state s
+applyOpDenSWAP :: [Int] -> SQ -> SQ
+applyOpDenSWAP l s
+  | (length l /= 2) = error "First argument of function applySWAP must be a list with two elements."
+  | otherwise = let s1 = applyOpDenCNOT l s
+                    s2 = applyOpDenCNOT [l!!1,l!!0] s1
+                in applyOpDenCNOT l s2
+
 -- (applyTOF nums s) is the output state that results from applying a TOF gate to the three qubits
 -- whose number is in list nums (the 1st and 2nd one are the control one and the 3rd one is the
 -- target one), when the input state is s. If list nums does not contain only three elements, there
@@ -371,11 +478,64 @@ applyOpDenTOF l s
         matrix11 = tensorProduct $ replaceByGate x [target] (replaceByGate m1 [ctrl1,ctrl2] listId)
         matrix = sumMatrices (sumMatrices matrix00 matrix01) (sumMatrices matrix10 matrix11)
 
--- (applySgt nums s) is the output state that results from applying a S gate to the qubits whose
+-- (applyOpDenSgt nums s) is the output state that results from applying a S gate to the qubits whose
 -- number is in nums, when the input state is s
 applyOpDenSgt :: [Int] -> SQ -> SQ
 applyOpDenSgt nums s = mult (mult matrix s) (dagger matrix)
     where matrix = applyToSomeQ sgt nums (div (numQubits s) 2)
+
+-- (applyOpDenUmag2 nums s) is the output state that results from applying a Umag2 gate to the
+-- qubits whose number is in nums, when the input state is s
+applyOpDenUmag2 :: [Int] -> SQ -> SQ
+applyOpDenUmag2 nums s = mult (mult matrix s) (dagger matrix)
+    where matrix = applyToSomeQ umag2 nums (div (numQubits s) 2)
+
+-- (applyOpDenVmag3 nums s) is the output state that results from applying a Vmag3 gate to the
+-- qubits whose number is in nums, when the input state is s
+applyOpDenVmag3 :: [Int] -> SQ -> SQ    
+applyOpDenVmag3 l s
+  | (length l /= 2) = error "First argument of function applyOpDenVmag3 must be a list with two elements."
+  | otherwise = if (q1 == q2)
+                then error "The qubits in applyOpDenVmag3 should be different"
+                else zeroIfSmallS $ mult (mult matrix s) (dagger matrix)
+                     where q1 = head l
+                           q2 = last l
+                           nqubits = div (numQubits s) 2
+                           listId = gateList ident nqubits
+                           matrix00 = tensorProduct $ replaceByGate m0 [q1] (replaceByGate vmag300 [q2] listId)
+                           matrix01 = tensorProduct $ replaceByGate m01 [q1] (replaceByGate vmag301 [q2] listId)
+                           matrix10 = tensorProduct $ replaceByGate m10 [q1] (replaceByGate vmag310 [q2] listId)
+                           matrix11 = tensorProduct $ replaceByGate m1 [q1] (replaceByGate vmag311 [q2] listId)
+                           matrix = sumMatrices (sumMatrices matrix00 matrix01) (sumMatrices matrix10 matrix11)
+
+
+-- (applyPh arg nums s) is the output state that results from applying a parameterized Ph gate with
+-- angle arg, to the qubits whose number is in nums, when the input state is s
+applyOpDenPh :: Arg -> [Int] -> SQ -> SQ
+applyOpDenPh arg nums s = let evArg = evalArg arg
+                              cleanPh = zeroIfSmallS (ph evArg)
+                              matrix = applyToSomeQ cleanPh nums (div (numQubits s) 2)
+                          in mult (mult matrix s) (dagger matrix)
+
+-- (applyCPh arg nums s) is the output state that results from applying a CPh parameterized gate with
+-- angle arg to the two qubits whose number is in list nums (the 1st one is the control one and the
+-- 2nd one is the target one), when the input state is s. If list nums does not contain only two
+-- elements, there is an error.
+applyOpDenCPh :: Arg -> [Int] -> SQ -> SQ
+applyOpDenCPh arg l s
+    | (length l /= 2) = error "First argument of function applyCNOT must be a list with two elements."
+    | otherwise =
+      if (control /= target)
+      then mult (mult matrix s) (dagger matrix)
+      else error "The control and target qubits given as argument to function applyCNOT cannot be the same."
+  where control = head l
+        target = last l
+        nqubits = div (numQubits s) 2
+        listId = gateList ident nqubits
+        matrix0 = applyToSomeQ m0 [control] nqubits
+        cleanPh = zeroIfSmallS (ph $ evalArg arg)
+        matrix1 = tensorProduct $ replaceByGate cleanPh [target] (replaceByGate m1 [control] listId)
+        matrix = sumMatrices matrix0 matrix1 -- equation (6.17) - Quantum Information (Barnett)
 
 -- (applyCZ nums s) is the output state that results from applying a CZ gate to the two qubits whose
 -- number is in list nums (the 1st one is the control one and the 2nd one is the target one), when
@@ -434,4 +594,21 @@ resetOpDen n s = reset
         reset = sumMatrices s00 s01 --Foundations of quantum programming
 --END: Calculations for density operators--
 
+
+
+--Consider numbers very small to be zero; necessary because the transport of these numbers may lead
+--to states arising from measurements that shouldn't exist
+zeroIfSmall :: Double -> Double
+zeroIfSmall x = if abs x < threshold
+                then 0
+                else x
+  where threshold = 1e-10
+
+zeroIfSmallC :: Complex Double -> Complex Double
+zeroIfSmallC (r :+ i) = zeroIfSmall r :+ zeroIfSmall i
+
+zeroIfSmallS :: SQ -> SQ
+zeroIfSmallS st = fromLists [ f l | l <- lst]
+  where lst = toLists st
+        f = map (\e -> zeroIfSmallC e)
 

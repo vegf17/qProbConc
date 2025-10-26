@@ -2,7 +2,8 @@ module Run where
 
 import KStep
 import HistogramSem
-import ParserQ_Left
+import ParserCom
+import ParserFile
 import Syntax
 import Examples
 import Beautify

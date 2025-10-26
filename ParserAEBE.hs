@@ -2,6 +2,8 @@ module ParserAEBE where
 
 import Text.Parsec (parserTrace)
 import Text.ParserCombinators.Parsec
+
+
 import Syntax
 
 {-
@@ -14,6 +16,9 @@ words, in the beginning and in the end of the expressions no white space is allo
 --function to test parseE 
 testParseE :: String -> Either ParseError E
 testParseE s = parse parseE "(unknown)" s
+
+testParseId :: String -> Either ParseError E
+testParseId s = parse parseId "(unknown)" s
 
 -- Parses a E expression which can have certain white spaces before and after
 parseE :: GenParser Char st E
@@ -31,6 +36,7 @@ parseESelect = try(parseMultDiv)
                <|> try(parsePlusMinus)
                <|> try(parseNum)
                <|> try(parseId)
+               <|> try(parseMod)
                <|> parsePar
 
 -- parses identifiers (which can only have alphabetic or numeric Unicode characters, or underscores)
@@ -63,8 +69,12 @@ parseNum = do
 -- parses E expressions between parentheses 
 parsePar :: GenParser Char st E --1+(1+2); (1+(2))
 parsePar = do
-        x <- between (char '(') (char ')') parseESelect
-        return x
+  char '('
+  spaces
+  x <- parseESelect
+  spaces
+  char ')'
+  return x
 
 -- parses a term in a Plus or Minus expression: either an integer number, or a variable, or a term inside
 -- parentheses
@@ -104,7 +114,7 @@ termMultDiv =  try(parsePlusMinus)
                <|> try(parseId)
                <|> parsePar 
 
--- parser for Plus or Minus expressions
+-- parser for Mult or Div expressions
 parseMultDiv :: GenParser Char st E
 parseMultDiv = do
   x <- termMultDiv
@@ -125,7 +135,23 @@ parseMultDiv = do
         case op of
           '*' -> loop (MultE x y)
           '/' -> loop (DivE x y)
-      loop t = try(f t) <|> return t      
+      loop t = try(f t) <|> return t
+
+-- parser for modular operations
+parseMod :: GenParser Char st E
+parseMod = do
+  _  <- string "mod"
+  spaces
+  _ <- char '('
+  spaces
+  n <- many1 digit
+  spaces
+  _ <- char ','
+  spaces
+  aexp <- parseESelect
+  spaces
+  _ <- char ')'
+  return (ModE (read n :: Integer) aexp)
 --END: Parser for E--
 
 
@@ -146,7 +172,7 @@ parseB = do
 -- parser of B expressions which "forwards" the input to another parser, which it selects according
 -- to the input
 parseBSelect :: GenParser Char st B
-parseBSelect = try(parseAnd)
+parseBSelect = try(parseAndOr)
                <|> try(parseNot)
                <|> try(parseEq)
                <|> try(parseLeq)
@@ -169,8 +195,8 @@ parseFalse = do
 
 -- parses a term in an And expression: either a negation, or a <=, or a true, or a false, or a term
 -- inside parentheses
-termAnd :: GenParser Char st B
-termAnd =  try(parseNot)
+termAndOr :: GenParser Char st B
+termAndOr =  try(parseNot)
            <|> try(parseEq)
            <|> try(parseLeq)
            <|> try(parseGeq)
@@ -181,26 +207,30 @@ termAnd =  try(parseNot)
            <|> parseParB
 
 -- parser for And expressions
-parseAnd :: GenParser Char st B
-parseAnd = do
-  x <- termAnd
+parseAndOr :: GenParser Char st B
+parseAndOr = do
+  x <- termAndOr
   spaces
-  char '&'
+  op <- try(char '&') <|> (char '|')
   spaces
-  y <- termAnd
-  loop (And x y)
+  y <- termAndOr
+  case op of
+    '&' -> loop (And x y)
+    '|' -> loop (OrB x y)
     where
       f x = do
         spaces
-        char '&'
+        op <- try(char '&') <|> (char '|')
         spaces
-        y <- termAnd
+        y <- termAndOr
         spaces
-        loop (And x y)
+        case op of
+          '&' -> loop (And x y)
+          '|' -> loop (OrB x y)
       loop t = try(f t) <|> return t  
 
 bNot :: GenParser Char st B
-bNot =  termAnd
+bNot =  termAndOr
 
 -- parsing a negation
 parseNot :: GenParser Char st B
@@ -260,12 +290,16 @@ parseGre = do
   return (Gre x y)  
 
 -- parsing B expressions inside parentheses
+-- parseParB :: GenParser Char st B 
+-- parseParB = do
+--   x <- between (char '(') (char ')') parseBSelect
+--   return x
 parseParB :: GenParser Char st B 
 parseParB = do
   char '('
-  spacesOnly
+  spaces
   x <- parseBSelect
-  spacesOnly
+  spaces
   char ')'
   return x
 --END: Parser for B--
@@ -284,7 +318,9 @@ reservedWord = do
            <|> try (string "do")
            <|> try (string "true")
            <|> (string "false")
-           <|> (string "await"))
+           <|> (string "await")
+           <|> (string "mod")
+         )
     notFollowedBy (try(alphaNum) <|> parseUnderscore)
     return x
 
@@ -311,6 +347,131 @@ parseUnderscore = satisfy (isUnderscore)
 isUnderscore :: Char -> Bool 
 isUnderscore c = if (c=='_') then True else False
 --END: Parsers for the identifier--
+
+
+
+--START: Parsers for Arg---
+--function to test parseArg
+testParseArgSelect :: String -> Either ParseError Arg
+testParseArgSelect s = parse parseArgSelect "(unknown)" s
+
+-- parser of P expressions which "forwards" the input to another parser, which it selects according
+-- to the input
+parseArgSelect :: GenParser Char st Arg
+parseArgSelect = try(parseMultDivArg)
+                 <|> try(parsePlusMinusArg)
+                 <|> try(parseNumArg)
+                 <|> try(parsePi)
+                 <|> try(parseSqrt)
+                 <|> parseParArg
+
+-- parses an integer number (a sequence of digits)
+parseNumArg :: GenParser Char st Arg
+parseNumArg = do
+  minus <- option "" (string "-")  
+  x <- many1 digit
+  dot <- option "" (string ".")
+  y <- option "" (many1 digit)
+  case dot of
+    "." -> return (NumP (read (minus ++ x ++ dot ++ y) :: Double))
+    otherwise -> return (NumP (read (minus ++ x) :: Double))
+
+-- parses pi
+parsePi :: GenParser Char st Arg
+parsePi = do
+  _ <- string "pi"
+  return PiP
+
+-- parses sqrt
+parseSqrt :: GenParser Char st Arg
+parseSqrt = do
+  _ <- string "sqrt"
+  spacesOnly
+  char '('
+  spacesOnly
+  exp <- parseArgSelect
+  spacesOnly
+  char ')'
+  return (SqrtP exp)
+  
+
+-- parses Arg expressions between parentheses 
+parseParArg :: GenParser Char st Arg --1+(1+2); (1+(2))
+parseParArg = do
+  char '('
+  spaces
+  x <- parseArgSelect
+  spaces
+  char ')'
+  return x
+-- parseParArg :: GenParser Char st Arg --1+(1+2); (1+(2))
+-- parseParArg = do
+--         x <- between (char '(') (char ')') parseArgSelect
+--         return x
+
+-- parses a term in a Plus or Minus expression: either an integer number, or a variable, or a term
+-- inside parentheses
+termPlusMinusArg :: GenParser Char st Arg
+termPlusMinusArg = try(parseNumArg)
+                   <|> try(parsePi)
+                   <|> try(parseSqrt)
+                   <|> parseParArg 
+
+-- parser for Plus or Minus expressions
+parsePlusMinusArg :: GenParser Char st Arg
+parsePlusMinusArg = do
+  x <- termPlusMinusArg
+  spaces
+  op <- try(char '+') <|> (char '-')
+  spaces
+  y <- termPlusMinusArg
+  case op of
+    '+' -> loop (PlusP x y)
+    '-' -> loop (MinusP x y)
+    where
+      f x = do
+        spaces
+        op <- try(char '+') <|> (char '-')
+        spaces
+        y <- termPlusMinusArg
+        spaces
+        case op of
+          '+' -> loop (PlusP x y)
+          '-' -> loop (MinusP x y)
+      loop t = try(f t) <|> return t
+
+-- parses a term in a Mult or Div expression: either an integer number, or a variable, or a term inside
+-- parentheses
+termMultDivArg :: GenParser Char st Arg
+termMultDivArg =  try(parsePlusMinusArg)
+                  <|> try(parseNumArg)
+                  <|> try(parsePi)
+                  <|> try(parseSqrt)
+                  <|> parseParArg
+
+-- parser for Mult or Div expressions
+parseMultDivArg :: GenParser Char st Arg
+parseMultDivArg = do
+  x <- termMultDivArg
+  spaces
+  op <- try(char '*') <|> (char '/')
+  spaces
+  y <- termMultDivArg
+  case op of
+    '*' -> loop (MultP x y)
+    '/' -> loop (DivP x y) -- <----- atencao à possivel divisao por zero
+    where
+      f x = do
+        spaces
+        op <- try(char '*') <|> (char '/')
+        spaces
+        y <- termMultDivArg
+        spaces
+        case op of
+          '*' -> loop (MultP x y)
+          '/' -> loop (DivP x y)
+      loop t = try(f t) <|> return t
+--END: Parsers for Arg---
 
 
 --START: Others parsers for spaces--

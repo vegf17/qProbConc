@@ -25,6 +25,16 @@ type LMem = (SC,L,SQ) -- has the linking function, useful for SQ
 -- ([((C,LMem), [(Either LMem (C,LMem), Double)])], (C,LMem))
 type ProbPath = ([((C,LMem), [(Either LMem (C,LMem),Double)])], (C,LMem))
 
+--Arg data type, for the arguments of parameterized phase gates
+data Arg = NumP Double
+         | PiP
+         | SqrtP Arg
+         | PlusP Arg Arg
+         | MinusP Arg Arg
+         | MultP Arg Arg
+         | DivP Arg Arg
+         deriving(Show, Eq)
+
 --E expressions
 data E = Num Integer
        | Id String
@@ -32,6 +42,7 @@ data E = Num Integer
        | MinusE E E
        | MultE E E
        | DivE E E
+       | ModE Integer E
        deriving (Show, Eq)
 
 --B expressions
@@ -39,6 +50,7 @@ data B = BTrue
        | BFalse
        | Not B
        | And B B
+       | OrB B B
        | Equ E E
        | Leq E E
        | Geq E E
@@ -47,7 +59,20 @@ data B = BTrue
        deriving (Show, Eq)
 
 --Gates considered in the language
-data G = H | I | X | Y | Z | CNOT | CZ | TOF | Sgt
+data G = H
+       | I
+       | X
+       | Y
+       | Z
+       | SWAP
+       | CNOT
+       | CZ
+       | TOF
+       | Sgt
+       | Ph Arg
+       | CPh Arg
+       | Umag2
+       | Vmag3
        deriving (Show, Eq)
 
 --C expressions
