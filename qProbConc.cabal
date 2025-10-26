@@ -67,10 +67,10 @@ library
                      Examples,
                      HistogramSem,
                      KStep,
-                     KStepIO,
                      ParserAEBE,
-                     ParserQ_Left,
-                     ProbTMonad,
+                     ParserCom,
+                     ParserFile,
+                     DistTMonad,
                      QuantumCalc,
                      Run,
                      SemBE_Brookes,
@@ -83,7 +83,7 @@ library
     -- LANGUAGE extensions used by modules in this package.
     -- other-extensions:
 
-    -- Other library packages from which modules are imported. --REVER VERSOES
+    -- Other library packages from which modules are imported. 
     build-depends: base >=4.18.3.0,
                    matrix ^>=0.3.6.4,
                    transformers ^>=0.6.1.0,
