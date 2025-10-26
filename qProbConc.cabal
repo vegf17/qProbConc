@@ -27,9 +27,9 @@ synopsis:
     An interpreter for a concurrent (quantum) language with probabilities
 
 -- A longer description of the package.
-description: This package contains an interpreter for a concurrent language with probabilities and
-quantum features embedded, as well as a synchronization primitive.  The implementation of the
-semantics is based on an operational semantics formally defined.
+description: This package contains an interpreter for a concurrent language with probabilities and quantum
+features embedded, as well as a synchronization primitive.  The implementation of the semantics is
+based on an operational semantics formally defined.
 
 -- The license under which the package is released. 
 license:            BSD-3-Clause
