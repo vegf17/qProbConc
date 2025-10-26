@@ -1,0 +1,92 @@
+---DinPhil2---
+hist: (1, [])
+k: 200
+<
+ while(true) do{
+  while(st1==1) do{
+   st1:=2 or skip
+  };
+  await(cs1==1 & cs2==1) do{
+   cs1:=cs1-1;
+   cs2:=cs2-1
+  };
+  st1:=0;
+  while(st1==0) do{
+   st1:=1 or skip  
+  };
+   eat1:=eat1+1;
+   cs1:=cs1+1;
+   cs2:=cs2+1
+ }
+ ||
+ while(true) do{
+  while(st2==1) do{
+   st2:=2 or skip
+  };
+  await(cs2==1 & cs1==1) do{
+   cs2:=cs2-1;
+   cs1:=cs1-1
+  };
+  st2:=0;
+  while(st2==0) do{
+   st2:=1 or skip  
+  };
+   eat2:=eat2+1;
+   cs2:=cs2+1;
+   cs1:=cs1+1
+ },
+ [(st1,1),(st2,1),
+  (cs1,1),(cs2,1),
+  (eat1,0),(eat2,0)]
+>
+---DinPhil2---
+
+.
+---DinPhil2---
+hist: (1, [[eat1],[eat2]])
+k: 100
+<
+ while(true) do{
+  while (st1==1) do{
+   st1:=2 or skip
+  };
+  await(cs1==1 & cs2==1) do{
+   cs1:=0;
+   cs2:=0
+  };
+  st1:=0;
+  while(st1==0) do{
+   st1:=1 or skip  
+  };
+  await(st1==1) do{
+   eat1:=eat1+1;
+   cs1:=1;
+   cs2:=1;
+   i:=i+1
+  }
+ }
+ ||
+ while(true) do{
+  while (st2==1) do{
+   st2:=2 or skip
+  };
+  await(cs2==1 & cs1==1) do{
+   cs2:=0;
+   cs1:=0
+  };
+  st2:=0;
+  while(st2==0) do{
+   st2:=1 or skip  
+  };
+  await(st2==1) do{
+   eat2:=eat2+1;
+   cs2:=1;
+   cs1:=1;
+   i:=i+1
+  }
+ },
+ [(st1,1),(st2,1),(cs1,1),(cs2,1),(eat1,0),(eat2,0),(i,0)]
+>
+---DinPhil2---
+
+

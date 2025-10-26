@@ -1,0 +1,183 @@
+benchmarking MontyHall/change
+MontyHallChange: 
+0.11111·([(prize,0),(cont,2),(open_curtain,1),(change,1),(won,0)]) +
+0.11111·([(prize,0),(cont,0),(open_curtain,2),(change,1),(won,1)]) +
+0.11111·([(prize,0),(cont,0),(open_curtain,1),(change,1),(won,1)]) +
+0.11111·([(prize,1),(cont,1),(open_curtain,2),(change,1),(won,1)]) +
+0.11111·([(prize,1),(cont,2),(open_curtain,0),(change,1),(won,0)]) +
+0.11111·([(prize,1),(cont,1),(open_curtain,0),(change,1),(won,1)]) +
+0.11111·([(prize,2),(cont,2),(open_curtain,1),(change,1),(won,1)]) +
+0.11111·([(prize,2),(cont,2),(open_curtain,0),(change,1),(won,1)]) +
+0.11111·([(prize,2),(cont,1),(open_curtain,0),(change,1),(won,0)])
+
+MontyHallChange: 
+0.11111·([(prize,0),(cont,2),(open_curtain,1),(change,1),(won,0)]) +
+0.11111·([(prize,0),(cont,0),(open_curtain,2),(change,1),(won,1)]) +
+0.11111·([(prize,0),(cont,0),(open_curtain,1),(change,1),(won,1)]) +
+0.11111·([(prize,1),(cont,1),(open_curtain,2),(change,1),(won,1)]) +
+0.11111·([(prize,1),(cont,2),(open_curtain,0),(change,1),(won,0)]) +
+0.11111·([(prize,1),(cont,1),(open_curtain,0),(change,1),(won,1)]) +
+0.11111·([(prize,2),(cont,2),(open_curtain,1),(change,1),(won,1)]) +
+0.11111·([(prize,2),(cont,2),(open_curtain,0),(change,1),(won,1)]) +
+0.11111·([(prize,2),(cont,1),(open_curtain,0),(change,1),(won,0)])
+
+MontyHallChange: 
+0.11111·([(prize,0),(cont,2),(open_curtain,1),(change,1),(won,0)]) +
+0.11111·([(prize,0),(cont,0),(open_curtain,2),(change,1),(won,1)]) +
+0.11111·([(prize,0),(cont,0),(open_curtain,1),(change,1),(won,1)]) +
+0.11111·([(prize,1),(cont,1),(open_curtain,2),(change,1),(won,1)]) +
+0.11111·([(prize,1),(cont,2),(open_curtain,0),(change,1),(won,0)]) +
+0.11111·([(prize,1),(cont,1),(open_curtain,0),(change,1),(won,1)]) +
+0.11111·([(prize,2),(cont,2),(open_curtain,1),(change,1),(won,1)]) +
+0.11111·([(prize,2),(cont,2),(open_curtain,0),(change,1),(won,1)]) +
+0.11111·([(prize,2),(cont,1),(open_curtain,0),(change,1),(won,0)])
+
+MontyHallChange: 
+0.11111·([(prize,0),(cont,2),(open_curtain,1),(change,1),(won,0)]) +
+0.11111·([(prize,0),(cont,0),(open_curtain,2),(change,1),(won,1)]) +
+0.11111·([(prize,0),(cont,0),(open_curtain,1),(change,1),(won,1)]) +
+0.11111·([(prize,1),(cont,1),(open_curtain,2),(change,1),(won,1)]) +
+0.11111·([(prize,1),(cont,2),(open_curtain,0),(change,1),(won,0)]) +
+0.11111·([(prize,1),(cont,1),(open_curtain,0),(change,1),(won,1)]) +
+0.11111·([(prize,2),(cont,2),(open_curtain,1),(change,1),(won,1)]) +
+0.11111·([(prize,2),(cont,2),(open_curtain,0),(change,1),(won,1)]) +
+0.11111·([(prize,2),(cont,1),(open_curtain,0),(change,1),(won,0)])
+
+MontyHallChange: 
+0.11111·([(prize,0),(cont,2),(open_curtain,1),(change,1),(won,0)]) +
+0.11111·([(prize,0),(cont,0),(open_curtain,2),(change,1),(won,1)]) +
+0.11111·([(prize,0),(cont,0),(open_curtain,1),(change,1),(won,1)]) +
+0.11111·([(prize,1),(cont,1),(open_curtain,2),(change,1),(won,1)]) +
+0.11111·([(prize,1),(cont,2),(open_curtain,0),(change,1),(won,0)]) +
+0.11111·([(prize,1),(cont,1),(open_curtain,0),(change,1),(won,1)]) +
+0.11111·([(prize,2),(cont,2),(open_curtain,1),(change,1),(won,1)]) +
+0.11111·([(prize,2),(cont,2),(open_curtain,0),(change,1),(won,1)]) +
+0.11111·([(prize,2),(cont,1),(open_curtain,0),(change,1),(won,0)])
+
+MontyHallChange: 
+0.11111·([(prize,0),(cont,2),(open_curtain,1),(change,1),(won,0)]) +
+0.11111·([(prize,0),(cont,0),(open_curtain,2),(change,1),(won,1)]) +
+0.11111·([(prize,0),(cont,0),(open_curtain,1),(change,1),(won,1)]) +
+0.11111·([(prize,1),(cont,1),(open_curtain,2),(change,1),(won,1)]) +
+0.11111·([(prize,1),(cont,2),(open_curtain,0),(change,1),(won,0)]) +
+0.11111·([(prize,1),(cont,1),(open_curtain,0),(change,1),(won,1)]) +
+0.11111·([(prize,2),(cont,2),(open_curtain,1),(change,1),(won,1)]) +
+0.11111·([(prize,2),(cont,2),(open_curtain,0),(change,1),(won,1)]) +
+0.11111·([(prize,2),(cont,1),(open_curtain,0),(change,1),(won,0)])
+
+MontyHallChange: 
+0.11111·([(prize,0),(cont,2),(open_curtain,1),(change,1),(won,0)]) +
+0.11111·([(prize,0),(cont,0),(open_curtain,2),(change,1),(won,1)]) +
+0.11111·([(prize,0),(cont,0),(open_curtain,1),(change,1),(won,1)]) +
+0.11111·([(prize,1),(cont,1),(open_curtain,2),(change,1),(won,1)]) +
+0.11111·([(prize,1),(cont,2),(open_curtain,0),(change,1),(won,0)]) +
+0.11111·([(prize,1),(cont,1),(open_curtain,0),(change,1),(won,1)]) +
+0.11111·([(prize,2),(cont,2),(open_curtain,1),(change,1),(won,1)]) +
+0.11111·([(prize,2),(cont,2),(open_curtain,0),(change,1),(won,1)]) +
+0.11111·([(prize,2),(cont,1),(open_curtain,0),(change,1),(won,0)])
+
+MontyHallChange: 
+0.11111·([(prize,0),(cont,2),(open_curtain,1),(change,1),(won,0)]) +
+0.11111·([(prize,0),(cont,0),(open_curtain,2),(change,1),(won,1)]) +
+0.11111·([(prize,0),(cont,0),(open_curtain,1),(change,1),(won,1)]) +
+0.11111·([(prize,1),(cont,1),(open_curtain,2),(change,1),(won,1)]) +
+0.11111·([(prize,1),(cont,2),(open_curtain,0),(change,1),(won,0)]) +
+0.11111·([(prize,1),(cont,1),(open_curtain,0),(change,1),(won,1)]) +
+0.11111·([(prize,2),(cont,2),(open_curtain,1),(change,1),(won,1)]) +
+0.11111·([(prize,2),(cont,2),(open_curtain,0),(change,1),(won,1)]) +
+0.11111·([(prize,2),(cont,1),(open_curtain,0),(change,1),(won,0)])
+
+MontyHallChange: 
+0.11111·([(prize,0),(cont,2),(open_curtain,1),(change,1),(won,0)]) +
+0.11111·([(prize,0),(cont,0),(open_curtain,2),(change,1),(won,1)]) +
+0.11111·([(prize,0),(cont,0),(open_curtain,1),(change,1),(won,1)]) +
+0.11111·([(prize,1),(cont,1),(open_curtain,2),(change,1),(won,1)]) +
+0.11111·([(prize,1),(cont,2),(open_curtain,0),(change,1),(won,0)]) +
+0.11111·([(prize,1),(cont,1),(open_curtain,0),(change,1),(won,1)]) +
+0.11111·([(prize,2),(cont,2),(open_curtain,1),(change,1),(won,1)]) +
+0.11111·([(prize,2),(cont,2),(open_curtain,0),(change,1),(won,1)]) +
+0.11111·([(prize,2),(cont,1),(open_curtain,0),(change,1),(won,0)])
+
+MontyHallChange: 
+0.11111·([(prize,0),(cont,2),(open_curtain,1),(change,1),(won,0)]) +
+0.11111·([(prize,0),(cont,0),(open_curtain,2),(change,1),(won,1)]) +
+0.11111·([(prize,0),(cont,0),(open_curtain,1),(change,1),(won,1)]) +
+0.11111·([(prize,1),(cont,1),(open_curtain,2),(change,1),(won,1)]) +
+0.11111·([(prize,1),(cont,2),(open_curtain,0),(change,1),(won,0)]) +
+0.11111·([(prize,1),(cont,1),(open_curtain,0),(change,1),(won,1)]) +
+0.11111·([(prize,2),(cont,2),(open_curtain,1),(change,1),(won,1)]) +
+0.11111·([(prize,2),(cont,2),(open_curtain,0),(change,1),(won,1)]) +
+0.11111·([(prize,2),(cont,1),(open_curtain,0),(change,1),(won,0)])
+
+MontyHallChange: 
+0.11111·([(prize,0),(cont,2),(open_curtain,1),(change,1),(won,0)]) +
+0.11111·([(prize,0),(cont,0),(open_curtain,2),(change,1),(won,1)]) +
+0.11111·([(prize,0),(cont,0),(open_curtain,1),(change,1),(won,1)]) +
+0.11111·([(prize,1),(cont,1),(open_curtain,2),(change,1),(won,1)]) +
+0.11111·([(prize,1),(cont,2),(open_curtain,0),(change,1),(won,0)]) +
+0.11111·([(prize,1),(cont,1),(open_curtain,0),(change,1),(won,1)]) +
+0.11111·([(prize,2),(cont,2),(open_curtain,1),(change,1),(won,1)]) +
+0.11111·([(prize,2),(cont,2),(open_curtain,0),(change,1),(won,1)]) +
+0.11111·([(prize,2),(cont,1),(open_curtain,0),(change,1),(won,0)])
+
+MontyHallChange: 
+0.11111·([(prize,0),(cont,2),(open_curtain,1),(change,1),(won,0)]) +
+0.11111·([(prize,0),(cont,0),(open_curtain,2),(change,1),(won,1)]) +
+0.11111·([(prize,0),(cont,0),(open_curtain,1),(change,1),(won,1)]) +
+0.11111·([(prize,1),(cont,1),(open_curtain,2),(change,1),(won,1)]) +
+0.11111·([(prize,1),(cont,2),(open_curtain,0),(change,1),(won,0)]) +
+0.11111·([(prize,1),(cont,1),(open_curtain,0),(change,1),(won,1)]) +
+0.11111·([(prize,2),(cont,2),(open_curtain,1),(change,1),(won,1)]) +
+0.11111·([(prize,2),(cont,2),(open_curtain,0),(change,1),(won,1)]) +
+0.11111·([(prize,2),(cont,1),(open_curtain,0),(change,1),(won,0)])
+
+MontyHallChange: 
+0.11111·([(prize,0),(cont,2),(open_curtain,1),(change,1),(won,0)]) +
+0.11111·([(prize,0),(cont,0),(open_curtain,2),(change,1),(won,1)]) +
+0.11111·([(prize,0),(cont,0),(open_curtain,1),(change,1),(won,1)]) +
+0.11111·([(prize,1),(cont,1),(open_curtain,2),(change,1),(won,1)]) +
+0.11111·([(prize,1),(cont,2),(open_curtain,0),(change,1),(won,0)]) +
+0.11111·([(prize,1),(cont,1),(open_curtain,0),(change,1),(won,1)]) +
+0.11111·([(prize,2),(cont,2),(open_curtain,1),(change,1),(won,1)]) +
+0.11111·([(prize,2),(cont,2),(open_curtain,0),(change,1),(won,1)]) +
+0.11111·([(prize,2),(cont,1),(open_curtain,0),(change,1),(won,0)])
+
+MontyHallChange: 
+0.11111·([(prize,0),(cont,2),(open_curtain,1),(change,1),(won,0)]) +
+0.11111·([(prize,0),(cont,0),(open_curtain,2),(change,1),(won,1)]) +
+0.11111·([(prize,0),(cont,0),(open_curtain,1),(change,1),(won,1)]) +
+0.11111·([(prize,1),(cont,1),(open_curtain,2),(change,1),(won,1)]) +
+0.11111·([(prize,1),(cont,2),(open_curtain,0),(change,1),(won,0)]) +
+0.11111·([(prize,1),(cont,1),(open_curtain,0),(change,1),(won,1)]) +
+0.11111·([(prize,2),(cont,2),(open_curtain,1),(change,1),(won,1)]) +
+0.11111·([(prize,2),(cont,2),(open_curtain,0),(change,1),(won,1)]) +
+0.11111·([(prize,2),(cont,1),(open_curtain,0),(change,1),(won,0)])
+
+MontyHallChange: 
+0.11111·([(prize,0),(cont,2),(open_curtain,1),(change,1),(won,0)]) +
+0.11111·([(prize,0),(cont,0),(open_curtain,2),(change,1),(won,1)]) +
+0.11111·([(prize,0),(cont,0),(open_curtain,1),(change,1),(won,1)]) +
+0.11111·([(prize,1),(cont,1),(open_curtain,2),(change,1),(won,1)]) +
+0.11111·([(prize,1),(cont,2),(open_curtain,0),(change,1),(won,0)]) +
+0.11111·([(prize,1),(cont,1),(open_curtain,0),(change,1),(won,1)]) +
+0.11111·([(prize,2),(cont,2),(open_curtain,1),(change,1),(won,1)]) +
+0.11111·([(prize,2),(cont,2),(open_curtain,0),(change,1),(won,1)]) +
+0.11111·([(prize,2),(cont,1),(open_curtain,0),(change,1),(won,0)])
+
+MontyHallChange: 
+0.11111·([(prize,0),(cont,2),(open_curtain,1),(change,1),(won,0)]) +
+0.11111·([(prize,0),(cont,0),(open_curtain,2),(change,1),(won,1)]) +
+0.11111·([(prize,0),(cont,0),(open_curtain,1),(change,1),(won,1)]) +
+0.11111·([(prize,1),(cont,1),(open_curtain,2),(change,1),(won,1)]) +
+0.11111·([(prize,1),(cont,2),(open_curtain,0),(change,1),(won,0)]) +
+0.11111·([(prize,1),(cont,1),(open_curtain,0),(change,1),(won,1)]) +
+0.11111·([(prize,2),(cont,2),(open_curtain,1),(change,1),(won,1)]) +
+0.11111·([(prize,2),(cont,2),(open_curtain,0),(change,1),(won,1)]) +
+0.11111·([(prize,2),(cont,1),(open_curtain,0),(change,1),(won,0)])
+
+time                 25.17 s    (25.03 s .. 25.23 s)
+                     1.000 R²   (1.000 R² .. 1.000 R²)
+mean                 25.11 s    (25.07 s .. 25.13 s)
+std dev              33.53 ms   (17.30 ms .. 46.26 ms)
+variance introduced by outliers: 19% (moderately inflated)
+

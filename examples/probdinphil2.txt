@@ -1,0 +1,74 @@
+---ProbDinPhilFriendly2---
+hist: (1, [[eat1],[eat2]])
+k: 100
+<
+ while(true) do{
+  st1:=2;
+  while(try1==0) do {skip or (try1:=1; ls1cs1:=1; rs1cs2:=1)};
+  while(try1==1) do{
+   chops1:=-1 (+)(1%2) chops1:=1;
+   if(chops1==1)
+   then{
+    await(cs2==1 & (ls2cs2==0 | rl1cs2==0 | rl1cs2==chops1)) do {cs2:=0};
+    if(cs1==1) then {cs1:=0; try1:=0}
+    	       else {cs2:=1}
+   }
+   else{
+    await(cs1==1 & (rs2cs1==0 | ll1cs1==0 | ll1cs1==chops1)) do {cs1:=0};
+    if(cs2==1) then {cs2:=0; try1:=0}
+    	       else {cs1:=1}
+   }
+  };
+  st1:=0;
+  st1:=1;
+  await(st1==1) do {
+   eat1:=eat1 + 1;
+   ls1cs1:= 0; rs1cs2:=0;
+   ll1cs1:=1; rl1cs2:=-1;
+   rl2cs1:=ll1cs1; ll2cs2:=rs1cs2;
+   cs1:=1; cs2:=1
+  };
+  i:=i+1
+ }
+ ||
+ while(true) do{
+  st2:=2;
+  while(try2==0) do {skip or (try2:=1; ls2cs2:=1; rs2cs1:=1)};
+  while(try2==1) do{
+  chops2:=-1 (+)(1%2) chops2:=1;
+  if(chops2==1)
+  then{
+   await(cs1==1 & (ls1cs1==0 | rl2cs1==0 | rl2cs1==chops2)) do {cs1:=0};
+   if(cs2==1) then {cs2:=0; try2:=0}
+    	      else {cs1:=1}
+   }
+   else{
+    await(cs2==1 & (rs1cs2==0 | ll2cs2==0 | ll2cs2==chops2)) do {cs2:=0};
+    if(cs1==1) then {cs1:=0; try2:=0}
+    	      else {cs2:=1}
+   }
+  };
+  st2:=0;
+  st2:=1;
+  await(st2==1) do {
+   eat2:=eat2 + 1;
+   ls2cs2:=0; rs2cs1:=0;
+   ll2cs2:=1; rl2cs1:=-1;
+   ll1cs1:=rl2cs1; rs1cs2:=ll2cs2;
+   cs2:=1; cs1:=1
+  };
+  i:=i+1
+ },
+ [(st1,1), (st2,1),
+  (cs1,1), (cs2,1),
+  (i,0),
+  (eat1,0), (eat2,0),
+  (chops1,0), (chops2,0),
+  (try1,0), (try2,0),
+  (ls1cs1,0), (rs1cs2,0),
+  (ll1cs1,0), (rl1cs2,0),
+  (ls2cs2,0), (rs2cs1,0),
+  (ll2cs2,0), (rl2cs1,0)]
+>
+---ProbDinPhilFriendly2---
+

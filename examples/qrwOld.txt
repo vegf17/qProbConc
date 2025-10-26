@@ -2,7 +2,7 @@
 hist: (100, [x0,x1])
 k: 104504
 <
- while (i<100) do {H(q2);
+ while (i<1) do {H(q2);
  TOF(q2,q1,q0); CNOT(q2,q1);
  X(q2); X(q1); TOF(q2,q1,q0); X(q1); CNOT(q2,q1); X(q2);
  i:=i+1};
@@ -15,7 +15,7 @@ k: 104504
 
 ---QuantumRandomWalkConc---
 hist: (100, [x0,x1,y0,y1,z0,z1])
-k: 0
+k: 120
 <
  while (i<1) do {H(q2);
  TOF(q2,q1,q0); CNOT(q2,q1);
@@ -41,7 +41,7 @@ k: 0
 
 ---Teste---
 hist: (1, [x1,x2,x3,x4])
-k: 0
+k: 1232
 <
  H(q1); H(q2); H(q3); H(q4);
  Meas(x1,q1); Meas(x2,q2); Meas(x3,q3); Meas(x4,q4),

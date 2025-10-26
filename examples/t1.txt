@@ -1,0 +1,108 @@
+---qtTeleEnt---
+hist: (100, [y1,y2])
+k: 100
+<
+ (while (x1==0) do {await (x1==0) do {H(q1); CNOT(q1,q2)}; Meas(x1,q1)}; await (x1==1) do {X(q3)} ||
+ while (x2==0) do {await (x2==0) do {H(q2); CNOT(q2,q1)}; Meas(x2,q2)}; await (x2==1) do {X(q4)});
+ Meas(y1,q3);Meas(y2,q4),
+ [(x1,0),(x2,0),(y1,0),(y2,0)],
+ [(q1,1),(q2,2),(q3,3),(q4,4)],
+ (1.0)|0000><0000|
+>
+---qtTeleEnt---
+
+---qtTeleEnt1---
+hist: (100, [y1,y2])
+k: 100
+<
+ (while (x1==0) do {await (x1==0) do {H(q1); CNOT(q1,q2)}} ||
+ while (x1==0) do {Meas(x1,q1)}; await (x1==1) do {X(q3)} ||
+ while (x2==0) do {Meas(x2,q2)}; await (x2==1) do {X(q4)});
+ Meas(y1,q3);Meas(y2,q4),
+ [(x1,0),(x2,0),(y1,0),(y2,0)],
+ [(q1,1),(q2,2),(q3,3),(q4,4)],
+ (1.0)|0000><0000|
+>
+---qtTeleEnt1---
+
+
+---qtTeleEnt2---
+hist: (100, [y1,y2])
+k: 0
+<
+ (while (x1==0) do {Meas(x1,q1)}; await (x1==1) do {X(q3)} ||
+ while (x2==0) do {Meas(x2,q2)}; await (x2==1) do {X(q4)} ||
+ while (x1==0) do {await (x1==0) do {H(q1); CNOT(q1,q2)}});
+ Meas(y1,q3);Meas(y2,q4),
+ [(x1,0),(x2,0),(y1,0),(y2,0)],
+ [(q1,1),(q2,2),(q3,3),(q4,4)],
+ (1.0)|0000><0000|
+>
+---qtTeleEnt2---
+
+
+---ProbTest---
+hist: (100, [x])
+k: 0
+<
+ while (x==0) do {x:=0 (+)(1%2) x:=1},
+ [(x,0)]
+>
+---ProbTest---
+
+---QtTest---
+hist: (100, [x])
+k: 0
+<
+ while (x1==0) do {
+  H(q1);	      
+  CNOT(q1,q2);
+  Meas(x1,q1);
+  Meas(x2,q2)
+ },
+ [(x1,0),(x2,0)],
+ [(q1,1),(q2,2)],
+ (1.0)|00><00|
+>
+---QtTest---
+
+---qtTeleA---
+hist: (100, [x1,x2])
+k: 0
+<
+ (while (x==0) do {x:=0 (+)(1%2) x:=1}; await (x==1) do {X(q1)} ||
+ while (x==1) do {x:=0 (+)(1%2) x:=1}; await (x==0) do {X(q2)});
+ Meas(x1,q1);Meas(x2,q2),
+ [(x,0),(x1,0),(x2,0)],
+ [(q1,1),(q2,2)],
+ (1.0)|00><00|
+>
+---qtTeleA---
+
+---qtTeleB---
+hist: (100, [y1,y2])
+k: 0
+<
+ (while (x1==0) do {x1:=0 (+)(1%2) x1:=1}; await (x1==1) do {X(q1)} ||
+ while (x2==0) do {x2:=0 (+)(1%2) x2:=1}; await (x2==1) do {X(q2)});
+ Meas(y1,q1);Meas(y2,q2),
+ [(x1,0),(x2,0),(y1,0),(y2,0)],
+ [(q1,1),(q2,2)],
+ (1.0)|00><00|
+>
+---qtTeleB---
+
+---qtTeleD---
+hist: (100, [y1,y2])
+k: 0
+<
+ (while (x1==0) do {H(q1); Meas(x1,q1)}; await (x1==1) do {X(q3)} ||
+ while (x2==0) do {H(q2); Meas(x2,q2)}; await (x2==1) do {X(q4)});
+ Meas(y1,q3);Meas(y2,q4),
+ [(x1,0),(x2,0),(y1,0),(y2,0)],
+ [(q1,1),(q2,2),(q3,3),(q4,4)],
+ (1.0)|0000><0000|
+>
+---qtTeleD---
+
+

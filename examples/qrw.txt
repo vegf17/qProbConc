@@ -1,11 +1,11 @@
 ---QuantumRandomWalkConc---
-hist: (500, [[x0,x1],[y0,y1]])
+hist: (1, [[x0,x1],[y0,y1]])
 k: 74
 <
  while (i<2) do {H(q3);
- TOF(q3,q2,q1); CNOT(q3,q2);
- X(q3); X(q2); TOF(q3,q2,q1); X(q2); CNOT(q3,q2); X(q3);
- i:=i+1};
+  TOF(q3,q2,q1); CNOT(q3,q2);
+  X(q3); X(q2); TOF(q3,q2,q1); X(q2); CNOT(q3,q2); X(q3);
+  i:=i+1};
  Meas(x0,q1); Meas(x1,q2) ||
  while (j<4) do {H(q6);
  TOF(q6,q5,q4); CNOT(q6,q5);

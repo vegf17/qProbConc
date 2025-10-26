@@ -1,0 +1,183 @@
+---ProbDinPhil---
+hist: (1, [[eat1,eat2,eat3]])
+k: 200
+<
+ while(true) do{
+   st1:=2;
+   try1:=1;
+   while (try1==1) do{
+    chops1:=-1 (+)(1%2) chops1:=1;
+    if (chops1==1)
+     then {
+      await (cs1==1) do {cs1:=0};
+      if (cs3==1) then {cs3:=0; try1:=0}
+                else {cs1:=1}
+     }
+     else {
+      await (cs3==1) do {cs3:=0};
+      if (cs1==1) then {cs1:=0; try1:=0}
+      	 	 else {cs3:=1}
+     }
+   };
+   st1:=0;
+   st1:=1;
+   await (st1==1) do {eat1:=eat1+1; cs1:=1; cs3:=1; i:=i+1}
+ }
+ ||
+ while(true) do{
+   st2:=2;
+   try2:=1;
+   while (try2==1) do{
+    chops2:=-1 (+)(1%2) chops2:=1;
+    if (chops2==1)
+     then {
+      await (cs2==1) do {cs2:=0};
+      if (cs1==1) then {cs1:=0; try2:=0}
+                else {cs2:=1}
+     }
+     else {
+      await (cs1==1) do {cs1:=0};
+      if (cs2==1) then {cs2:=0; try2:=0}
+      	 	 else {cs1:=1}
+     }
+   };
+   st2:=0;
+   st2:=1;
+   await (st2==1) do {eat2:=eat2+1; cs2:=1; cs1:=1; i:=i+1}
+ }
+ ||
+ while(true) do{
+   st3:=2;
+   try3:=1;
+   while (try3==1) do{
+    chops3:=-1 (+)(1%2) chops3:=1;
+    if (chops3==1)
+     then {
+      await (cs3==1) do {cs3:=0};
+      if (cs2==1) then {cs2:=0; try3:=0}
+                else {cs3:=1}
+     }
+     else {
+      await (cs2==1) do {cs2:=0};
+      if (cs3==1) then {cs3:=0; try3:=0}
+      	 	 else {cs2:=1}
+     }
+   };
+   st3:=0;
+   st3:=1;
+   await (st3==1) do {eat3:=eat3+1; cs3:=1; cs2:=1; i:=i+1}
+ },
+ [(st1,1), (st2,1), (st3,1),
+  (cs1,1), (cs2,1), (cs3,1),
+  (i,0),
+  (eat1,0), (eat2,0), (eat3,0),
+  (chops1,0), (chops2,0), (chops3,0),
+  (try1,0), (try2,0), (try3,0)]
+>
+---ProbDinPhil---
+
+
+---ProbDinPhilFriendly---
+hist: (1, [[eat1,eat2,eat3,i]])
+k: 200
+<
+while(true) do{
+ state1 := 2;
+ try1 := 1; leftSignal1cs3 := 1; rightSignal1cs1 := 1;
+ while(try1==1) do{
+  chopChoice1 := -1 (+)(1%2) chopChoice1 := 1;
+  if(chopChoice1==1)
+  then{
+   await(cs1==1 & (leftSignal2cs1==0 | rightLast1cs1==0 | rightLast1cs1==chopChoice1)) do {cs1:=0};
+   if(cs3==1) then {cs3:=0; try1:=0}
+              else {cs1:=1}
+  }
+  else{
+   await(cs3==1 & (rightSignal3cs3==0 | leftLast1cs3==0 | leftLast1cs3==chopChoice1)) do {cs3:=0};
+   if(cs1==1) then {cs1:=0; try1:=0}
+              else {cs3:=1}
+  }
+ };
+ state1 := 0;
+ state1 := 1;
+ await(state1==1) do{
+  eat1 := eat1+1; i:=i+1;
+  leftSignal1cs3 := 0; rightSignal1cs1 := 0;
+  leftLast1cs3 := 1; rightLast3cs3 := leftLast1cs3;
+  rightLast1cs1 := -1; leftLast2cs1 := rightLast1cs1;
+  cs1 := 1; cs3 := 1
+ }
+}
+||
+while(true) do{
+ state2 := 2;
+ try2 := 1; leftSignal2cs1 := 1; rightSignal2cs2 := 1;
+ while(try2==1) do{
+  chopChoice2 := -1 (+)(1%2) chopChoice2 := 1;
+  if(chopChoice2==1)
+  then{
+   await(cs2==1 & (leftSignal3cs2==0 | rightLast2cs2==0 | rightLast2cs2==chopChoice2)) do {cs2:=0};
+   if(cs1==1) then {cs1:=0; try2:=0}
+              else {cs2:=1}
+  }
+  else{
+   await(cs1==1 & (rightSignal1cs1==0 | leftLast2cs1==0 | leftLast2cs1==chopChoice2)) do {cs1:=0};
+   if(cs2==1) then {cs2:=0; try2:=0}
+              else {cs1:=1}
+  }
+ };
+ state2 := 0;
+ state2 := 1;
+ await(state2==1) do{
+  eat2 := eat2+1; i:=i+1;
+  leftSignal2cs1 := 0; rightSignal2cs2 := 0;
+  leftLast2cs1 := 1; rightLast1cs1 := leftLast2cs1;
+  rightLast2cs2 := -1; leftLast3cs2 := rightLast2cs2;
+  cs2 := 1; cs1 := 1
+ }
+}
+||
+while(true) do{
+ state3 := 2;
+ try3 := 1; leftSignal3cs2 := 1; rightSignal3cs3 := 1;
+ while(try3==1) do{
+  chopChoice3 := -1 (+)(1%2) chopChoice3 := 1;
+  if(chopChoice3==1)
+  then{
+   await(cs3==1 & (leftSignal1cs3==0 | rightLast3cs3==0 | rightLast3cs3==chopChoice3)) do {cs3:=0};
+   if(cs2==1) then {cs2:=0; try3:=0}
+              else {cs3:=1}
+  }
+  else{
+   await(cs2==1 & (rightSignal2cs2==0 | leftLast3cs2==0 | leftLast3cs2==chopChoice3)) do {cs2:=0};
+   if(cs3==1) then {cs3:=0; try3:=0}
+              else {cs2:=1}
+  }
+ };
+ state3 := 0;
+ state3 := 1;
+ await(state3==1) do{
+  eat3 := eat3+1; i:=i+1;
+  leftSignal3cs2 := 0; rightSignal3cs3 := 0;
+  leftLast3cs2 := 1; rightLast2cs2 := leftLast3cs2;
+  rightLast3cs3 := -1; leftLast1cs3 := rightLast3cs3;
+  cs3 := 1; cs2 := 1
+ }
+},
+[(state1,1), (state2,1), (state3,1),
+ (cs1,1), (cs2,1), (cs3,1),
+ (i,0),
+ (eat1,0), (eat2,0), (eat3,0),
+ (chopChoice1,0), (chopChoice2,0), (chopChoice3,0),
+ (try1,0), (try2,0), (try3,0),
+ (leftSignal1cs3,0), (leftSignal2cs1,0), (leftSignal3cs2,0),
+ (rightSignal1cs1,0), (rightSignal2cs2,0), (rightSignal3cs3,0),
+ (leftLast1cs3,0), (rightLast3cs3,0),
+ (leftLast2cs1,0), (rightLast1cs1,0),
+ (leftLast3cs2,0), (rightLast2cs2,0)]
+>
+---ProbDinPhilFriendly---
+
+
+
+ 

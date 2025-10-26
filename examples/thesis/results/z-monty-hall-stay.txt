@@ -1,0 +1,55 @@
+benchmarking MontyHall/not change
+MontyHallNotChange: 
+0.0·([(prize,0),(cont,0),(open_curtain,0),(change,0),(won,0)])
+
+MontyHallNotChange: 
+0.0·([(prize,0),(cont,0),(open_curtain,0),(change,0),(won,0)])
+
+MontyHallNotChange: 
+0.0·([(prize,0),(cont,0),(open_curtain,0),(change,0),(won,0)])
+
+MontyHallNotChange: 
+0.0·([(prize,0),(cont,0),(open_curtain,0),(change,0),(won,0)])
+
+MontyHallNotChange: 
+0.0·([(prize,0),(cont,0),(open_curtain,0),(change,0),(won,0)])
+
+MontyHallNotChange: 
+0.0·([(prize,0),(cont,0),(open_curtain,0),(change,0),(won,0)])
+
+MontyHallNotChange: 
+0.0·([(prize,0),(cont,0),(open_curtain,0),(change,0),(won,0)])
+
+MontyHallNotChange: 
+0.0·([(prize,0),(cont,0),(open_curtain,0),(change,0),(won,0)])
+
+MontyHallNotChange: 
+0.0·([(prize,0),(cont,0),(open_curtain,0),(change,0),(won,0)])
+
+MontyHallNotChange: 
+0.0·([(prize,0),(cont,0),(open_curtain,0),(change,0),(won,0)])
+
+MontyHallNotChange: 
+0.0·([(prize,0),(cont,0),(open_curtain,0),(change,0),(won,0)])
+
+MontyHallNotChange: 
+0.0·([(prize,0),(cont,0),(open_curtain,0),(change,0),(won,0)])
+
+MontyHallNotChange: 
+0.0·([(prize,0),(cont,0),(open_curtain,0),(change,0),(won,0)])
+
+MontyHallNotChange: 
+0.0·([(prize,0),(cont,0),(open_curtain,0),(change,0),(won,0)])
+
+MontyHallNotChange: 
+0.0·([(prize,0),(cont,0),(open_curtain,0),(change,0),(won,0)])
+
+MontyHallNotChange: 
+0.0·([(prize,0),(cont,0),(open_curtain,0),(change,0),(won,0)])
+
+time                 25.12 s    (25.07 s .. 25.21 s)
+                     1.000 R²   (1.000 R² .. 1.000 R²)
+mean                 25.13 s    (25.11 s .. 25.16 s)
+std dev              23.92 ms   (11.83 ms .. 29.38 ms)
+variance introduced by outliers: 19% (moderately inflated)
+

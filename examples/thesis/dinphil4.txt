@@ -1,0 +1,171 @@
+---DinPhil4---
+hist: (1, [])
+k: 200
+<
+ while(true) do{
+  while(st1==1) do{
+   st1:=2 or skip
+  };
+  await(cs1==1 & cs4==1) do{
+   cs1:=cs1-1;
+   cs4:=cs4-1
+  };
+  st1:=0;
+  while(st1==0) do{
+   st1:=1 or skip  
+  };
+   eat1:=eat1+1;
+   cs1:=cs1+1;
+   cs4:=cs4+1
+ }
+ ||
+ while(true) do{
+  while(st2==1) do{
+   st2:=2 or skip
+  };
+  await(cs2==1 & cs1==1) do{
+   cs2:=cs2-1;
+   cs1:=cs1-1
+  };
+  st2:=0;
+  while(st2==0) do{
+   st2:=1 or skip  
+  };
+   eat2:=eat2+1;
+   cs2:=cs2+1;
+   cs1:=cs1+1
+ }
+ ||
+ while(true) do{
+  while(st3==1) do{
+   st3:=2 or skip
+  };
+  await(cs3==1 & cs2==1) do{
+   cs3:=cs3-1;
+   cs2:=cs2-1
+  };
+  st3:=0;
+  while(st3==0) do{
+   st3:=1 or skip  
+  };
+   eat3:=eat3+1;
+   cs3:=cs3+1;
+   cs2:=cs2+1
+ }
+ ||
+ while(true) do{
+  while(st4==1) do{
+   st4:=2 or skip
+  };
+  await(cs4==1 & cs3==1) do{
+   cs4:=cs4-1;
+   cs3:=cs3-1
+  };
+  st4:=0;
+  while(st4==0) do{
+   st4:=1 or skip  
+  };
+   eat4:=eat4+1;
+   cs4:=cs4+1;
+   cs3:=cs3+1
+ },
+ [(st1,1),(st2,1),(st3,1),(st4,1),
+  (cs1,1),(cs2,1),(cs3,1),(cs4,1),
+  (eat1,0),(eat2,0),(eat3,0),(eat4,0)]
+>
+---DinPhil4---
+
+.
+---DinPhil4---
+hist: (1, [[eat1],[eat2],[eat3],[eat4]])
+k: 200
+<
+ while(true) do{
+  while(st1==1) do{
+   st1:=2 or skip
+  };
+  await(cs1==1 & cs4==1) do{
+   cs1:=0;
+   cs4:=0
+  };
+  st1:=0;
+  while(st1==0) do{
+   st1:=1 or skip  
+  };
+  await(st1==1) do{
+   eat1:=eat1+1;
+   cs1:=1;
+   cs4:=1;
+   i:=i+1
+  }
+ }
+ ||
+ while(true) do{
+  while(st2==1) do{
+   st2:=2 or skip
+  };
+  await(cs2==1 & cs1==1) do{
+   cs2:=0;
+   cs1:=0
+  };
+  st2:=0;
+  while(st2==0) do{
+   st2:=1 or skip  
+  };
+  await(st2==1) do{
+   eat2:=eat2+1;
+   cs2:=1;
+   cs1:=1;
+   i:=i+1
+  }
+ }
+ ||
+ while(true) do{
+  while(st3==1) do{
+   st3:=2 or skip
+  };
+  await(cs3==1 & cs2==1) do{
+   cs3:=0;
+   cs2:=0
+  };
+  st3:=0;
+  while(st3==0) do{
+   st3:=1 or skip  
+  };
+  await(st3==1) do{
+   eat3:=eat3+1;
+   cs3:=1;
+   cs2:=1;
+   i:=i+1
+  }
+ }
+ ||
+ while(true) do{
+  while(st4==1) do{
+   st4:=2 or skip
+  };
+  await(cs4==1 & cs3==1) do{
+   cs4:=0;
+   cs3:=0
+  };
+  st4:=0;
+  while(st4==0) do{
+   st4:=1 or skip  
+  };
+  await(st4==1) do{
+   eat4:=eat4+1;
+   cs4:=1;
+   cs3:=1;
+   i:=i+1
+  }
+ },
+ [(st1,1),(st2,1),(st3,1),(st4,1),
+  (cs1,1),(cs2,1),(cs3,1),(cs4,1),
+  (eat1,0),(eat2,0),(eat3,0),(eat4,0),
+  (i,0)]
+>
+---DinPhil4---
+
+
+ 
+ 

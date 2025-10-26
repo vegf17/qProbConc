@@ -1,0 +1,469 @@
+benchmarking ProbdiningPhil4/nonBlockSch
+ProbDinPhil4: 
+0.0·([(st1,2),(st2,1),(st3,1),(st4,1),(cs1,1),(cs2,1),(cs3,1),(cs4,0),(try1,1),(try2,0),(try3,0),(try4,0),(chops1,-1),(chops2,0),(chops3,0),(chops4,0),(eat1,9),(eat2,0),(eat3,0),(eat4,0)]) +
+0.0·([(st1,2),(st2,1),(st3,1),(st4,1),(cs1,0),(cs2,1),(cs3,1),(cs4,1),(try1,1),(try2,0),(try3,0),(try4,0),(chops1,1),(chops2,0),(chops3,0),(chops4,0),(eat1,9),(eat2,0),(eat3,0),(eat4,0)])
+
+ProbDinPhil4: 
+0.0·([(st1,2),(st2,1),(st3,1),(st4,1),(cs1,1),(cs2,1),(cs3,1),(cs4,0),(try1,1),(try2,0),(try3,0),(try4,0),(chops1,-1),(chops2,0),(chops3,0),(chops4,0),(eat1,9),(eat2,0),(eat3,0),(eat4,0)]) +
+0.0·([(st1,2),(st2,1),(st3,1),(st4,1),(cs1,0),(cs2,1),(cs3,1),(cs4,1),(try1,1),(try2,0),(try3,0),(try4,0),(chops1,1),(chops2,0),(chops3,0),(chops4,0),(eat1,9),(eat2,0),(eat3,0),(eat4,0)])
+
+ProbDinPhil4: 
+0.0·([(st1,2),(st2,1),(st3,1),(st4,1),(cs1,1),(cs2,1),(cs3,1),(cs4,0),(try1,1),(try2,0),(try3,0),(try4,0),(chops1,-1),(chops2,0),(chops3,0),(chops4,0),(eat1,9),(eat2,0),(eat3,0),(eat4,0)]) +
+0.0·([(st1,2),(st2,1),(st3,1),(st4,1),(cs1,0),(cs2,1),(cs3,1),(cs4,1),(try1,1),(try2,0),(try3,0),(try4,0),(chops1,1),(chops2,0),(chops3,0),(chops4,0),(eat1,9),(eat2,0),(eat3,0),(eat4,0)])
+
+ProbDinPhil4: 
+0.0·([(st1,2),(st2,1),(st3,1),(st4,1),(cs1,1),(cs2,1),(cs3,1),(cs4,0),(try1,1),(try2,0),(try3,0),(try4,0),(chops1,-1),(chops2,0),(chops3,0),(chops4,0),(eat1,9),(eat2,0),(eat3,0),(eat4,0)]) +
+0.0·([(st1,2),(st2,1),(st3,1),(st4,1),(cs1,0),(cs2,1),(cs3,1),(cs4,1),(try1,1),(try2,0),(try3,0),(try4,0),(chops1,1),(chops2,0),(chops3,0),(chops4,0),(eat1,9),(eat2,0),(eat3,0),(eat4,0)])
+
+ProbDinPhil4: 
+0.0·([(st1,2),(st2,1),(st3,1),(st4,1),(cs1,1),(cs2,1),(cs3,1),(cs4,0),(try1,1),(try2,0),(try3,0),(try4,0),(chops1,-1),(chops2,0),(chops3,0),(chops4,0),(eat1,9),(eat2,0),(eat3,0),(eat4,0)]) +
+0.0·([(st1,2),(st2,1),(st3,1),(st4,1),(cs1,0),(cs2,1),(cs3,1),(cs4,1),(try1,1),(try2,0),(try3,0),(try4,0),(chops1,1),(chops2,0),(chops3,0),(chops4,0),(eat1,9),(eat2,0),(eat3,0),(eat4,0)])
+
+ProbDinPhil4: 
+0.0·([(st1,2),(st2,1),(st3,1),(st4,1),(cs1,1),(cs2,1),(cs3,1),(cs4,0),(try1,1),(try2,0),(try3,0),(try4,0),(chops1,-1),(chops2,0),(chops3,0),(chops4,0),(eat1,9),(eat2,0),(eat3,0),(eat4,0)]) +
+0.0·([(st1,2),(st2,1),(st3,1),(st4,1),(cs1,0),(cs2,1),(cs3,1),(cs4,1),(try1,1),(try2,0),(try3,0),(try4,0),(chops1,1),(chops2,0),(chops3,0),(chops4,0),(eat1,9),(eat2,0),(eat3,0),(eat4,0)])
+
+ProbDinPhil4: 
+0.0·([(st1,2),(st2,1),(st3,1),(st4,1),(cs1,1),(cs2,1),(cs3,1),(cs4,0),(try1,1),(try2,0),(try3,0),(try4,0),(chops1,-1),(chops2,0),(chops3,0),(chops4,0),(eat1,9),(eat2,0),(eat3,0),(eat4,0)]) +
+0.0·([(st1,2),(st2,1),(st3,1),(st4,1),(cs1,0),(cs2,1),(cs3,1),(cs4,1),(try1,1),(try2,0),(try3,0),(try4,0),(chops1,1),(chops2,0),(chops3,0),(chops4,0),(eat1,9),(eat2,0),(eat3,0),(eat4,0)])
+
+ProbDinPhil4: 
+0.0·([(st1,2),(st2,1),(st3,1),(st4,1),(cs1,1),(cs2,1),(cs3,1),(cs4,0),(try1,1),(try2,0),(try3,0),(try4,0),(chops1,-1),(chops2,0),(chops3,0),(chops4,0),(eat1,9),(eat2,0),(eat3,0),(eat4,0)]) +
+0.0·([(st1,2),(st2,1),(st3,1),(st4,1),(cs1,0),(cs2,1),(cs3,1),(cs4,1),(try1,1),(try2,0),(try3,0),(try4,0),(chops1,1),(chops2,0),(chops3,0),(chops4,0),(eat1,9),(eat2,0),(eat3,0),(eat4,0)])
+
+ProbDinPhil4: 
+0.0·([(st1,2),(st2,1),(st3,1),(st4,1),(cs1,1),(cs2,1),(cs3,1),(cs4,0),(try1,1),(try2,0),(try3,0),(try4,0),(chops1,-1),(chops2,0),(chops3,0),(chops4,0),(eat1,9),(eat2,0),(eat3,0),(eat4,0)]) +
+0.0·([(st1,2),(st2,1),(st3,1),(st4,1),(cs1,0),(cs2,1),(cs3,1),(cs4,1),(try1,1),(try2,0),(try3,0),(try4,0),(chops1,1),(chops2,0),(chops3,0),(chops4,0),(eat1,9),(eat2,0),(eat3,0),(eat4,0)])
+
+ProbDinPhil4: 
+0.0·([(st1,2),(st2,1),(st3,1),(st4,1),(cs1,1),(cs2,1),(cs3,1),(cs4,0),(try1,1),(try2,0),(try3,0),(try4,0),(chops1,-1),(chops2,0),(chops3,0),(chops4,0),(eat1,9),(eat2,0),(eat3,0),(eat4,0)]) +
+0.0·([(st1,2),(st2,1),(st3,1),(st4,1),(cs1,0),(cs2,1),(cs3,1),(cs4,1),(try1,1),(try2,0),(try3,0),(try4,0),(chops1,1),(chops2,0),(chops3,0),(chops4,0),(eat1,9),(eat2,0),(eat3,0),(eat4,0)])
+
+ProbDinPhil4: 
+0.0·([(st1,2),(st2,1),(st3,1),(st4,1),(cs1,1),(cs2,1),(cs3,1),(cs4,0),(try1,1),(try2,0),(try3,0),(try4,0),(chops1,-1),(chops2,0),(chops3,0),(chops4,0),(eat1,9),(eat2,0),(eat3,0),(eat4,0)]) +
+0.0·([(st1,2),(st2,1),(st3,1),(st4,1),(cs1,0),(cs2,1),(cs3,1),(cs4,1),(try1,1),(try2,0),(try3,0),(try4,0),(chops1,1),(chops2,0),(chops3,0),(chops4,0),(eat1,9),(eat2,0),(eat3,0),(eat4,0)])
+
+ProbDinPhil4: 
+0.0·([(st1,2),(st2,1),(st3,1),(st4,1),(cs1,1),(cs2,1),(cs3,1),(cs4,0),(try1,1),(try2,0),(try3,0),(try4,0),(chops1,-1),(chops2,0),(chops3,0),(chops4,0),(eat1,9),(eat2,0),(eat3,0),(eat4,0)]) +
+0.0·([(st1,2),(st2,1),(st3,1),(st4,1),(cs1,0),(cs2,1),(cs3,1),(cs4,1),(try1,1),(try2,0),(try3,0),(try4,0),(chops1,1),(chops2,0),(chops3,0),(chops4,0),(eat1,9),(eat2,0),(eat3,0),(eat4,0)])
+
+ProbDinPhil4: 
+0.0·([(st1,2),(st2,1),(st3,1),(st4,1),(cs1,1),(cs2,1),(cs3,1),(cs4,0),(try1,1),(try2,0),(try3,0),(try4,0),(chops1,-1),(chops2,0),(chops3,0),(chops4,0),(eat1,9),(eat2,0),(eat3,0),(eat4,0)]) +
+0.0·([(st1,2),(st2,1),(st3,1),(st4,1),(cs1,0),(cs2,1),(cs3,1),(cs4,1),(try1,1),(try2,0),(try3,0),(try4,0),(chops1,1),(chops2,0),(chops3,0),(chops4,0),(eat1,9),(eat2,0),(eat3,0),(eat4,0)])
+
+ProbDinPhil4: 
+0.0·([(st1,2),(st2,1),(st3,1),(st4,1),(cs1,1),(cs2,1),(cs3,1),(cs4,0),(try1,1),(try2,0),(try3,0),(try4,0),(chops1,-1),(chops2,0),(chops3,0),(chops4,0),(eat1,9),(eat2,0),(eat3,0),(eat4,0)]) +
+0.0·([(st1,2),(st2,1),(st3,1),(st4,1),(cs1,0),(cs2,1),(cs3,1),(cs4,1),(try1,1),(try2,0),(try3,0),(try4,0),(chops1,1),(chops2,0),(chops3,0),(chops4,0),(eat1,9),(eat2,0),(eat3,0),(eat4,0)])
+
+ProbDinPhil4: 
+0.0·([(st1,2),(st2,1),(st3,1),(st4,1),(cs1,1),(cs2,1),(cs3,1),(cs4,0),(try1,1),(try2,0),(try3,0),(try4,0),(chops1,-1),(chops2,0),(chops3,0),(chops4,0),(eat1,9),(eat2,0),(eat3,0),(eat4,0)]) +
+0.0·([(st1,2),(st2,1),(st3,1),(st4,1),(cs1,0),(cs2,1),(cs3,1),(cs4,1),(try1,1),(try2,0),(try3,0),(try4,0),(chops1,1),(chops2,0),(chops3,0),(chops4,0),(eat1,9),(eat2,0),(eat3,0),(eat4,0)])
+
+ProbDinPhil4: 
+0.0·([(st1,2),(st2,1),(st3,1),(st4,1),(cs1,1),(cs2,1),(cs3,1),(cs4,0),(try1,1),(try2,0),(try3,0),(try4,0),(chops1,-1),(chops2,0),(chops3,0),(chops4,0),(eat1,9),(eat2,0),(eat3,0),(eat4,0)]) +
+0.0·([(st1,2),(st2,1),(st3,1),(st4,1),(cs1,0),(cs2,1),(cs3,1),(cs4,1),(try1,1),(try2,0),(try3,0),(try4,0),(chops1,1),(chops2,0),(chops3,0),(chops4,0),(eat1,9),(eat2,0),(eat3,0),(eat4,0)])
+
+time                 24.88 s    (NaN s .. 25.65 s)
+                     1.000 R²   (0.999 R² .. 1.000 R²)
+mean                 24.97 s    (24.84 s .. 25.15 s)
+std dev              173.9 ms   (56.99 ms .. 227.8 ms)
+variance introduced by outliers: 19% (moderately inflated)
+
+benchmarking ProbdiningPhil4/randNonBlockSchII
+ProbDinPhil4: 
+0.0·([(st1,2),(st2,1),(st3,2),(st4,1),(cs1,1),(cs2,1),(cs3,1),(cs4,1),(try1,0),(try2,0),(try3,0),(try4,0),(chops1,-1),(chops2,0),(chops3,-1),(chops4,0),(eat1,4),(eat2,0),(eat3,4),(eat4,0)]) +
+0.0·([(st1,2),(st2,1),(st3,2),(st4,1),(cs1,1),(cs2,1),(cs3,1),(cs4,1),(try1,0),(try2,0),(try3,0),(try4,0),(chops1,1),(chops2,0),(chops3,-1),(chops4,0),(eat1,4),(eat2,0),(eat3,4),(eat4,0)]) +
+0.0·([(st1,2),(st2,1),(st3,2),(st4,1),(cs1,1),(cs2,1),(cs3,1),(cs4,1),(try1,0),(try2,0),(try3,0),(try4,0),(chops1,-1),(chops2,0),(chops3,1),(chops4,0),(eat1,4),(eat2,0),(eat3,4),(eat4,0)]) +
+0.0·([(st1,2),(st2,1),(st3,2),(st4,1),(cs1,1),(cs2,1),(cs3,1),(cs4,1),(try1,0),(try2,0),(try3,0),(try4,0),(chops1,1),(chops2,0),(chops3,1),(chops4,0),(eat1,4),(eat2,0),(eat3,4),(eat4,0)])
+
+ProbDinPhil4: 
+0.0·([(st1,2),(st2,1),(st3,2),(st4,1),(cs1,1),(cs2,1),(cs3,1),(cs4,1),(try1,0),(try2,0),(try3,0),(try4,0),(chops1,-1),(chops2,0),(chops3,-1),(chops4,0),(eat1,4),(eat2,0),(eat3,4),(eat4,0)]) +
+0.0·([(st1,2),(st2,1),(st3,2),(st4,1),(cs1,1),(cs2,1),(cs3,1),(cs4,1),(try1,0),(try2,0),(try3,0),(try4,0),(chops1,1),(chops2,0),(chops3,-1),(chops4,0),(eat1,4),(eat2,0),(eat3,4),(eat4,0)]) +
+0.0·([(st1,2),(st2,1),(st3,2),(st4,1),(cs1,1),(cs2,1),(cs3,1),(cs4,1),(try1,0),(try2,0),(try3,0),(try4,0),(chops1,-1),(chops2,0),(chops3,1),(chops4,0),(eat1,4),(eat2,0),(eat3,4),(eat4,0)]) +
+0.0·([(st1,2),(st2,1),(st3,2),(st4,1),(cs1,1),(cs2,1),(cs3,1),(cs4,1),(try1,0),(try2,0),(try3,0),(try4,0),(chops1,1),(chops2,0),(chops3,1),(chops4,0),(eat1,4),(eat2,0),(eat3,4),(eat4,0)])
+
+ProbDinPhil4: 
+0.0·([(st1,2),(st2,1),(st3,2),(st4,1),(cs1,1),(cs2,1),(cs3,1),(cs4,1),(try1,0),(try2,0),(try3,0),(try4,0),(chops1,-1),(chops2,0),(chops3,-1),(chops4,0),(eat1,4),(eat2,0),(eat3,4),(eat4,0)]) +
+0.0·([(st1,2),(st2,1),(st3,2),(st4,1),(cs1,1),(cs2,1),(cs3,1),(cs4,1),(try1,0),(try2,0),(try3,0),(try4,0),(chops1,1),(chops2,0),(chops3,-1),(chops4,0),(eat1,4),(eat2,0),(eat3,4),(eat4,0)]) +
+0.0·([(st1,2),(st2,1),(st3,2),(st4,1),(cs1,1),(cs2,1),(cs3,1),(cs4,1),(try1,0),(try2,0),(try3,0),(try4,0),(chops1,-1),(chops2,0),(chops3,1),(chops4,0),(eat1,4),(eat2,0),(eat3,4),(eat4,0)]) +
+0.0·([(st1,2),(st2,1),(st3,2),(st4,1),(cs1,1),(cs2,1),(cs3,1),(cs4,1),(try1,0),(try2,0),(try3,0),(try4,0),(chops1,1),(chops2,0),(chops3,1),(chops4,0),(eat1,4),(eat2,0),(eat3,4),(eat4,0)])
+
+ProbDinPhil4: 
+0.0·([(st1,2),(st2,1),(st3,2),(st4,1),(cs1,1),(cs2,1),(cs3,1),(cs4,1),(try1,0),(try2,0),(try3,0),(try4,0),(chops1,-1),(chops2,0),(chops3,-1),(chops4,0),(eat1,4),(eat2,0),(eat3,4),(eat4,0)]) +
+0.0·([(st1,2),(st2,1),(st3,2),(st4,1),(cs1,1),(cs2,1),(cs3,1),(cs4,1),(try1,0),(try2,0),(try3,0),(try4,0),(chops1,1),(chops2,0),(chops3,-1),(chops4,0),(eat1,4),(eat2,0),(eat3,4),(eat4,0)]) +
+0.0·([(st1,2),(st2,1),(st3,2),(st4,1),(cs1,1),(cs2,1),(cs3,1),(cs4,1),(try1,0),(try2,0),(try3,0),(try4,0),(chops1,-1),(chops2,0),(chops3,1),(chops4,0),(eat1,4),(eat2,0),(eat3,4),(eat4,0)]) +
+0.0·([(st1,2),(st2,1),(st3,2),(st4,1),(cs1,1),(cs2,1),(cs3,1),(cs4,1),(try1,0),(try2,0),(try3,0),(try4,0),(chops1,1),(chops2,0),(chops3,1),(chops4,0),(eat1,4),(eat2,0),(eat3,4),(eat4,0)])
+
+ProbDinPhil4: 
+0.0·([(st1,2),(st2,1),(st3,2),(st4,1),(cs1,1),(cs2,1),(cs3,1),(cs4,1),(try1,0),(try2,0),(try3,0),(try4,0),(chops1,-1),(chops2,0),(chops3,-1),(chops4,0),(eat1,4),(eat2,0),(eat3,4),(eat4,0)]) +
+0.0·([(st1,2),(st2,1),(st3,2),(st4,1),(cs1,1),(cs2,1),(cs3,1),(cs4,1),(try1,0),(try2,0),(try3,0),(try4,0),(chops1,1),(chops2,0),(chops3,-1),(chops4,0),(eat1,4),(eat2,0),(eat3,4),(eat4,0)]) +
+0.0·([(st1,2),(st2,1),(st3,2),(st4,1),(cs1,1),(cs2,1),(cs3,1),(cs4,1),(try1,0),(try2,0),(try3,0),(try4,0),(chops1,-1),(chops2,0),(chops3,1),(chops4,0),(eat1,4),(eat2,0),(eat3,4),(eat4,0)]) +
+0.0·([(st1,2),(st2,1),(st3,2),(st4,1),(cs1,1),(cs2,1),(cs3,1),(cs4,1),(try1,0),(try2,0),(try3,0),(try4,0),(chops1,1),(chops2,0),(chops3,1),(chops4,0),(eat1,4),(eat2,0),(eat3,4),(eat4,0)])
+
+ProbDinPhil4: 
+0.0·([(st1,2),(st2,1),(st3,2),(st4,1),(cs1,1),(cs2,1),(cs3,1),(cs4,1),(try1,0),(try2,0),(try3,0),(try4,0),(chops1,-1),(chops2,0),(chops3,-1),(chops4,0),(eat1,4),(eat2,0),(eat3,4),(eat4,0)]) +
+0.0·([(st1,2),(st2,1),(st3,2),(st4,1),(cs1,1),(cs2,1),(cs3,1),(cs4,1),(try1,0),(try2,0),(try3,0),(try4,0),(chops1,1),(chops2,0),(chops3,-1),(chops4,0),(eat1,4),(eat2,0),(eat3,4),(eat4,0)]) +
+0.0·([(st1,2),(st2,1),(st3,2),(st4,1),(cs1,1),(cs2,1),(cs3,1),(cs4,1),(try1,0),(try2,0),(try3,0),(try4,0),(chops1,-1),(chops2,0),(chops3,1),(chops4,0),(eat1,4),(eat2,0),(eat3,4),(eat4,0)]) +
+0.0·([(st1,2),(st2,1),(st3,2),(st4,1),(cs1,1),(cs2,1),(cs3,1),(cs4,1),(try1,0),(try2,0),(try3,0),(try4,0),(chops1,1),(chops2,0),(chops3,1),(chops4,0),(eat1,4),(eat2,0),(eat3,4),(eat4,0)])
+
+ProbDinPhil4: 
+0.0·([(st1,2),(st2,1),(st3,2),(st4,1),(cs1,1),(cs2,1),(cs3,1),(cs4,1),(try1,0),(try2,0),(try3,0),(try4,0),(chops1,-1),(chops2,0),(chops3,-1),(chops4,0),(eat1,4),(eat2,0),(eat3,4),(eat4,0)]) +
+0.0·([(st1,2),(st2,1),(st3,2),(st4,1),(cs1,1),(cs2,1),(cs3,1),(cs4,1),(try1,0),(try2,0),(try3,0),(try4,0),(chops1,1),(chops2,0),(chops3,-1),(chops4,0),(eat1,4),(eat2,0),(eat3,4),(eat4,0)]) +
+0.0·([(st1,2),(st2,1),(st3,2),(st4,1),(cs1,1),(cs2,1),(cs3,1),(cs4,1),(try1,0),(try2,0),(try3,0),(try4,0),(chops1,-1),(chops2,0),(chops3,1),(chops4,0),(eat1,4),(eat2,0),(eat3,4),(eat4,0)]) +
+0.0·([(st1,2),(st2,1),(st3,2),(st4,1),(cs1,1),(cs2,1),(cs3,1),(cs4,1),(try1,0),(try2,0),(try3,0),(try4,0),(chops1,1),(chops2,0),(chops3,1),(chops4,0),(eat1,4),(eat2,0),(eat3,4),(eat4,0)])
+
+ProbDinPhil4: 
+0.0·([(st1,2),(st2,1),(st3,2),(st4,1),(cs1,1),(cs2,1),(cs3,1),(cs4,1),(try1,0),(try2,0),(try3,0),(try4,0),(chops1,-1),(chops2,0),(chops3,-1),(chops4,0),(eat1,4),(eat2,0),(eat3,4),(eat4,0)]) +
+0.0·([(st1,2),(st2,1),(st3,2),(st4,1),(cs1,1),(cs2,1),(cs3,1),(cs4,1),(try1,0),(try2,0),(try3,0),(try4,0),(chops1,1),(chops2,0),(chops3,-1),(chops4,0),(eat1,4),(eat2,0),(eat3,4),(eat4,0)]) +
+0.0·([(st1,2),(st2,1),(st3,2),(st4,1),(cs1,1),(cs2,1),(cs3,1),(cs4,1),(try1,0),(try2,0),(try3,0),(try4,0),(chops1,-1),(chops2,0),(chops3,1),(chops4,0),(eat1,4),(eat2,0),(eat3,4),(eat4,0)]) +
+0.0·([(st1,2),(st2,1),(st3,2),(st4,1),(cs1,1),(cs2,1),(cs3,1),(cs4,1),(try1,0),(try2,0),(try3,0),(try4,0),(chops1,1),(chops2,0),(chops3,1),(chops4,0),(eat1,4),(eat2,0),(eat3,4),(eat4,0)])
+
+ProbDinPhil4: 
+0.0·([(st1,2),(st2,1),(st3,2),(st4,1),(cs1,1),(cs2,1),(cs3,1),(cs4,1),(try1,0),(try2,0),(try3,0),(try4,0),(chops1,-1),(chops2,0),(chops3,-1),(chops4,0),(eat1,4),(eat2,0),(eat3,4),(eat4,0)]) +
+0.0·([(st1,2),(st2,1),(st3,2),(st4,1),(cs1,1),(cs2,1),(cs3,1),(cs4,1),(try1,0),(try2,0),(try3,0),(try4,0),(chops1,1),(chops2,0),(chops3,-1),(chops4,0),(eat1,4),(eat2,0),(eat3,4),(eat4,0)]) +
+0.0·([(st1,2),(st2,1),(st3,2),(st4,1),(cs1,1),(cs2,1),(cs3,1),(cs4,1),(try1,0),(try2,0),(try3,0),(try4,0),(chops1,-1),(chops2,0),(chops3,1),(chops4,0),(eat1,4),(eat2,0),(eat3,4),(eat4,0)]) +
+0.0·([(st1,2),(st2,1),(st3,2),(st4,1),(cs1,1),(cs2,1),(cs3,1),(cs4,1),(try1,0),(try2,0),(try3,0),(try4,0),(chops1,1),(chops2,0),(chops3,1),(chops4,0),(eat1,4),(eat2,0),(eat3,4),(eat4,0)])
+
+ProbDinPhil4: 
+0.0·([(st1,2),(st2,1),(st3,2),(st4,1),(cs1,1),(cs2,1),(cs3,1),(cs4,1),(try1,0),(try2,0),(try3,0),(try4,0),(chops1,-1),(chops2,0),(chops3,-1),(chops4,0),(eat1,4),(eat2,0),(eat3,4),(eat4,0)]) +
+0.0·([(st1,2),(st2,1),(st3,2),(st4,1),(cs1,1),(cs2,1),(cs3,1),(cs4,1),(try1,0),(try2,0),(try3,0),(try4,0),(chops1,1),(chops2,0),(chops3,-1),(chops4,0),(eat1,4),(eat2,0),(eat3,4),(eat4,0)]) +
+0.0·([(st1,2),(st2,1),(st3,2),(st4,1),(cs1,1),(cs2,1),(cs3,1),(cs4,1),(try1,0),(try2,0),(try3,0),(try4,0),(chops1,-1),(chops2,0),(chops3,1),(chops4,0),(eat1,4),(eat2,0),(eat3,4),(eat4,0)]) +
+0.0·([(st1,2),(st2,1),(st3,2),(st4,1),(cs1,1),(cs2,1),(cs3,1),(cs4,1),(try1,0),(try2,0),(try3,0),(try4,0),(chops1,1),(chops2,0),(chops3,1),(chops4,0),(eat1,4),(eat2,0),(eat3,4),(eat4,0)])
+
+ProbDinPhil4: 
+0.0·([(st1,2),(st2,1),(st3,2),(st4,1),(cs1,1),(cs2,1),(cs3,1),(cs4,1),(try1,0),(try2,0),(try3,0),(try4,0),(chops1,-1),(chops2,0),(chops3,-1),(chops4,0),(eat1,4),(eat2,0),(eat3,4),(eat4,0)]) +
+0.0·([(st1,2),(st2,1),(st3,2),(st4,1),(cs1,1),(cs2,1),(cs3,1),(cs4,1),(try1,0),(try2,0),(try3,0),(try4,0),(chops1,1),(chops2,0),(chops3,-1),(chops4,0),(eat1,4),(eat2,0),(eat3,4),(eat4,0)]) +
+0.0·([(st1,2),(st2,1),(st3,2),(st4,1),(cs1,1),(cs2,1),(cs3,1),(cs4,1),(try1,0),(try2,0),(try3,0),(try4,0),(chops1,-1),(chops2,0),(chops3,1),(chops4,0),(eat1,4),(eat2,0),(eat3,4),(eat4,0)]) +
+0.0·([(st1,2),(st2,1),(st3,2),(st4,1),(cs1,1),(cs2,1),(cs3,1),(cs4,1),(try1,0),(try2,0),(try3,0),(try4,0),(chops1,1),(chops2,0),(chops3,1),(chops4,0),(eat1,4),(eat2,0),(eat3,4),(eat4,0)])
+
+ProbDinPhil4: 
+0.0·([(st1,2),(st2,1),(st3,2),(st4,1),(cs1,1),(cs2,1),(cs3,1),(cs4,1),(try1,0),(try2,0),(try3,0),(try4,0),(chops1,-1),(chops2,0),(chops3,-1),(chops4,0),(eat1,4),(eat2,0),(eat3,4),(eat4,0)]) +
+0.0·([(st1,2),(st2,1),(st3,2),(st4,1),(cs1,1),(cs2,1),(cs3,1),(cs4,1),(try1,0),(try2,0),(try3,0),(try4,0),(chops1,1),(chops2,0),(chops3,-1),(chops4,0),(eat1,4),(eat2,0),(eat3,4),(eat4,0)]) +
+0.0·([(st1,2),(st2,1),(st3,2),(st4,1),(cs1,1),(cs2,1),(cs3,1),(cs4,1),(try1,0),(try2,0),(try3,0),(try4,0),(chops1,-1),(chops2,0),(chops3,1),(chops4,0),(eat1,4),(eat2,0),(eat3,4),(eat4,0)]) +
+0.0·([(st1,2),(st2,1),(st3,2),(st4,1),(cs1,1),(cs2,1),(cs3,1),(cs4,1),(try1,0),(try2,0),(try3,0),(try4,0),(chops1,1),(chops2,0),(chops3,1),(chops4,0),(eat1,4),(eat2,0),(eat3,4),(eat4,0)])
+
+ProbDinPhil4: 
+0.0·([(st1,2),(st2,1),(st3,2),(st4,1),(cs1,1),(cs2,1),(cs3,1),(cs4,1),(try1,0),(try2,0),(try3,0),(try4,0),(chops1,-1),(chops2,0),(chops3,-1),(chops4,0),(eat1,4),(eat2,0),(eat3,4),(eat4,0)]) +
+0.0·([(st1,2),(st2,1),(st3,2),(st4,1),(cs1,1),(cs2,1),(cs3,1),(cs4,1),(try1,0),(try2,0),(try3,0),(try4,0),(chops1,1),(chops2,0),(chops3,-1),(chops4,0),(eat1,4),(eat2,0),(eat3,4),(eat4,0)]) +
+0.0·([(st1,2),(st2,1),(st3,2),(st4,1),(cs1,1),(cs2,1),(cs3,1),(cs4,1),(try1,0),(try2,0),(try3,0),(try4,0),(chops1,-1),(chops2,0),(chops3,1),(chops4,0),(eat1,4),(eat2,0),(eat3,4),(eat4,0)]) +
+0.0·([(st1,2),(st2,1),(st3,2),(st4,1),(cs1,1),(cs2,1),(cs3,1),(cs4,1),(try1,0),(try2,0),(try3,0),(try4,0),(chops1,1),(chops2,0),(chops3,1),(chops4,0),(eat1,4),(eat2,0),(eat3,4),(eat4,0)])
+
+ProbDinPhil4: 
+0.0·([(st1,2),(st2,1),(st3,2),(st4,1),(cs1,1),(cs2,1),(cs3,1),(cs4,1),(try1,0),(try2,0),(try3,0),(try4,0),(chops1,-1),(chops2,0),(chops3,-1),(chops4,0),(eat1,4),(eat2,0),(eat3,4),(eat4,0)]) +
+0.0·([(st1,2),(st2,1),(st3,2),(st4,1),(cs1,1),(cs2,1),(cs3,1),(cs4,1),(try1,0),(try2,0),(try3,0),(try4,0),(chops1,1),(chops2,0),(chops3,-1),(chops4,0),(eat1,4),(eat2,0),(eat3,4),(eat4,0)]) +
+0.0·([(st1,2),(st2,1),(st3,2),(st4,1),(cs1,1),(cs2,1),(cs3,1),(cs4,1),(try1,0),(try2,0),(try3,0),(try4,0),(chops1,-1),(chops2,0),(chops3,1),(chops4,0),(eat1,4),(eat2,0),(eat3,4),(eat4,0)]) +
+0.0·([(st1,2),(st2,1),(st3,2),(st4,1),(cs1,1),(cs2,1),(cs3,1),(cs4,1),(try1,0),(try2,0),(try3,0),(try4,0),(chops1,1),(chops2,0),(chops3,1),(chops4,0),(eat1,4),(eat2,0),(eat3,4),(eat4,0)])
+
+ProbDinPhil4: 
+0.0·([(st1,2),(st2,1),(st3,2),(st4,1),(cs1,1),(cs2,1),(cs3,1),(cs4,1),(try1,0),(try2,0),(try3,0),(try4,0),(chops1,-1),(chops2,0),(chops3,-1),(chops4,0),(eat1,4),(eat2,0),(eat3,4),(eat4,0)]) +
+0.0·([(st1,2),(st2,1),(st3,2),(st4,1),(cs1,1),(cs2,1),(cs3,1),(cs4,1),(try1,0),(try2,0),(try3,0),(try4,0),(chops1,1),(chops2,0),(chops3,-1),(chops4,0),(eat1,4),(eat2,0),(eat3,4),(eat4,0)]) +
+0.0·([(st1,2),(st2,1),(st3,2),(st4,1),(cs1,1),(cs2,1),(cs3,1),(cs4,1),(try1,0),(try2,0),(try3,0),(try4,0),(chops1,-1),(chops2,0),(chops3,1),(chops4,0),(eat1,4),(eat2,0),(eat3,4),(eat4,0)]) +
+0.0·([(st1,2),(st2,1),(st3,2),(st4,1),(cs1,1),(cs2,1),(cs3,1),(cs4,1),(try1,0),(try2,0),(try3,0),(try4,0),(chops1,1),(chops2,0),(chops3,1),(chops4,0),(eat1,4),(eat2,0),(eat3,4),(eat4,0)])
+
+ProbDinPhil4: 
+0.0·([(st1,2),(st2,1),(st3,2),(st4,1),(cs1,1),(cs2,1),(cs3,1),(cs4,1),(try1,0),(try2,0),(try3,0),(try4,0),(chops1,-1),(chops2,0),(chops3,-1),(chops4,0),(eat1,4),(eat2,0),(eat3,4),(eat4,0)]) +
+0.0·([(st1,2),(st2,1),(st3,2),(st4,1),(cs1,1),(cs2,1),(cs3,1),(cs4,1),(try1,0),(try2,0),(try3,0),(try4,0),(chops1,1),(chops2,0),(chops3,-1),(chops4,0),(eat1,4),(eat2,0),(eat3,4),(eat4,0)]) +
+0.0·([(st1,2),(st2,1),(st3,2),(st4,1),(cs1,1),(cs2,1),(cs3,1),(cs4,1),(try1,0),(try2,0),(try3,0),(try4,0),(chops1,-1),(chops2,0),(chops3,1),(chops4,0),(eat1,4),(eat2,0),(eat3,4),(eat4,0)]) +
+0.0·([(st1,2),(st2,1),(st3,2),(st4,1),(cs1,1),(cs2,1),(cs3,1),(cs4,1),(try1,0),(try2,0),(try3,0),(try4,0),(chops1,1),(chops2,0),(chops3,1),(chops4,0),(eat1,4),(eat2,0),(eat3,4),(eat4,0)])
+
+time                 24.27 s    (24.10 s .. 24.56 s)
+                     1.000 R²   (1.000 R² .. 1.000 R²)
+mean                 24.33 s    (24.26 s .. 24.40 s)
+std dev              74.02 ms   (37.54 ms .. 104.0 ms)
+variance introduced by outliers: 19% (moderately inflated)
+
+benchmarking ProbdiningPhil4/roundRobinSch
+ProbDinPhil4: 
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,-1),(chops3,-1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,-1),(chops3,1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,-1),(chops3,-1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,-1),(chops3,1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,-1),(chops3,-1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,-1),(chops3,1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,-1),(chops3,-1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,-1),(chops3,1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,1),(chops3,-1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,1),(chops3,1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,1),(chops3,-1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,1),(chops3,1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,1),(chops3,-1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,1),(chops3,1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,1),(chops3,-1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,1),(chops3,1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)])
+
+ProbDinPhil4: 
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,-1),(chops3,-1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,-1),(chops3,1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,-1),(chops3,-1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,-1),(chops3,1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,-1),(chops3,-1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,-1),(chops3,1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,-1),(chops3,-1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,-1),(chops3,1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,1),(chops3,-1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,1),(chops3,1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,1),(chops3,-1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,1),(chops3,1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,1),(chops3,-1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,1),(chops3,1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,1),(chops3,-1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,1),(chops3,1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)])
+
+ProbDinPhil4: 
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,-1),(chops3,-1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,-1),(chops3,1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,-1),(chops3,-1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,-1),(chops3,1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,-1),(chops3,-1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,-1),(chops3,1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,-1),(chops3,-1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,-1),(chops3,1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,1),(chops3,-1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,1),(chops3,1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,1),(chops3,-1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,1),(chops3,1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,1),(chops3,-1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,1),(chops3,1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,1),(chops3,-1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,1),(chops3,1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)])
+
+ProbDinPhil4: 
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,-1),(chops3,-1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,-1),(chops3,1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,-1),(chops3,-1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,-1),(chops3,1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,-1),(chops3,-1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,-1),(chops3,1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,-1),(chops3,-1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,-1),(chops3,1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,1),(chops3,-1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,1),(chops3,1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,1),(chops3,-1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,1),(chops3,1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,1),(chops3,-1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,1),(chops3,1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,1),(chops3,-1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,1),(chops3,1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)])
+
+ProbDinPhil4: 
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,-1),(chops3,-1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,-1),(chops3,1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,-1),(chops3,-1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,-1),(chops3,1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,-1),(chops3,-1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,-1),(chops3,1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,-1),(chops3,-1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,-1),(chops3,1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,1),(chops3,-1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,1),(chops3,1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,1),(chops3,-1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,1),(chops3,1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,1),(chops3,-1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,1),(chops3,1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,1),(chops3,-1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,1),(chops3,1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)])
+
+ProbDinPhil4: 
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,-1),(chops3,-1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,-1),(chops3,1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,-1),(chops3,-1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,-1),(chops3,1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,-1),(chops3,-1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,-1),(chops3,1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,-1),(chops3,-1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,-1),(chops3,1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,1),(chops3,-1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,1),(chops3,1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,1),(chops3,-1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,1),(chops3,1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,1),(chops3,-1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,1),(chops3,1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,1),(chops3,-1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,1),(chops3,1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)])
+
+ProbDinPhil4: 
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,-1),(chops3,-1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,-1),(chops3,1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,-1),(chops3,-1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,-1),(chops3,1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,-1),(chops3,-1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,-1),(chops3,1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,-1),(chops3,-1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,-1),(chops3,1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,1),(chops3,-1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,1),(chops3,1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,1),(chops3,-1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,1),(chops3,1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,1),(chops3,-1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,1),(chops3,1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,1),(chops3,-1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,1),(chops3,1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)])
+
+ProbDinPhil4: 
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,-1),(chops3,-1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,-1),(chops3,1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,-1),(chops3,-1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,-1),(chops3,1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,-1),(chops3,-1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,-1),(chops3,1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,-1),(chops3,-1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,-1),(chops3,1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,1),(chops3,-1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,1),(chops3,1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,1),(chops3,-1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,1),(chops3,1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,1),(chops3,-1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,1),(chops3,1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,1),(chops3,-1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,1),(chops3,1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)])
+
+ProbDinPhil4: 
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,-1),(chops3,-1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,-1),(chops3,1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,-1),(chops3,-1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,-1),(chops3,1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,-1),(chops3,-1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,-1),(chops3,1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,-1),(chops3,-1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,-1),(chops3,1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,1),(chops3,-1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,1),(chops3,1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,1),(chops3,-1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,1),(chops3,1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,1),(chops3,-1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,1),(chops3,1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,1),(chops3,-1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,1),(chops3,1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)])
+
+ProbDinPhil4: 
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,-1),(chops3,-1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,-1),(chops3,1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,-1),(chops3,-1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,-1),(chops3,1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,-1),(chops3,-1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,-1),(chops3,1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,-1),(chops3,-1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,-1),(chops3,1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,1),(chops3,-1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,1),(chops3,1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,1),(chops3,-1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,1),(chops3,1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,1),(chops3,-1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,1),(chops3,1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,1),(chops3,-1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,1),(chops3,1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)])
+
+ProbDinPhil4: 
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,-1),(chops3,-1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,-1),(chops3,1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,-1),(chops3,-1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,-1),(chops3,1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,-1),(chops3,-1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,-1),(chops3,1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,-1),(chops3,-1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,-1),(chops3,1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,1),(chops3,-1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,1),(chops3,1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,1),(chops3,-1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,1),(chops3,1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,1),(chops3,-1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,1),(chops3,1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,1),(chops3,-1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,1),(chops3,1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)])
+
+ProbDinPhil4: 
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,-1),(chops3,-1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,-1),(chops3,1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,-1),(chops3,-1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,-1),(chops3,1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,-1),(chops3,-1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,-1),(chops3,1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,-1),(chops3,-1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,-1),(chops3,1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,1),(chops3,-1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,1),(chops3,1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,1),(chops3,-1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,1),(chops3,1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,1),(chops3,-1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,1),(chops3,1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,1),(chops3,-1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,1),(chops3,1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)])
+
+ProbDinPhil4: 
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,-1),(chops3,-1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,-1),(chops3,1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,-1),(chops3,-1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,-1),(chops3,1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,-1),(chops3,-1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,-1),(chops3,1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,-1),(chops3,-1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,-1),(chops3,1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,1),(chops3,-1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,1),(chops3,1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,1),(chops3,-1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,1),(chops3,1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,1),(chops3,-1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,1),(chops3,1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,1),(chops3,-1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,1),(chops3,1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)])
+
+ProbDinPhil4: 
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,-1),(chops3,-1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,-1),(chops3,1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,-1),(chops3,-1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,-1),(chops3,1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,-1),(chops3,-1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,-1),(chops3,1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,-1),(chops3,-1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,-1),(chops3,1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,1),(chops3,-1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,1),(chops3,1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,1),(chops3,-1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,1),(chops3,1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,1),(chops3,-1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,1),(chops3,1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,1),(chops3,-1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,1),(chops3,1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)])
+
+ProbDinPhil4: 
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,-1),(chops3,-1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,-1),(chops3,1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,-1),(chops3,-1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,-1),(chops3,1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,-1),(chops3,-1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,-1),(chops3,1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,-1),(chops3,-1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,-1),(chops3,1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,1),(chops3,-1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,1),(chops3,1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,1),(chops3,-1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,1),(chops3,1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,1),(chops3,-1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,1),(chops3,1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,1),(chops3,-1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,1),(chops3,1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)])
+
+ProbDinPhil4: 
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,-1),(chops3,-1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,-1),(chops3,1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,-1),(chops3,-1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,-1),(chops3,1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,-1),(chops3,-1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,-1),(chops3,1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,-1),(chops3,-1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,-1),(chops3,1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,1),(chops3,-1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,1),(chops3,1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,1),(chops3,-1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,-1),(chops2,1),(chops3,1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,1),(chops3,-1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,1),(chops3,1),(chops4,-1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,1),(chops3,-1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(st4,2),(cs1,2),(cs2,2),(cs3,3),(cs4,3),(try1,1),(try2,1),(try3,1),(try4,1),(chops1,1),(chops2,1),(chops3,1),(chops4,1),(eat1,1),(eat2,0),(eat3,1),(eat4,1)])
+
+time                 22.88 s    (22.47 s .. 23.27 s)
+                     1.000 R²   (1.000 R² .. 1.000 R²)
+mean                 22.99 s    (22.87 s .. 23.19 s)
+std dev              185.7 ms   (5.662 ms .. 230.0 ms)
+variance introduced by outliers: 19% (moderately inflated)
+

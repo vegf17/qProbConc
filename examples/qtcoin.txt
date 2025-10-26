@@ -1,0 +1,10 @@
+---QtCoinTossConc---
+hist: (100, [[x1,x2]])
+k: 10
+<
+ H(q1); Meas(x1,q1) || H(q2); Meas(x2,q2),
+ [(x1,0),(x2,0)],
+ [(q1,1),(q2,2)],
+ (1.0)|00><00|
+>
+---QtCoinTossConc---

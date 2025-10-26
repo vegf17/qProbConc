@@ -1,0 +1,344 @@
+---ProbDinPhil3---
+hist: (1, [])
+k: 200
+<
+ while(true) do{
+  while(st1==1) do{st1:=2 or skip};
+  (try1:=1 or try1:=0);
+  while(try1==1) do{
+   chops1:=-1 (+)(1%2) chops1:=1;
+   if(chops1==1)
+    then {
+     await(cs1==1) do {cs1:=cs1-1};
+     if(cs3==1) then {cs3:=cs3-1; try1:=0}
+     else {cs1:=cs1+1}
+    }
+    else{
+     await(cs3==1) do {cs3:=cs3-1};
+     if(cs1==1) then {cs1:=cs1-1; try1:=0}
+     else {cs3:=cs3+1}
+    }
+  };
+  st1:=0;
+  while(st1==0) do {st1:=1 or skip};
+  eat1:=eat1+1; cs1:=cs1+1; cs3:=cs3+1
+ }
+ ||
+ while(true) do{
+  while(st2==1) do{st2:=2 or skip};
+  (try2:=1 or try2:=0);
+  while(try2==1) do{
+   chops2:=-1 (+)(1%2) chops2:=1;
+   if(chops2==1)
+    then {
+     await(cs2==1) do {cs2:=cs2-1};
+     if(cs1==1) then {cs1:=cs1-1; try2:=0}
+     else {cs2:=cs2+1}
+    }
+    else{
+     await(cs1==1) do {cs1:=cs1-1};
+     if(cs2==1) then {cs2:=cs2-1; try2:=0}
+     else {cs1:=cs1+1}
+    }
+  };
+  st2:=0;
+  while(st2==0) do {st2:=1 or skip};
+  eat2:=eat2+1; cs2:=cs2+1; cs1:=cs1+1
+ }
+ ||
+ while(true) do{
+  while(st3==1) do{st3:=2 or skip};
+  (try3:=1 or try3:=0);
+  while(try3==1) do{
+   chops3:=-1 (+)(1%2) chops3:=1;
+   if(chops3==1)
+    then {
+     await(cs3==1) do {cs3:=cs3-1};
+     if(cs2==1) then {cs2:=cs2-1; try3:=0}
+     else {cs3:=cs3+1}
+    }
+    else{
+     await(cs2==1) do {cs2:=cs2-1};
+     if(cs3==1) then {cs3:=cs3-1; try3:=0}
+     else {cs2:=cs2+1}
+    }
+  };
+  st3:=0;
+  while(st3==0) do {st3:=1 or skip};
+  eat3:=eat3+1; cs3:=cs3+1; cs2:=cs2+1
+ },
+ [(st1,1),(st2,1),(st3,1),
+  (cs1,1),(cs2,1),(cs3,1),
+  (try1,0),(try2,0),(try3,0),
+  (chops1,0),(chops2,0),(chops3,0),
+  (eat1,0),(eat2,0),(eat3,0)]
+>
+---ProbDinPhil3---
+
+
+.
+
+---ProbDinPhil3---
+hist: (1, [[eat1,eat2,eat3]])
+k: 100
+<
+ while(true) do{
+  while(st1==1) do{st1:=2 or skip};
+  while(try1==0) do{try1:=1 or skip};
+  while(try1==1) do{
+   (chops1:=-1 (+)(1%2) chops1:=1);
+   if(chops1==1)
+    then{
+     await(cs1==1) do{
+     cs1:=cs1-1;
+     if(cs3==1)
+     then {cs3:=cs3-1; try1:=0}
+     else {cs1:=cs1+1}
+     }
+    }
+    else{
+     await(cs3==1) do{
+     cs3:=cs3-1;
+     if(cs1==1)
+     then {cs1:=cs1-1; try1:=0}
+     else {cs3:=cs3+1}
+     }
+    }
+  };
+  st1:=0;
+  while(st1==0) do {st1:=1 or skip};
+  eat1:=eat1+1; cs1:=cs1+1; cs3:=cs3+1
+ }
+ ||
+ while(true) do{
+  while(st2==1) do{st2:=2 or skip};
+  while(try2==0) do{try2:=1 or skip};
+  while(try2==1) do{
+   (chops2:=-1 (+)(1%2) chops2:=1);
+   if(chops2==1)
+    then {
+     await(cs2==1) do{
+     cs2:=cs2-1;
+     if(cs1==1)
+     then {cs1:=cs1-1; try2:=0}
+     else {cs2:=cs2+1}
+     }
+    }
+    else{
+     await(cs1==1) do{
+     cs1:=cs1-1;
+     if(cs2==1) then {cs2:=cs2-1; try2:=0}
+     else {cs1:=cs1+1}
+     }
+    }
+  };
+  st2:=0;
+  while(st2==0) do {st2:=1 or skip};
+  eat2:=eat2+1; cs2:=cs2+1; cs1:=cs1+1
+ }
+ ||
+ while(true) do{
+  while(st3==1) do{st3:=2 or skip};
+  while(try3==0) do{try3:=1 or skip};
+  while(try3==1) do{
+   (chops3:=-1 (+)(1%2) chops3:=1);
+   if(chops3==1)
+    then {
+     await(cs3==1) do{
+     cs3:=cs3-1;
+     if(cs2==1)
+     then {cs2:=cs2-1; try3:=0}
+     else {cs3:=cs3+1}
+     }
+    }
+    else{
+     await(cs2==1) do{
+     cs2:=cs2-1;
+     if(cs3==1)
+     then {cs3:=cs3-1; try3:=0}
+     else {cs2:=cs2+1}
+     }
+    }
+  };
+  st3:=0;
+  while(st3==0) do {st3:=1 or skip};
+  eat3:=eat3+1; cs3:=cs3+1; cs2:=cs2+1
+ },
+[(st1,1),(st2,1),(st3,1),
+ (cs1,1),(cs2,1),(cs3,1),
+ (try1,0),(try2,0),(try3,0),
+ (chops1,0),(chops2,0),(chops3,0),
+ (eat1,0),(eat2,0),(eat3,0)]
+ >
+---ProbDinPhil3---
+
+
+.
+
+
+---ProbDinPhil3---
+hist: (1, [[eat1,eat2,eat3]])
+k: 200
+<
+ while(true) do{
+  while(st1==1) do{st1:=2 or skip};
+  while(try1==0) do{try1:=1 or skip};
+  while(try1==1) do{
+   (chops1:=-1 (+)(1%2) chops1:=1);
+   if(chops1==1)
+    then{
+     await(cs1==1) do{cs1:=cs1-1};
+     if(cs3==1)
+     then {cs3:=cs3-1; try1:=0}
+     else {cs1:=cs1+1}
+    }
+    else{
+     await(cs3==1) do{cs3:=cs3-1};
+     if(cs1==1)
+     then {cs1:=cs1-1; try1:=0}
+     else {cs3:=cs3+1}
+    }
+  };
+  st1:=0;
+  while(st1==0) do {st1:=1 or skip};
+  await(st1==1) do {eat1:=eat1+1; cs1:=cs1+1; cs3:=cs3+1}
+ }
+ ||
+ while(true) do{
+  while(st2==1) do{st2:=2 or skip};
+  while(try2==0) do{try2:=1 or skip};
+  while(try2==1) do{
+   (chops2:=-1 (+)(1%2) chops2:=1);
+   if(chops2==1)
+    then {
+     await(cs2==1) do{cs2:=cs2-1};
+     if(cs1==1)
+     then {cs1:=cs1-1; try2:=0}
+     else {cs2:=cs2+1}
+    }
+    else{
+     await(cs1==1) do{cs1:=cs1-1};
+     if(cs2==1)
+     then {cs2:=cs2-1; try2:=0}
+     else {cs1:=cs1+1}
+    }
+  };
+  st2:=0;
+  while(st2==0) do {st2:=1 or skip};
+  await(st2==1) do {eat2:=eat2+1; cs2:=cs2+1; cs1:=cs1+1}
+ }
+ ||
+ while(true) do{
+  while(st3==1) do{st3:=2 or skip};
+  while(try3==0) do{try3:=1 or skip};
+  while(try3==1) do{
+   (chops3:=-1 (+)(1%2) chops3:=1);
+   if(chops3==1)
+    then {
+     await(cs3==1) do{cs3:=cs3-1};
+     if(cs2==1)
+     then {cs2:=cs2-1; try3:=0}
+     else {cs3:=cs3+1}
+    }
+    else{
+     await(cs2==1) do{cs2:=cs2-1};
+     if(cs3==1)
+     then {cs3:=cs3-1; try3:=0}
+     else {cs2:=cs2+1}
+    }
+  };
+  st3:=0;
+  while(st3==0) do {st3:=1 or skip};
+  await(st3==1) do {eat3:=eat3+1; cs3:=cs3+1; cs2:=cs2+1}
+ },
+[(st1,1),(st2,1),(st3,1),
+ (cs1,1),(cs2,1),(cs3,1),
+ (try1,0),(try2,0),(try3,0),
+ (chops1,0),(chops2,0),(chops3,0),
+ (eat1,0),(eat2,0),(eat3,0)]
+ >
+---ProbDinPhil3---
+
+.
+
+---ProbDinPhil3---
+hist: (1, [[eat1,eat2,eat3]])
+k: 300
+<
+ while(true) do{
+   st1:=2;
+   try1:=1;
+   while (try1==1) do{
+    chops1:=-1 (+)(1%2) chops1:=1;
+    if (chops1==1)
+     then {
+      await (cs1==1) do {cs1:=0};
+      if (cs3==1) then {cs3:=0; try1:=0}
+                else {cs1:=1}
+     }
+     else {
+      await (cs3==1) do {cs3:=0};
+      if (cs1==1) then {cs1:=0; try1:=0}
+      	 	 else {cs3:=1}
+     }
+   };
+   st1:=0;
+   st1:=1;
+   await (st1==1) do {eat1:=eat1+1; cs1:=1; cs3:=1; i:=i+1}
+ }
+ ||
+ while(true) do{
+   st2:=2;
+   try2:=1;
+   while (try2==1) do{
+    chops2:=-1 (+)(1%2) chops2:=1;
+    if (chops2==1)
+     then {
+      await (cs2==1) do {cs2:=0};
+      if (cs1==1) then {cs1:=0; try2:=0}
+                else {cs2:=1}
+     }
+     else {
+      await (cs1==1) do {cs1:=0};
+      if (cs2==1) then {cs2:=0; try2:=0}
+      	 	 else {cs1:=1}
+     }
+   };
+   st2:=0;
+   st2:=1;
+   await (st2==1) do {eat2:=eat2+1; cs2:=1; cs1:=1; i:=i+1}
+ }
+ ||
+ while(true) do{
+   st3:=2;
+   try3:=1;
+   while (try3==1) do{
+    chops3:=-1 (+)(1%2) chops3:=1;
+    if (chops3==1)
+     then {
+      await (cs3==1) do {cs3:=0};
+      if (cs2==1) then {cs2:=0; try3:=0}
+                else {cs3:=1}
+     }
+     else {
+      await (cs2==1) do {cs2:=0};
+      if (cs3==1) then {cs3:=0; try3:=0}
+      	 	 else {cs2:=1}
+     }
+   };
+   st3:=0;
+   st3:=1;
+   await (st3==1) do {eat3:=eat3+1; cs3:=1; cs2:=1; i:=i+1}
+ },
+ [(st1,1), (st2,1), (st3,1),
+  (cs1,1), (cs2,1), (cs3,1),
+  (i,0),
+  (eat1,0), (eat2,0), (eat3,0),
+  (chops1,0), (chops2,0), (chops3,0),
+  (try1,0), (try2,0), (try3,0)]
+>
+---ProbDinPhil3---
+
+
+
+ 
