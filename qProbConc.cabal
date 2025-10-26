@@ -20,30 +20,32 @@ name: qProbConc
 -- PVP summary:     +-+------- breaking API changes
 --                  | | +----- non-breaking API additions
 --                  | | | +--- code changes with no API change
-version:            0.1.0.0
+version:            0.1.0.1
 
 -- A short (one-line) description of the package.
 synopsis:
     An interpreter for a concurrent (quantum) language with probabilities
 
--- A longer description of the package. --COMPLETAR
--- description:
+-- A longer description of the package.
+description: This package contains an interpreter for a concurrent language with probabilities and
+quantum features embedded, as well as a synchronization primitive.  The implementation of the
+semantics is based on an operational semantics formally defined.
 
--- The license under which the package is released. --REVER SE É A LICENSE CORRETA
+-- The license under which the package is released. 
 license:            BSD-3-Clause
 
 -- The file containing the license text. 
 license-file:       LICENSE
 
--- The package author(s). --REVER (também ficam na licença)
+-- The package author(s). 
 author:
     Vítor Fernandes, Inês Dias, Renato Neves, Luís Soares Barbosa
 
 -- An email address to which users can send suggestions, bug reports, and patches.
 maintainer:         vegf17@gmail.com
 
--- A copyright notice. --COMPLETAR?
--- copyright: --REVER
+-- A copyright notice. 
+-- copyright: 
 category:           Language
 build-type:         Simple
 
