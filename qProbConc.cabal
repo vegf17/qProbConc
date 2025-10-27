@@ -55,7 +55,8 @@ extra-doc-files:    CHANGELOG.md,
 
 
 -- Extra source files to be distributed with the package, such as examples, or a tutorial module.
-extra-source-files: examples/*
+extra-source-files: examples/*,
+                    showcase/*
 
 --common warnings
 --    ghc-options: -Wall

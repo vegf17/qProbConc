@@ -1,0 +1,14 @@
+ghci> runSem "showcase/dinphil3.txt" nonBlockSch 
+DinPhil3: 
+0.0·([(st1,2),(st2,1),(st3,1),(cs1,1),(cs2,1),(cs3,1),(eat1,14),(eat2,0),(eat3,0)])
+
+
+ghci> runSem "showcase/dinphil3.txt" randNonBlockSchII
+DinPhil3: 
+0.0·([(st1,1),(st2,1),(st3,1),(cs1,1),(cs2,1),(cs3,1),(eat1,9),(eat2,0),(eat3,0)])
+
+
+ghci> runSem "showcase/dinphil3.txt" roundRobinSch
+DinPhil3: 
+0.0·([(st1,0),(st2,2),(st3,1),(cs1,0),(cs2,1),(cs3,0),(eat1,3),(eat2,3),(eat3,3)])
+

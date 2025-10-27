@@ -1,0 +1,39 @@
+ghci> runSem "showcase/probdinphil3.txt" nonBlockSch
+ProbDinPhil3: 
+0.0·([(st1,2),(st2,1),(st3,1),(cs1,1),(cs2,1),(cs3,0),(try1,1),(try2,0),(try3,0),(chops1,-1),(chops2,0),(chops3,0),(eat1,9),(eat2,0),(eat3,0)]) +
+0.0·([(st1,2),(st2,1),(st3,1),(cs1,0),(cs2,1),(cs3,1),(try1,1),(try2,0),(try3,0),(chops1,1),(chops2,0),(chops3,0),(eat1,9),(eat2,0),(eat3,0)])
+
+
+ghci> runSem "showcase/probdinphil3.txt" randNonBlockSchII
+ProbDinPhil3: 
+0.0·([(st1,1),(st2,1),(st3,1),(cs1,1),(cs2,1),(cs3,1),(try1,0),(try2,0),(try3,0),(chops1,-1),(chops2,0),(chops3,0),(eat1,6),(eat2,0),(eat3,0)]) +
+0.0·([(st1,1),(st2,1),(st3,1),(cs1,1),(cs2,1),(cs3,1),(try1,0),(try2,0),(try3,0),(chops1,1),(chops2,0),(chops3,0),(eat1,6),(eat2,0),(eat3,0)])
+
+
+ghci> runSem "showcase/probdinphil3.txt" roundRobinSch
+ProbDinPhil3: 
+0.0·([(st1,2),(st2,2),(st3,2),(cs1,3),(cs2,0),(cs3,3),(try1,1),(try2,1),(try3,1),(chops1,-1),(chops2,-1),(chops3,-1),(eat1,2),(eat2,0),(eat3,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(cs1,3),(cs2,1),(cs3,3),(try1,1),(try2,1),(try3,1),(chops1,-1),(chops2,-1),(chops3,1),(eat1,2),(eat2,0),(eat3,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(cs1,3),(cs2,0),(cs3,3),(try1,1),(try2,1),(try3,1),(chops1,1),(chops2,-1),(chops3,-1),(eat1,2),(eat2,0),(eat3,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(cs1,3),(cs2,1),(cs3,3),(try1,1),(try2,1),(try3,1),(chops1,1),(chops2,-1),(chops3,1),(eat1,2),(eat2,0),(eat3,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(cs1,3),(cs2,1),(cs3,3),(try1,1),(try2,1),(try3,1),(chops1,-1),(chops2,-1),(chops3,-1),(eat1,2),(eat2,0),(eat3,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(cs1,3),(cs2,0),(cs3,3),(try1,1),(try2,1),(try3,1),(chops1,-1),(chops2,1),(chops3,-1),(eat1,2),(eat2,0),(eat3,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(cs1,3),(cs2,1),(cs3,3),(try1,1),(try2,1),(try3,1),(chops1,-1),(chops2,1),(chops3,1),(eat1,2),(eat2,0),(eat3,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(cs1,3),(cs2,0),(cs3,3),(try1,1),(try2,1),(try3,1),(chops1,-1),(chops2,1),(chops3,1),(eat1,2),(eat2,0),(eat3,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(cs1,3),(cs2,1),(cs3,3),(try1,1),(try2,1),(try3,1),(chops1,1),(chops2,-1),(chops3,-1),(eat1,2),(eat2,0),(eat3,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(cs1,3),(cs2,0),(cs3,3),(try1,1),(try2,1),(try3,1),(chops1,1),(chops2,1),(chops3,-1),(eat1,2),(eat2,0),(eat3,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(cs1,3),(cs2,1),(cs3,3),(try1,1),(try2,1),(try3,1),(chops1,1),(chops2,1),(chops3,1),(eat1,2),(eat2,0),(eat3,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(cs1,3),(cs2,0),(cs3,3),(try1,1),(try2,1),(try3,1),(chops1,1),(chops2,1),(chops3,1),(eat1,2),(eat2,0),(eat3,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(cs1,2),(cs2,0),(cs3,2),(try1,1),(try2,1),(try3,1),(chops1,-1),(chops2,-1),(chops3,-1),(eat1,1),(eat2,0),(eat3,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(cs1,2),(cs2,1),(cs3,2),(try1,1),(try2,1),(try3,1),(chops1,-1),(chops2,-1),(chops3,1),(eat1,1),(eat2,0),(eat3,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(cs1,2),(cs2,0),(cs3,2),(try1,1),(try2,1),(try3,1),(chops1,1),(chops2,-1),(chops3,-1),(eat1,1),(eat2,0),(eat3,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(cs1,2),(cs2,1),(cs3,2),(try1,1),(try2,1),(try3,1),(chops1,1),(chops2,-1),(chops3,1),(eat1,1),(eat2,0),(eat3,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(cs1,2),(cs2,1),(cs3,2),(try1,1),(try2,1),(try3,1),(chops1,-1),(chops2,-1),(chops3,-1),(eat1,1),(eat2,0),(eat3,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(cs1,2),(cs2,0),(cs3,2),(try1,1),(try2,1),(try3,1),(chops1,-1),(chops2,1),(chops3,-1),(eat1,1),(eat2,0),(eat3,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(cs1,2),(cs2,1),(cs3,2),(try1,1),(try2,1),(try3,1),(chops1,-1),(chops2,1),(chops3,1),(eat1,1),(eat2,0),(eat3,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(cs1,2),(cs2,0),(cs3,2),(try1,1),(try2,1),(try3,1),(chops1,-1),(chops2,1),(chops3,1),(eat1,1),(eat2,0),(eat3,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(cs1,2),(cs2,1),(cs3,2),(try1,1),(try2,1),(try3,1),(chops1,1),(chops2,-1),(chops3,-1),(eat1,1),(eat2,0),(eat3,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(cs1,2),(cs2,0),(cs3,2),(try1,1),(try2,1),(try3,1),(chops1,1),(chops2,1),(chops3,-1),(eat1,1),(eat2,0),(eat3,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(cs1,2),(cs2,1),(cs3,2),(try1,1),(try2,1),(try3,1),(chops1,1),(chops2,1),(chops3,1),(eat1,1),(eat2,0),(eat3,1)]) +
+0.0·([(st1,2),(st2,2),(st3,2),(cs1,2),(cs2,0),(cs3,2),(try1,1),(try2,1),(try3,1),(chops1,1),(chops2,1),(chops3,1),(eat1,1),(eat2,0),(eat3,1)])
+
