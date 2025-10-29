@@ -6,6 +6,10 @@ This README aims to instruct how to use the tool developed for ICTAC25 submissio
 
 The tool in question corresponds to a Haskell library. To load this library's modules into GHCi and use them, refer to the following instructions. A prerequisite for these instructions is the installation of [GHC](https://www.haskell.org/ghc/) and [cabal-install](https://cabal.readthedocs.io/en/stable/).
 
+These tools can be installed separetly, however it is possible to install both simultaneously using GHCUP.
+
+The GHC version we are using is 9.6.7 (this seems to be important to not create any conflict between the libraries we are using)
+
 1. Download the qProbConc Cabal package, which is the folder corresponding to the [qProbConc Github repository](https://github.com/vegf17/qProbConc).
 2. Open a terminal within the downloaded package.
 3. Run ``cabal build`` and then ``cabal repl qProbConc``.
